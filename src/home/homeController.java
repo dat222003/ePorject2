@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
+import login.loginController;
 
 import java.io.IOException;
 
@@ -24,13 +25,17 @@ public class homeController {
 
     @FXML
     private void loadLogin() throws IOException {
-        Parent root = FXMLLoader.load(login.loginApplication.url);
+        FXMLLoader loader = new FXMLLoader(login.loginApplication.url);
+        Parent root = loader.load();
+
         Scene scene = logoutButton.getScene();
         root.translateXProperty().set(scene.getWidth());
-
         BorderPane parentContainer = (BorderPane) logoutButton.getScene().getRoot();
-
         parentContainer.getChildren().add(root);
+
+
+
+        loginController loginController = loader.getController();
 
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
@@ -38,6 +43,7 @@ public class homeController {
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(t -> {
             parentContainer.getChildren().remove(logoutPane);
+            loginController.loggedOut();
         });
         timeline.play();
     }

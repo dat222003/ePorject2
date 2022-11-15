@@ -98,4 +98,8 @@ public class loginController {
             timeline.play();
         }
 
+        public void loggedOut() {
+            this.messageField.setText("You Logged Out");
+        }
+
     }
