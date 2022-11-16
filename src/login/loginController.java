@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -48,11 +49,11 @@ public class loginController {
             } else if (passwordField.getText().isBlank()) {
                 messageField.setText("password missing");
             } else {
-                checkUser();
+                checkUser(e);
             }
         }
 
-        public void checkUser() {
+        public void checkUser(ActionEvent event) {
             DatabaseConnect databaseConnect = new DatabaseConnect();
             Connection con = DatabaseConnect.getConnect();
 
@@ -63,7 +64,7 @@ public class loginController {
                 ResultSet resultSet = statement.executeQuery(query);
                 if (resultSet.next()) {
                     this.messageField.setText("");
-                    loadHome();
+                    loadHome(event);
                 } else {
                     messageField.setText("Invalid Credentials!");
                 }
@@ -79,23 +80,12 @@ public class loginController {
         }
 
         @FXML
-        private void loadHome() throws IOException {
+        private void loadHome(ActionEvent event) throws IOException {
             Parent root = FXMLLoader.load(home.homeApp.url);
-            Scene scene = loginButton.getScene();
-            root.translateXProperty().set(scene.getWidth());
-
-            BorderPane parentContainer = (BorderPane) loginButton.getScene().getRoot();
-
-            parentContainer.getChildren().add(root);
-
-            Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
-            KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
-            timeline.getKeyFrames().add(kf);
-            timeline.setOnFinished(t -> {
-                parentContainer.getChildren().remove(loginPane);
-            });
-            timeline.play();
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
 
         public void loggedOut() {
