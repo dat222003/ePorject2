@@ -1,4 +1,4 @@
-module test {
+module eProject2 {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;

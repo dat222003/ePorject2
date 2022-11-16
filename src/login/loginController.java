@@ -62,6 +62,7 @@ public class loginController {
                 Statement statement = con.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 if (resultSet.next()) {
+                    this.messageField.setText("");
                     loadHome();
                 } else {
                     messageField.setText("Invalid Credentials!");
@@ -80,7 +81,6 @@ public class loginController {
         @FXML
         private void loadHome() throws IOException {
             Parent root = FXMLLoader.load(home.homeApp.url);
-            System.out.println();
             Scene scene = loginButton.getScene();
             root.translateXProperty().set(scene.getWidth());
 

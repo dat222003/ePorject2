@@ -726,7 +726,7 @@ Source/bmalloc/bmalloc
 Source/bmalloc/libpas/src/chaos
 Source/bmalloc/libpas/src/libpas
 Source/bmalloc/libpas/src/mbmalloc
-Source/bmalloc/libpas/src/test
+Source/bmalloc/libpas/src/eProject2
 Source/bmalloc/libpas/src/toys
 Source/bmalloc/libpas/src/verifier
 Source/cmake/tools/scripts
@@ -4295,7 +4295,7 @@ Source/WebCore/xml
 Source/WebKitLegacy/java/WebCoreSupport
 Source/WebKitLegacy/scripts
 Source/bmalloc/libpas/src/libpas
-Source/bmalloc/libpas/src/test
+Source/bmalloc/libpas/src/eProject2
 
 Copyright (C) 2003-2021 Apple Inc. All rights reserved.
 Copyright (c) 2011 Google Inc. All rights reserved.
@@ -4700,7 +4700,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ---------------------------------
 The below license applies to some files in the following directories:
 Source/WTF/wtf/dtoa
-Source/bmalloc/libpas/src/test
+Source/bmalloc/libpas/src/eProject2
 
 Copyright 2006-2013 the V8 project authors. All rights reserved.
 Copyright (C) 2015 Apple Inc. All rights reserved.
