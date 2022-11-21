@@ -42,6 +42,7 @@
     <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-javafx:12.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-core:12.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-fontawesome5-pack:12.3.1" level="project" />
+    <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:9.0.10" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:20-ea+7" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:20-ea+7" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:20-ea+7" level="project" />

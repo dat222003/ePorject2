@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="logoutPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.homeController">
+<AnchorPane fx:id="logoutPane" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.homeController">
    <children>
-      <SplitPane dividerPositions="0.28595317725752506" prefHeight="500.0" prefWidth="600.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <effect>
-                  <InnerShadow />
-               </effect>
-               <children>
-                  <Button fx:id="logoutButton" layoutX="93.0" layoutY="443.0" mnemonicParsing="false" onAction="#loadLogin" text="Logout">
-                     <effect>
-                        <Glow />
-                     </effect>
-                  </Button>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="487.0" prefWidth="414.0" />
-        </items>
-      </SplitPane>
+      <AnchorPane prefHeight="720.0" prefWidth="229.0" style="-fx-background-color: #3E6D9C;">
+         <children>
+            <JFXButton fx:id="logoutButton" buttonType="RAISED" layoutX="168.0" layoutY="667.0" onAction="#loadLogin" prefHeight="39.0" prefWidth="47.0" style="-fx-background-color: white;" text="   " textAlignment="RIGHT" textFill="#171616">
+               <graphic>
+                  <FontIcon iconLiteral="fas-sign-out-alt" iconSize="25" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

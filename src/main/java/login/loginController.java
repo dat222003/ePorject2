@@ -1,5 +1,6 @@
 package login;
 
+import home.homeApp;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -10,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -22,6 +24,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class loginController {
         @FXML
@@ -40,7 +43,6 @@ public class loginController {
 
         @FXML
         private BorderPane loginPane;
-
 
         public void loginButtonOnAction(ActionEvent e) {
 
@@ -65,6 +67,11 @@ public class loginController {
                 if (resultSet.next()) {
                     this.messageField.setText("");
                     loadHome(event);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Message");
+                    alert.setHeaderText("You logged in");
+                    alert.setContentText("user: " + usernameField.getText());
+                    alert.showAndWait();
                 } else {
                     messageField.setText("Invalid Credentials!");
                 }
@@ -81,15 +88,11 @@ public class loginController {
 
         @FXML
         private void loadHome(ActionEvent event) throws IOException {
-            Parent root = FXMLLoader.load(home.homeApp.url);
+            homeApp homeApp = new homeApp();
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            stage.close();
+            homeApp.start(new Stage());
+
         }
 
-        public void loggedOut() {
-            this.messageField.setText("You Logged Out");
-        }
-
-    }
+}

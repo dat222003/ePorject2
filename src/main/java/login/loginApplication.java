@@ -13,15 +13,27 @@ public class loginApplication extends Application {
 
     public static URL url = loginApplication.class.getResource("/login-view.fxml");
 
+    double x,y = 0;
     @Override
     public void start(Stage stage) throws IOException {
-        System.out.println(url);
         FXMLLoader fxmlLoader = new FXMLLoader(url);
-        Scene scene = new Scene(fxmlLoader.load(), 600, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 775, 500);
         stage.initStyle(StageStyle.UNDECORATED);
+
+        scene.setOnMousePressed(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+
+        scene.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - x);
+            stage.setY(event.getScreenY() - y);
+        });
+
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {

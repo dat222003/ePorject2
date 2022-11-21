@@ -8,6 +8,7 @@ module eProject2 {
     // add icon pack modules
 //    requires org.kordamp.ikonli.fontawesome;
     requires mysql.connector.j;
+    requires com.jfoenix;
 
     opens home to javafx.fxml;
     exports home;
