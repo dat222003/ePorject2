@@ -19,16 +19,18 @@ public class homeApp extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(url);
         Scene scene = new Scene(fxmlLoader.load(), 1200, 720);
-        stage.initStyle(StageStyle.UNDECORATED);
-        scene.setOnMousePressed(event -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        });
-
-        scene.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - x);
-            stage.setY(event.getScreenY() - y);
-        });
+//        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setMinWidth(1200);
+        stage.setMinHeight(720);
+//        scene.setOnMousePressed(event -> {
+//            x = event.getSceneX();
+//            y = event.getSceneY();
+//        });
+//
+//        scene.setOnMouseDragged(event -> {
+//            stage.setX(event.getScreenX() - x);
+//            stage.setY(event.getScreenY() - y);
+//        });
         stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();

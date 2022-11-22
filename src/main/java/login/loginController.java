@@ -20,10 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
 public class loginController {
@@ -58,19 +55,37 @@ public class loginController {
         public void checkUser(ActionEvent event) {
             DatabaseConnect databaseConnect = new DatabaseConnect();
             Connection con = DatabaseConnect.getConnect();
-
-            String query = "Select * from user where user_name = '" + usernameField.getText() + "' and password = '" + passwordField.getText() + "'";
-
             try {
-                Statement statement = con.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
-                if (resultSet.next()) {
-                    this.messageField.setText("");
+                PreparedStatement admin_query = con.prepareStatement("select * from user_account" +
+                        "    right join admin a on user_account.user_id = a.user_id" +
+                        "    and user_account.user = ? and user_account.password = ?");
+                admin_query.setString(1, usernameField.getText());
+                admin_query.setString(2, passwordField.getText());
+//                System.out.println(admin_query);
+                ResultSet resultSet = admin_query.executeQuery();
+                if (resultSet.next() && resultSet.getString("user") != null) {
                     loadHome(event);
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Message");
-                    alert.setHeaderText("You logged in");
-                    alert.setContentText("user: " + usernameField.getText());
+                    alert.setHeaderText("You logged in as admin");
+                    alert.setContentText("admin: " + usernameField.getText());
+                    alert.showAndWait();
+                    return;
+                } else {
+                    PreparedStatement emp_query = con.prepareStatement("select * from user_account" +
+                            "    right join employee a on user_account.user_id = a.user_id" +
+                            "    and user_account.user =  ? and user_account.password = ?");
+                    emp_query.setString(1, usernameField.getText());
+                    emp_query.setString(2, passwordField.getText());
+//                    System.out.println(emp_query);
+                    resultSet = emp_query.executeQuery();
+                }
+                if (resultSet.next() && resultSet.getString("user") != null) {
+                    loadHome(event);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Message");
+                    alert.setHeaderText("You logged in as employee");
+                    alert.setContentText("emp: " + usernameField.getText());
                     alert.showAndWait();
                 } else {
                     messageField.setText("Invalid Credentials!");

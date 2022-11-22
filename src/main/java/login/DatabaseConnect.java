@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnect {
     public static Connection con;
-    public static String url = "jdbc:mysql://mysqldb.c1pmrcfs8z8r.ap-southeast-1.rds.amazonaws.com/user";
+    public static String url = "jdbc:mysql://mysqldb.c1pmrcfs8z8r.ap-southeast-1.rds.amazonaws.com/restaurant";
 
 
     public static Connection getConnect() {
