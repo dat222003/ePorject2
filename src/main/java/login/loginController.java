@@ -1,43 +1,42 @@
 package login;
 
+import com.jfoenix.controls.JFXRadioButton;
 import home.homeApp;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.sql.*;
-import java.util.Scanner;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class loginController {
         @FXML
         private Button loginButton;
         @FXML
+        private JFXRadioButton rememberButton;
+        @FXML
         private Button closeButton;
-
         @FXML
         private Label messageField;
-
         @FXML
         private TextField usernameField;
-
         @FXML
         private TextField passwordField;
-
         @FXML
         private BorderPane loginPane;
 
@@ -48,7 +47,8 @@ public class loginController {
             } else if (passwordField.getText().isBlank()) {
                 messageField.setText("password missing");
             } else {
-                checkUser(e);
+                createUserSession("user");
+//                checkUser(e);
             }
         }
 
@@ -106,6 +106,28 @@ public class loginController {
             stage.close();
             homeApp.start(new Stage());
 
+        }
+
+        public void createUserSession(String userName) {
+            LocalDateTime dateTime = LocalDateTime.now();
+            String session = userName + dateTime;
+//            String sha256hex = Hashing.sha256()
+//                    .hashString(session, StandardCharsets.UTF_8)
+//                    .toString();
+            System.out.println(session);
+            Path session_path = Paths.get("src/main/resources/session.txt");
+            try (
+                    BufferedReader session_reader = Files.newBufferedReader(session_path, StandardCharsets.UTF_8)
+            ) {
+                String line = session_reader.readLine();
+                if (line != null) {
+                    System.out.println(line);
+                }
+
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
 }
