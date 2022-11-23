@@ -1,12 +1,14 @@
 package home;
 
 
+import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import login.loginApplication;
@@ -14,11 +16,14 @@ import login.loginApplication;
 import java.io.IOException;
 import java.util.Optional;
 
-public class homeController{
+public class homeController {
+
     @FXML
-    public Button logoutButton;
+    private Label userNameLabel;
     @FXML
-    public AnchorPane logoutPane;
+    private Button logoutButton;
+    @FXML
+    private AnchorPane logoutPane;
 
     @FXML
     private void loadLogin(ActionEvent event) throws IOException {

@@ -61,10 +61,9 @@ public class loginController {
                         "    and user_account.user = ? and user_account.password = ?");
                 admin_query.setString(1, usernameField.getText());
                 admin_query.setString(2, passwordField.getText());
-//                System.out.println(admin_query);
                 ResultSet resultSet = admin_query.executeQuery();
                 if (resultSet.next() && resultSet.getString("user") != null) {
-                    loadHome(event);
+                    loadHome(event); //admin rights
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Message");
                     alert.setHeaderText("You logged in as admin");
@@ -77,7 +76,6 @@ public class loginController {
                             "    and user_account.user =  ? and user_account.password = ?");
                     emp_query.setString(1, usernameField.getText());
                     emp_query.setString(2, passwordField.getText());
-//                    System.out.println(emp_query);
                     resultSet = emp_query.executeQuery();
                 }
                 if (resultSet.next() && resultSet.getString("user") != null) {
