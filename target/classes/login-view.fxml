@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -51,11 +51,11 @@
                </graphic></Button>
             <FontIcon iconLiteral="far-user" iconSize="22" layoutX="63.0" layoutY="189.0" selectionFill="BLACK" />
             <FontIcon iconLiteral="fas-key" iconSize="22" layoutX="62.0" layoutY="251.0" />
-            <JFXRadioButton fx:id="rememberButton" contentDisplay="RIGHT" layoutX="97.0" layoutY="285.0" prefHeight="19.0" prefWidth="210.0" text="Remember Me">
+            <JFXCheckBox fx:id="rememberCheckBox" checkedColor="#3a8891" layoutX="97.0" layoutY="281.0" prefHeight="23.0" prefWidth="208.0" text="Remember Me">
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
-            </JFXRadioButton>
+            </JFXCheckBox>
             </children>
         </AnchorPane>
     </right>

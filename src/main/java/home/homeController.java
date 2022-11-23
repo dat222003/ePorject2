@@ -1,7 +1,6 @@
 package home;
 
 
-import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -11,6 +10,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import login.DatabaseConnect;
 import login.loginApplication;
 
 import java.io.IOException;
@@ -35,6 +35,7 @@ public class homeController {
             loginApplication loginApplication = new loginApplication();
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.close();
+            DatabaseConnect.deleteUserSession();
             loginApplication.start(new Stage());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Message");
@@ -43,5 +44,7 @@ public class homeController {
         }
 
     }
+
+
 
 }

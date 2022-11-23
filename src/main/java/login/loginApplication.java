@@ -1,5 +1,6 @@
 package login;
 
+import home.homeApp;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +17,15 @@ public class loginApplication extends Application {
     double x,y = 0;
     @Override
     public void start(Stage stage) throws IOException {
+        if (UserSession.checkSession()) {
+            try {
+                loginController loginController = new loginController();
+                loginController.loadHome();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return;
+        }
         FXMLLoader fxmlLoader = new FXMLLoader(url);
         Scene scene = new Scene(fxmlLoader.load(), 775, 500);
         stage.initStyle(StageStyle.UNDECORATED);
@@ -33,6 +43,7 @@ public class loginApplication extends Application {
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
+
 
     }
 
