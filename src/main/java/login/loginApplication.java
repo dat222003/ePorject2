@@ -30,6 +30,8 @@ public class loginApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 775, 500);
         stage.initStyle(StageStyle.UNDECORATED);
 
+
+
         scene.setOnMousePressed(event -> {
             x = event.getSceneX();
             y = event.getSceneY();

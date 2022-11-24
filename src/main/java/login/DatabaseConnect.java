@@ -1,13 +1,6 @@
 package login;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -20,7 +13,7 @@ public class DatabaseConnect {
     public static Connection getConnect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, "admin", "12345678");
+            con = DriverManager.getConnection(url, "admin", "dat2003dat2003");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }

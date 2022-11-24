@@ -1,6 +1,7 @@
 package home;
 
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,6 +15,7 @@ import login.DatabaseConnect;
 import login.loginApplication;
 
 import java.io.IOException;
+import java.util.EventListener;
 import java.util.Optional;
 
 public class homeController {
@@ -24,6 +26,15 @@ public class homeController {
     private Button logoutButton;
     @FXML
     private AnchorPane logoutPane;
+
+    @FXML
+    private JFXButton maximizeButton;
+
+    @FXML
+    private JFXButton minimizeButton;
+
+    @FXML
+    private JFXButton closeButton;
 
     @FXML
     private void loadLogin(ActionEvent event) throws IOException {
@@ -45,6 +56,23 @@ public class homeController {
 
     }
 
+    @FXML
+    private void setCloseButton(ActionEvent e) {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void setMaximizeButton(ActionEvent event) {
+        Stage stage = (Stage) maximizeButton.getScene().getWindow();
+        stage.setMaximized(!stage.isMaximized());
+    }
+
+    @FXML
+    private void setMinimizeButton(ActionEvent event) {
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+        stage.setIconified(true);
+    }
 
 
 }
