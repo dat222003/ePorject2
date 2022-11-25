@@ -12,7 +12,6 @@ import java.util.List;
 
 public class employeeDB {
     private static final Connection con = DatabaseConnect.getConnect();
-    //add employee to employee table and user_account table
     public static boolean addEmployee(Employee employee) {
         try {
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO user_account " +
@@ -42,14 +41,11 @@ public class employeeDB {
     }
     public static ArrayList<Employee> getAllEmployee() {
         ArrayList<Employee> empList = new ArrayList<>();
-        Employee employee = new Employee();
         try {
-            PreparedStatement preparedStatement = con.prepareStatement("select  * from employee " +
-                    "join user_account ua on ua.user_id = employee.user_id");
+            PreparedStatement preparedStatement = con.prepareStatement("call getAllEmployee()");
             ResultSet resultset = preparedStatement.executeQuery();
             while (resultset.next()) {
-                setEmployeeProp(employee, resultset);
-                empList.add(employee);
+                empList.add(setEmployeeProp(resultset));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -66,7 +62,7 @@ public class employeeDB {
             preparedStatement.setString(1, emp_id);
             ResultSet resultset = preparedStatement.executeQuery();
             while (resultset.next()) {
-                setEmployeeProp(employee, resultset);
+                setEmployeeProp(resultset);
             }
         } catch (SQLException e) {
             return null;
@@ -86,7 +82,8 @@ public class employeeDB {
         }
     }
 
-    private static void setEmployeeProp(Employee employee, ResultSet resultset) throws SQLException {
+    private static Employee setEmployeeProp(ResultSet resultset) throws SQLException {
+        Employee employee = new Employee();
         employee.setUserid(Integer.parseInt(resultset.getString("employee.user_id")));
         employee.setEmp_id(Integer.parseInt(resultset.getString("emp_id")));
         employee.setSalary(resultset.getDouble("salary"));
@@ -97,16 +94,13 @@ public class employeeDB {
         employee.setPassword(resultset.getString("password"));
         employee.setName(resultset.getString("name"));
         employee.setPhone(resultset.getString("phone"));
+        return employee;
     }
 
     public static void main(String[] args) {
-//        System.out.println(getAllEmployee());
-//        System.out.println(getOneEmployee("1"));
-
-//        addEmployee(new Employee("user",
-//                DatabaseConnect.hash("pass"),
-//                "name", "phone", "email", 1000d, "idcard", 1, 1));
-        System.out.println(deleteEmployee("7"));
+        addEmployee(new Employee("user",
+                DatabaseConnect.hash("pass"),
+                "name", "phone", "email", 1000d, "idcard", 1, 1));
     }
 
 }
