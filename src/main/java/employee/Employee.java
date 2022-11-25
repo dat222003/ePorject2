@@ -1,7 +1,10 @@
 package employee;
 
-public class employee {
+public class Employee {
     private int userid;
+
+    private double salary;
+    private int emp_id;
     private String user;
     private String password;
     private String name;
@@ -9,6 +12,9 @@ public class employee {
     private String email;
     private String idcard;
     private int gender;
+
+
+
 
     public int getUserid() {
         return userid;
@@ -74,11 +80,43 @@ public class employee {
         this.gender = gender;
     }
 
-    public employee() {
+    public int getEmp_id() {
+        return emp_id;
     }
 
-    public employee(int userid, String user, String password, String name, String phone, String email, String idcard, int gender) {
+    public void setEmp_id(int emp_id) {
+        this.emp_id = emp_id;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public Employee() {
+    }
+
+
+
+    public Employee(int userid, double salary, int emp_id, String user, String password, String name, String phone, String email, String idcard, int gender) {
         this.userid = userid;
+        this.salary = salary;
+        this.emp_id = emp_id;
+        this.user = user;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.idcard = idcard;
+        this.gender = gender;
+    }
+
+    public Employee(String user, String password, String name, String phone, String email, double salary, String idcard, int gender, int emp_id) {
+        this.salary = salary;
+        this.emp_id = emp_id;
         this.user = user;
         this.password = password;
         this.name = name;
@@ -90,8 +128,10 @@ public class employee {
 
     @Override
     public String toString() {
-        return "employee{" +
+        return "Employee{" +
                 "userid=" + userid +
+                ", salary=" + salary +
+                ", empid=" + emp_id +
                 ", user='" + user + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +

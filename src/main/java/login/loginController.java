@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class loginController {
         @FXML
@@ -49,27 +50,27 @@ public class loginController {
         public void checkUser() {
             try (Connection con = DatabaseConnect.getConnect()) {
                 PreparedStatement admin_query = con.prepareStatement("select * from user_account" +
-                        "    right join admin a on user_account.user_id = a.user_id" +
-                        "    and user_account.user = ? and user_account.password = ?");
+                        " inner join admin a on user_account.user_id = a.user_id" +
+                        " and user_account.user = ? and user_account.password = ?");
                 admin_query.setString(1, usernameField.getText());
-                admin_query.setString(2, passwordField.getText());
+                admin_query.setString(2, DatabaseConnect.hash(passwordField.getText()));
                 ResultSet resultSet = admin_query.executeQuery();
-                if (resultSet.next() && resultSet.getString("user") != null) {
+                if (resultSet.next()) {
                     if (rememberCheckBox.isSelected()) {
                         UserSession.createUserSession(usernameField.getText());
                     }
                     loadHome(); //admin rights
                     showAlert(usernameField.getText());
                     return;
-                } else {
+                } else { //else employee
                     PreparedStatement emp_query = con.prepareStatement("select * from user_account" +
-                            " right join employee a on user_account.user_id = a.user_id" +
+                            " inner join employee a on user_account.user_id = a.user_id" +
                             " and user_account.user =  ? and user_account.password = ?");
                     emp_query.setString(1, usernameField.getText());
-                    emp_query.setString(2, passwordField.getText());
+                    emp_query.setString(2, DatabaseConnect.hash(passwordField.getText()));
                     resultSet = emp_query.executeQuery();
                 }
-                if (resultSet.next() && resultSet.getString("user") != null) {
+                if (resultSet.next()) {
                     if (rememberCheckBox.isSelected()) {
                         UserSession.createUserSession(usernameField.getText());
                     }
@@ -105,6 +106,8 @@ public class loginController {
             alert.setContentText("Welcome " + user.toUpperCase());
             alert.showAndWait();
         }
+
+
 
 
 }

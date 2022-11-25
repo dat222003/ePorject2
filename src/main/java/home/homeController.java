@@ -4,12 +4,14 @@ package home;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import login.DatabaseConnect;
 import login.loginApplication;
@@ -25,16 +27,10 @@ public class homeController {
     @FXML
     private Button logoutButton;
     @FXML
-    private AnchorPane logoutPane;
+    private BorderPane homePane;
 
     @FXML
-    private JFXButton maximizeButton;
-
-    @FXML
-    private JFXButton minimizeButton;
-
-    @FXML
-    private JFXButton closeButton;
+    private JFXButton employeeButton;
 
     @FXML
     private void loadLogin(ActionEvent event) throws IOException {
@@ -57,22 +53,19 @@ public class homeController {
     }
 
     @FXML
-    private void setCloseButton(ActionEvent e) {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
+    // load employee.fxml into homePane
+    private void loadEmployee(ActionEvent event) {
+        AnchorPane employeePane = null;
+        try {
+            employeePane = FXMLLoader.load(getClass().getResource("/employeeTab.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(employeePane);
+
     }
 
-    @FXML
-    private void setMaximizeButton(ActionEvent event) {
-        Stage stage = (Stage) maximizeButton.getScene().getWindow();
-        stage.setMaximized(!stage.isMaximized());
-    }
 
-    @FXML
-    private void setMinimizeButton(ActionEvent event) {
-        Stage stage = (Stage) minimizeButton.getScene().getWindow();
-        stage.setIconified(true);
-    }
 
 
 }

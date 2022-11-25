@@ -14,4 +14,8 @@ module eProject2 {
     exports home;
     opens login to javafx.fxml;
     exports login;
+    opens tab to javafx.fxml;
+    exports tab;
+    opens employee to javafx.fxml;
+    exports employee;
 }
