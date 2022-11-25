@@ -19,26 +19,42 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="employeePane" maxHeight="720.0" maxWidth="971.0" minHeight="720.0" minWidth="971.0" prefHeight="720.0" prefWidth="971.0" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.EmployeeTabController">
+<AnchorPane fx:id="employeePane" minHeight="720.0" minWidth="971.0" prefHeight="720.0" prefWidth="971.0" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.EmployeeTabController">
    <children>
-      <HBox layoutX="31.0" layoutY="317.0" prefHeight="35.0" prefWidth="686.0" spacing="20.0">
+      <HBox layoutX="31.0" layoutY="317.0" prefHeight="35.0" prefWidth="906.0" spacing="20.0" AnchorPane.bottomAnchor="365.0" AnchorPane.leftAnchor="24.0">
          <children>
             <JFXButton fx:id="reloadButton" contentDisplay="GRAPHIC_ONLY" onAction="#reloadTable" prefHeight="37.0" prefWidth="52.0">
                <graphic>
                   <FontIcon iconLiteral="fas-redo" iconSize="20" />
                </graphic>
             </JFXButton>
-            <TextField fx:id="searchField" prefHeight="38.0" prefWidth="309.0" />
-            <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="102.0" text="Search">
+            <FontIcon iconLiteral="fas-search" iconSize="28" wrappingWidth="34.666664123535156">
+               <HBox.margin>
+                  <Insets left="5.0" top="4.0" />
+               </HBox.margin>
+            </FontIcon>
+            <TextField fx:id="searchField" prefHeight="35.0" prefWidth="216.0" />
+            <Button fx:id="addNewButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="102.0" text="Create New">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="addNewEmployee" mnemonicParsing="false" prefHeight="35.0" prefWidth="102.0" text="Create New">
+            <JFXButton fx:id="addOrUpdateButton" graphicTextGap="10.0" prefHeight="43.0" prefWidth="177.0" text="Add / Update">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font size="14.0" />
                </font>
-            </Button>
+               <graphic>
+                  <FontIcon iconLiteral="fas-arrow-up" iconSize="20" selectionFill="#0a0000" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="deleteButton" alignment="CENTER" graphicTextGap="15.0" prefHeight="42.0" prefWidth="134.0" text="Delete">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconLiteral="far-trash-alt" iconSize="20" selectionFill="#070000" />
+               </graphic>
+            </JFXButton>
          </children>
       </HBox>
       <GridPane layoutX="22.0" layoutY="64.0" prefHeight="250.0" prefWidth="648.0" AnchorPane.leftAnchor="280.0">
@@ -76,16 +92,14 @@
                   </TextField>
                   <HBox prefHeight="40.0" prefWidth="296.0" spacing="40.0">
                      <children>
-                        <JFXButton contentDisplay="TEXT_ONLY" prefHeight="43.0" prefWidth="141.0" text="Add / Update">
+                        <Button fx:id="eraseInfoButton" mnemonicParsing="false" onAction="#EraseInfo" prefHeight="43.0" prefWidth="163.0" text="Erase Info">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-eraser" iconSize="30" selectionFill="BLACK" />
+                           </graphic>
                            <font>
-                              <Font size="17.0" />
+                              <Font size="19.0" />
                            </font>
-                        </JFXButton>
-                        <JFXButton contentDisplay="TEXT_ONLY" prefHeight="43.0" prefWidth="137.0" text="Delete">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </JFXButton>
+                        </Button>
                      </children>
                   </HBox>
                </children>
@@ -100,12 +114,17 @@
                         <Font size="19.0" />
                      </font>
                   </TextField>
-                  <PasswordField fx:id="passwordField" prefHeight="37.0" prefWidth="302.0" promptText="Password">
+                  <PasswordField fx:id="oldPasswordField" prefHeight="37.0" prefWidth="302.0" promptText="Old Password">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </PasswordField>
-                  <PasswordField fx:id="rePasswordField" layoutX="10.0" layoutY="10.0" prefHeight="37.0" prefWidth="302.0" promptText="RePassword">
+                  <PasswordField fx:id="newPasswordField" layoutX="10.0" layoutY="10.0" prefHeight="37.0" prefWidth="302.0" promptText="New Password">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </PasswordField>
+                  <PasswordField fx:id="reNewPasswordField" layoutX="10.0" layoutY="104.0" prefHeight="37.0" prefWidth="302.0" promptText="Enter New Password Again">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -137,7 +156,7 @@
             </VBox>
          </children>
       </GridPane>
-      <TableView fx:id="employeeTable" prefHeight="333.0" prefWidth="926.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="21.0">
+      <TableView fx:id="employeeTable" onMouseClicked="#getRowData" prefHeight="333.0" prefWidth="926.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="21.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="49.999996185302734" text="ID" />
           <TableColumn fx:id="userColumn" prefWidth="154.00000381469727" text="User" />
@@ -145,7 +164,7 @@
             <TableColumn fx:id="phoneColumn" minWidth="0.0" prefWidth="163.0" text="Phone" />
             <TableColumn fx:id="genderColumn" prefWidth="96.0" text="Gender" />
             <TableColumn fx:id="salaryColumn" minWidth="0.0" prefWidth="119.3333740234375" text="Salary" />
-            <TableColumn fx:id="ActionColumn" prefWidth="134.0" text="Action" />
+            <TableColumn fx:id="emailColumn" prefWidth="134.0" text="Email" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
