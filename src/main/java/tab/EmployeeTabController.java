@@ -104,6 +104,7 @@ public class EmployeeTabController implements Initializable {
     @FXML
     private Button changePasswordButton;
 
+    // set a text-field to only number input
     public static void numericOnly(final TextField field) {
         field.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -116,10 +117,10 @@ public class EmployeeTabController implements Initializable {
             }
         });
     }
-
     Integer index;
 
     @FXML
+    //put data to text-field if row is selected
     void getRowData(MouseEvent event) {
         index = employeeTable.getSelectionModel().getSelectedIndex();
         if (index <= -1) {
@@ -138,8 +139,8 @@ public class EmployeeTabController implements Initializable {
         }
     }
 
-
     @FXML
+    //clear emo info in textfield
     void EraseInfo(ActionEvent event) {
         nameTextField.setText("");
         userTextField.setText("");
@@ -152,7 +153,6 @@ public class EmployeeTabController implements Initializable {
         newPasswordField.setText("");
         reNewPasswordField.setText("");
     }
-
     @FXML
     private void reloadTable(ActionEvent event) {
         employeeList.clear();
@@ -172,6 +172,8 @@ public class EmployeeTabController implements Initializable {
         thread.start();
     }
 
+    //validate emp info
+    //TODO: validate email
     public boolean validateInfo() {
         if (nameTextField.getText().isEmpty() ||
                 userTextField.getText().isEmpty() ||
@@ -189,6 +191,7 @@ public class EmployeeTabController implements Initializable {
         return true;
     }
 
+    //check new password and retype password for new user
     public boolean checkPassword() {
         if (newPasswordField.getText().isEmpty() || reNewPasswordField.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -206,6 +209,7 @@ public class EmployeeTabController implements Initializable {
         return true;
     }
 
+    //set employee info
     public Employee setEmployee() {
         Employee employee = new Employee();
         if (idColumn.getCellData(index) != null) {
@@ -367,6 +371,9 @@ public class EmployeeTabController implements Initializable {
             alert.showAndWait();
         }
     }
+
+    //TODO: Dynamic search
+    //here
 
 
     ObservableList<Employee> employeeList = FXCollections.observableArrayList();
