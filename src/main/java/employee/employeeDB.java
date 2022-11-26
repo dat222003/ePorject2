@@ -17,8 +17,9 @@ public class employeeDB {
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO user_account " +
                     "(user, password, name, phone, email, id_card, gender) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?)");
+            DatabaseConnect databaseConnect = new DatabaseConnect();
             preparedStatement.setString(1, employee.getUser());
-            preparedStatement.setString(2, employee.getPassword());
+            preparedStatement.setString(2, databaseConnect.hash(employee.getPassword()));
             preparedStatement.setString(3, employee.getName());
             preparedStatement.setString(4, employee.getPhone());
             preparedStatement.setString(5, employee.getEmail());
@@ -84,8 +85,7 @@ public class employeeDB {
 
     private static Employee setEmployeeProp(ResultSet resultset) throws SQLException {
         Employee employee = new Employee();
-        employee.setUserid(Integer.parseInt(resultset.getString("employee.user_id")));
-        employee.setEmp_id(Integer.parseInt(resultset.getString("emp_id")));
+        employee.setUserid(Integer.parseInt(resultset.getString("user_id")));
         employee.setSalary(resultset.getDouble("salary"));
         employee.setEmail(resultset.getString("email"));
         employee.setUser(resultset.getString("user"));

@@ -7,6 +7,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class EmployeeTabController implements Initializable {
@@ -88,8 +91,6 @@ public class EmployeeTabController implements Initializable {
     @FXML
     private TextField idCardTextField;
     @FXML
-    private ProgressBar progressBar;
-    @FXML
     private TableColumn<Employee, String> emailColumn;
     @FXML
     private TableColumn<Employee, String> userColumn;
@@ -140,7 +141,7 @@ public class EmployeeTabController implements Initializable {
     }
 
     @FXML
-    //clear emo info in textfield
+    //clear emp info in text-field
     void EraseInfo(ActionEvent event) {
         nameTextField.setText("");
         userTextField.setText("");
@@ -164,12 +165,9 @@ public class EmployeeTabController implements Initializable {
         salaryColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         idCardColumn.setCellValueFactory(new PropertyValueFactory<>("idcard"));
-        GetEmployeeTask getEmployeeTask = new GetEmployeeTask();
-        employeeTable.itemsProperty().bind(getEmployeeTask.valueProperty());
-        progressBar.progressProperty().bind(getEmployeeTask.progressProperty());
-        Thread thread = new Thread(getEmployeeTask);
-        thread.setDaemon(true);
-        thread.start();
+        searchField.setText("");
+        employeeDB employeeDB = new employeeDB();
+        employeeList.addAll(employeeDB.getAllEmployee());
     }
 
     //validate emp info
@@ -185,6 +183,14 @@ public class EmployeeTabController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Please fill all the fields");
+            alert.showAndWait();
+            return false;
+        }
+        // validate email regex
+        if (!EmailTextField.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter a valid email ( sample@sample.sample");
             alert.showAndWait();
             return false;
         }
@@ -373,7 +379,6 @@ public class EmployeeTabController implements Initializable {
     }
 
     //TODO: Dynamic search
-    //here
 
 
     ObservableList<Employee> employeeList = FXCollections.observableArrayList();
@@ -383,9 +388,33 @@ public class EmployeeTabController implements Initializable {
         numericOnly(salaryTextField);
         numericOnly(phoneTextField);
         reloadButton.fire();
+        //dynamic Search table
+        FilteredList<Employee> filteredData = new FilteredList<>(employeeList, b -> true);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(employee -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (employee.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (Integer.toString(employee.getUserid()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (employee.getPhone().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (Double.toString(employee.getSalary()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (employee.getUser().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (employee.getEmail().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else return employee.getIdcard().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+        SortedList<Employee> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(employeeTable.comparatorProperty());
+        employeeTable.setItems(sortedData);
     }
-
-
 
 
 }
