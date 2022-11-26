@@ -114,9 +114,8 @@ public class Employee {
         this.gender = gender;
     }
 
-    public Employee(String user, String password, String name, String phone, String email, double salary, String idcard, int gender, int emp_id) {
+    public Employee(String user, String password, String name, String phone, String email, double salary, String idcard, int gender) {
         this.salary = salary;
-        this.emp_id = emp_id;
         this.user = user;
         this.password = password;
         this.name = name;

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -12,15 +13,18 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import login.DatabaseConnect;
 import login.loginApplication;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.EventListener;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class homeController {
+public class homeController implements Initializable {
 
     @FXML
     private Label userNameLabel;
@@ -31,6 +35,11 @@ public class homeController {
 
     @FXML
     private JFXButton employeeButton;
+
+    @FXML
+    private JFXButton dashboardButton;
+
+    Pane pane;
 
     @FXML
     private void loadLogin(ActionEvent event) throws IOException {
@@ -55,17 +64,30 @@ public class homeController {
     @FXML
     // load employee.fxml into homePane
     private void loadEmployee(ActionEvent event) {
-        AnchorPane employeePane = null;
         try {
-            employeePane = FXMLLoader.load(getClass().getResource("/employeeTab.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/employeeTab.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        homePane.setCenter(employeePane);
+        homePane.setCenter(pane);
 
     }
 
+    @FXML
+    // load dashboard.fxml into homePane
+    private void loadDashBoard(ActionEvent event) {
+        try {
+            pane = FXMLLoader.load(getClass().getResource("/dashBoardTab.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(pane);
 
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        dashboardButton.fire();
 
+    }
 }

@@ -14,7 +14,8 @@ public class UserSession {
     public static void createUserSession(String userName) {
         LocalDateTime dateTime = LocalDateTime.now();
         String session = userName + dateTime;
-        String hash_session = DatabaseConnect.hash(session);
+        DatabaseConnect databaseConnect = new DatabaseConnect();
+        String hash_session = databaseConnect.hash(session);
         Path session_path = Paths.get("src/main/resources/session.txt");
         try (
                 BufferedWriter session_writer = Files.newBufferedWriter(session_path, StandardCharsets.UTF_8)

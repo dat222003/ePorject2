@@ -53,7 +53,8 @@ public class loginController {
                         " inner join admin a on user_account.user_id = a.user_id" +
                         " and user_account.user = ? and user_account.password = ?");
                 admin_query.setString(1, usernameField.getText());
-                admin_query.setString(2, DatabaseConnect.hash(passwordField.getText()));
+                DatabaseConnect databaseConnect = new DatabaseConnect();
+                admin_query.setString(2, databaseConnect.hash(passwordField.getText()));
                 ResultSet resultSet = admin_query.executeQuery();
                 if (resultSet.next()) {
                     if (rememberCheckBox.isSelected()) {
@@ -67,7 +68,7 @@ public class loginController {
                             " inner join employee a on user_account.user_id = a.user_id" +
                             " and user_account.user =  ? and user_account.password = ?");
                     emp_query.setString(1, usernameField.getText());
-                    emp_query.setString(2, DatabaseConnect.hash(passwordField.getText()));
+                    emp_query.setString(2, databaseConnect.hash(passwordField.getText()));
                     resultSet = emp_query.executeQuery();
                 }
                 if (resultSet.next()) {

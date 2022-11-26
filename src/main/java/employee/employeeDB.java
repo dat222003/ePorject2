@@ -12,7 +12,7 @@ import java.util.List;
 
 public class employeeDB {
     private static final Connection con = DatabaseConnect.getConnect();
-    public static boolean addEmployee(Employee employee) {
+    public boolean addEmployee(Employee employee) {
         try {
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO user_account " +
                     "(user, password, name, phone, email, id_card, gender) " +
@@ -39,7 +39,7 @@ public class employeeDB {
         }
         return false;
     }
-    public static ArrayList<Employee> getAllEmployee() {
+    public ArrayList<Employee> getAllEmployee() {
         ArrayList<Employee> empList = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = con.prepareStatement("call getAllEmployee()");
@@ -48,21 +48,21 @@ public class employeeDB {
                 empList.add(setEmployeeProp(resultset));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return null;
         }
         return empList;
     }
 
-    public static Employee getOneEmployee(String emp_id) {
-        Employee employee = new Employee();
+    public Employee getOneEmployee(String user_id) {
+        Employee employee = null;
         try {
-            PreparedStatement preparedStatement = con.prepareStatement("select * from employee " +
-                            "join user_account ua on ua.user_id = employee.user_id " +
-                    "where emp_id = ?");
-            preparedStatement.setString(1, emp_id);
+            PreparedStatement preparedStatement = con.prepareStatement("select * from user_account " +
+                    "join employee  on user_account.user_id = employee.user_id " +
+                    "where user_account.user_id = ?");
+            preparedStatement.setString(1, user_id);
             ResultSet resultset = preparedStatement.executeQuery();
             while (resultset.next()) {
-                setEmployeeProp(resultset);
+                employee = setEmployeeProp(resultset);
             }
         } catch (SQLException e) {
             return null;
@@ -70,7 +70,7 @@ public class employeeDB {
         return employee;
     }
 
-    public static boolean deleteEmployee(String user_id) {
+    public boolean deleteEmployee(String user_id) {
         try {
             PreparedStatement preparedStatement;
             preparedStatement = con.prepareStatement("delete from user_account where user_id = ?");
@@ -97,11 +97,54 @@ public class employeeDB {
         return employee;
     }
 
-    public static void main(String[] args) {
-        addEmployee(new Employee("user",
-                DatabaseConnect.hash("pass"),
-                "name", "phone", "email", 1000d, "idcard", 1, 1));
+    //update employee
+       public boolean updateEmployee(Employee employee) {
+            try {
+                PreparedStatement preparedStatement = con.prepareStatement("UPDATE user_account, employee" +
+                            " set user=?,  name=?, phone=?, email=?,id_card=?, gender=?, employee.salary=?" +
+                            " where user_account.user_id = ? and employee.user_id = ?");
+                preparedStatement.setString(1, employee.getUser());
+                preparedStatement.setString(2, employee.getName());
+                preparedStatement.setString(3, employee.getPhone());
+                preparedStatement.setString(4, employee.getEmail());
+                preparedStatement.setString(5, employee.getIdcard());
+                preparedStatement.setInt(6, employee.getGender());
+                preparedStatement.setDouble(7, employee.getSalary());
+                preparedStatement.setInt(8, employee.getUserid());
+                preparedStatement.setInt(9, employee.getUserid());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return true;
+       }
+
+    public boolean changePassword(Employee employee) {
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement("UPDATE user_account " +
+                    "set password=? " +
+                    "where user_id = ?");
+            DatabaseConnect databaseConnect = new DatabaseConnect();
+            preparedStatement.setString(1, databaseConnect.hash(employee.getPassword()));
+            preparedStatement.setInt(2, employee.getUserid());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
+
+
+//    public static void main(String[] args) {
+////        addEmployee(new Employee("emp1",
+////                DatabaseConnect.hash("pass"),
+////                "name", "phone", "email", 10000d, "idcard", 1));
+////        addEmployee(new Employee("emp2",
+////                DatabaseConnect.hash("pass"),
+////                "name2", "phone2", "email2", 15000d, "idcard", 0));
+//    }
 
 }
 

@@ -72,7 +72,7 @@ public class DatabaseConnect {
         return false;
     }
 
-    public static String hash(String inp) {
+    public String hash(String inp) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             byte[] messaged = md.digest(inp.getBytes());
