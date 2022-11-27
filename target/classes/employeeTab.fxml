@@ -25,15 +25,15 @@
          <children>
             <JFXButton fx:id="reloadButton" onAction="#reloadTable" prefHeight="35.0" prefWidth="89.0" text="Refresh">
                <graphic>
-                  <FontIcon iconLiteral="fas-redo" iconSize="20" />
+                  <FontIcon iconLiteral="fas-sync-alt" iconSize="20" />
                </graphic>
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <FontIcon iconLiteral="fas-search" iconSize="28" wrappingWidth="34.666664123535156">
+            <FontIcon iconLiteral="fas-search" iconSize="20" wrappingWidth="34.666664123535156">
                <HBox.margin>
-                  <Insets left="5.0" top="4.0" />
+                  <Insets left="5.0" top="7.0" />
                </HBox.margin>
             </FontIcon>
             <TextField fx:id="searchField" prefHeight="35.0" prefWidth="216.0" />

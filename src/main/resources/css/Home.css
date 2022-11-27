@@ -7,7 +7,11 @@
     -fx-background-color: #046e9a;
 }
 .button:pressed {
-    -fx-background-color: #199b1f;
+    -fx-background-color: #065481;
+}
+.button:focused {
+    -fx-background-color: #42abe3;
+    -fx-text-fill: black;
 }
 .table-view {
     -fx-background-color: transparent;
@@ -47,15 +51,15 @@
     -fx-fill: #000000;
     -fx-font-weight: bold;
 }
-.progress-bar {
-    -fx-accent: rgba(0, 138, 230, 0.85);
-}
+/*.progress-bar {*/
+/*    -fx-accent: rgba(0, 138, 230, 0.85);*/
+/*}*/
 
-.progress-bar .bar {
-    -fx-padding: 1px;
-    -fx-background-insets: 0;
-    -fx-background-radius: 0;
-}
+/*.progress-bar .bar {*/
+/*    -fx-padding: 1px;*/
+/*    -fx-background-insets: 0;*/
+/*    -fx-background-radius: 0;*/
+/*}*/
 
 .progress-bar > .track {
     -fx-border-radius: 0;
@@ -68,3 +72,34 @@
     -fx-background-color: #cce7f3;
     -fx-background-radius: 7px;
 }
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10, 0.0, 0, 10);
+}
+.transparent{
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+#tableVbox{
+    -fx-background-color: #a2d3fc;
+    -fx-background-radius: 2em;
+    -fx-border-style: solid;
+    -fx-border-radius: 2em;
+}
+#tableVbox .button{
+    -fx-background-color: #009EFF;
+    -fx-background-radius: 2em;
+    -fx-border-radius: 2em;
+}
+#tableVbox .button:disabled{
+    -fx-background-color: #5fadde;
+
+}
+#tableVbox .button:hover{
+    -fx-background-color: #046e9a;
+
+}
+#tableVbox .buttonDelete{
+    -fx-background-color: #ef3d3d;
+    -fx-text-fill: white;
+
+}
+

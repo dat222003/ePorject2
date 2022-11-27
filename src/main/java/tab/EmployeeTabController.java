@@ -19,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class EmployeeTabController implements Initializable {
@@ -127,6 +126,7 @@ public class EmployeeTabController implements Initializable {
         if (index <= -1) {
             return;
         }
+        showChangePassword.setDisable(false);
         nameTextField.setText(nameColumn.getCellData(index));
         userTextField.setText(userColumn.getCellData(index));
         phoneTextField.setText(phoneColumn.getCellData(index));
@@ -156,6 +156,8 @@ public class EmployeeTabController implements Initializable {
     }
     @FXML
     private void reloadTable(ActionEvent event) {
+        passwordBox.setVisible(false);
+        showChangePassword.setDisable(true);
         employeeList.clear();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("userid"));
         userColumn.setCellValueFactory(new PropertyValueFactory<>("user"));
@@ -171,7 +173,6 @@ public class EmployeeTabController implements Initializable {
     }
 
     //validate emp info
-    //TODO: validate email
     public boolean validateInfo() {
         if (nameTextField.getText().isEmpty() ||
                 userTextField.getText().isEmpty() ||
@@ -312,11 +313,7 @@ public class EmployeeTabController implements Initializable {
 
     @FXML
     private void showPasswordBox() {
-        if (passwordBox.isVisible()) {
-            passwordBox.setVisible(false);
-        } else {
-            passwordBox.setVisible(true);
-        }
+        passwordBox.setVisible(!passwordBox.isVisible());
     }
 
     @FXML
@@ -378,7 +375,6 @@ public class EmployeeTabController implements Initializable {
         }
     }
 
-    //TODO: Dynamic search
 
 
     ObservableList<Employee> employeeList = FXCollections.observableArrayList();
@@ -387,6 +383,7 @@ public class EmployeeTabController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         numericOnly(salaryTextField);
         numericOnly(phoneTextField);
+        showChangePassword.setDisable(true);
         reloadButton.fire();
         //dynamic Search table
         FilteredList<Employee> filteredData = new FilteredList<>(employeeList, b -> true);

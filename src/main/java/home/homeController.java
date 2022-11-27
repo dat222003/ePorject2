@@ -38,6 +38,8 @@ public class homeController implements Initializable {
 
     @FXML
     private JFXButton dashboardButton;
+    @FXML
+    private JFXButton tableButton;
 
     Pane pane;
 
@@ -78,6 +80,18 @@ public class homeController implements Initializable {
     private void loadDashBoard(ActionEvent event) {
         try {
             pane = FXMLLoader.load(getClass().getResource("/dashBoardTab.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(pane);
+
+    }
+
+    @FXML
+    // load table.fxml into homePane
+    private void loadTable(ActionEvent event) {
+        try {
+            pane = FXMLLoader.load(getClass().getResource("/tableTab.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

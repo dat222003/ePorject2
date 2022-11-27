@@ -25,7 +25,7 @@
          <children>
             <JFXButton fx:id="reloadButton" onAction="#reloadTable" prefHeight="35.0" prefWidth="89.0" text="Refresh">
                <graphic>
-                  <FontIcon iconLiteral="fas-redo" iconSize="20" />
+                  <FontIcon iconLiteral="fas-sync-alt" iconSize="20" />
                </graphic>
                <font>
                   <Font size="14.0" />

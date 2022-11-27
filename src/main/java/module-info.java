@@ -18,4 +18,6 @@ module eProject2 {
     exports tab;
     opens employee to javafx.fxml;
     exports employee;
+    opens table to javafx.fxml;
+    exports table;
 }
