@@ -48,12 +48,12 @@ public class TableTabController implements Initializable {
     private void data() {
         row = 1;
         column = 0;
+        progressBar.setVisible(true);
         GetAllTableTask getAllTableTask = new GetAllTableTask();
         progressBar.progressProperty().bind(getAllTableTask.progressProperty());
         getAllTableTask.valueProperty().addListener((observable, oldValue, newValue) -> {
             for (Table table : newValue) {
                 try {
-
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/tableDetails.fxml"));
                     VBox vbox = fxmlLoader.load();

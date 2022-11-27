@@ -69,6 +69,10 @@
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <ProgressBar fx:id="progressBar" layoutX="58.0" layoutY="203.0" prefWidth="200.0" progress="0.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" />
+      <HBox layoutX="25.0" layoutY="208.0" prefHeight="16.0" prefWidth="293.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0">
+         <children>
+            <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="1170.0" progress="0.0" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

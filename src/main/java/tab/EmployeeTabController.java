@@ -27,9 +27,6 @@ public class EmployeeTabController implements Initializable {
     private TextField EmailTextField;
 
     @FXML
-    private JFXButton addOrUpdateButton;
-
-    @FXML
     private Button eraseInfoButton;
 
     @FXML
@@ -81,9 +78,6 @@ public class EmployeeTabController implements Initializable {
     private TableColumn<Employee, String> idCardColumn;
 
     @FXML
-    private Button searchButton;
-
-    @FXML
     private ToggleGroup genderGroup;
     @FXML
     private TextField searchField;
@@ -106,14 +100,9 @@ public class EmployeeTabController implements Initializable {
 
     // set a text-field to only number input
     public static void numericOnly(final TextField field) {
-        field.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(
-                    ObservableValue<? extends String> observable,
-                    String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    field.setText(newValue.replaceAll("[^\\d]", ""));
-                }
+        field.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                field.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
     }
