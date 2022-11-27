@@ -7,9 +7,13 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class UserSession {
+
+    private static final DatabaseConnect databaseConnect = new DatabaseConnect();
 
     public static void createUserSession(String userName) {
         LocalDateTime dateTime = LocalDateTime.now();
@@ -18,12 +22,13 @@ public class UserSession {
         String hash_session = databaseConnect.hash(session);
         Path session_path = Paths.get("src/main/resources/session.txt");
         try (
-                BufferedWriter session_writer = Files.newBufferedWriter(session_path, StandardCharsets.UTF_8)
+                BufferedWriter session_writer = Files.newBufferedWriter(session_path, StandardCharsets.UTF_8);
+                Connection con = databaseConnect.getConnect()
         ) {
-            DatabaseConnect.getConnect();
+
             session_writer.write(hash_session);
             DatabaseConnect.createSession(hash_session);
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -32,16 +37,16 @@ public class UserSession {
         Path session_path = Paths.get("src/main/resources/session.txt");
         try (
                 BufferedReader session_reader = Files.newBufferedReader(session_path, StandardCharsets.UTF_8);
+                Connection con = databaseConnect.getConnect()
         ) {
             String key = session_reader.readLine();
             if (key != null) {
-                DatabaseConnect.getConnect();
                 if (DatabaseConnect.checkUserSession()) {
                     return true;
 
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
         return false;

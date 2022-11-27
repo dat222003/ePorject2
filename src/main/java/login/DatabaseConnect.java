@@ -14,7 +14,7 @@ public class DatabaseConnect {
     public static String url = "jdbc:mysql://mysqldb.c1pmrcfs8z8r.ap-southeast-1.rds.amazonaws.com/restaurant";
 //    public static String url = "jdbc:mysql://localhost:3306/restaurant";
 
-    public static Connection getConnect() {
+    public Connection getConnect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, "admin", "dat2003dat2003");
@@ -83,5 +83,12 @@ public class DatabaseConnect {
         }
     }
 
+    public void closeConnection() {
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

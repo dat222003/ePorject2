@@ -10,10 +10,12 @@ import java.util.ArrayList;
 
 public class tableDB {
     private final DatabaseConnect databaseConnect = new DatabaseConnect();
-    private Connection con = DatabaseConnect.getConnect();
+
 
     public boolean addTable() {
-        try {
+        try(
+                Connection con = databaseConnect.getConnect();
+                ) {
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO `table` (client_id ,status) VALUES (?, ?)");
             preparedStatement.setInt(1, 1);
             preparedStatement.setString(2, "available");
@@ -26,7 +28,9 @@ public class tableDB {
     }
 
     public boolean updateTable(Table table) {
-        try {
+        try(
+                Connection con = databaseConnect.getConnect();
+        ) {
             PreparedStatement preparedStatement = con.prepareStatement("UPDATE table SET status = ? WHERE table_id = ?");
             preparedStatement.setString(1, table.getTableStatus());
             preparedStatement.setString(2, table.getTable_id());
@@ -39,8 +43,10 @@ public class tableDB {
     }
 
     public boolean deleteTable(String table_id) {
-        try {
-            PreparedStatement preparedStatement = con.prepareStatement("DELETE FROM table WHERE table_id = ?");
+        try(
+                Connection con = databaseConnect.getConnect();
+        ) {
+            PreparedStatement preparedStatement = con.prepareStatement("DELETE FROM `table` WHERE table_id = ?");
             preparedStatement.setString(1, table_id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -52,7 +58,9 @@ public class tableDB {
     
     public ArrayList<Table> getAllTable() {
         ArrayList<Table> tableList = new ArrayList<>();
-        try {
+        try(
+                Connection con = databaseConnect.getConnect();
+        ) {
             PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM `table`");
             ResultSet resultset = preparedStatement.executeQuery();
             while (resultset.next()) {
@@ -70,7 +78,9 @@ public class tableDB {
 
     public Table getOneTable(String table_id) {
         Table table = new Table();
-        try {
+        try(
+                Connection con = databaseConnect.getConnect();
+        ) {
             PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM table WHERE table_id = ?");
             preparedStatement.setString(1, table_id);
             ResultSet resultset = preparedStatement.executeQuery();
@@ -82,6 +92,7 @@ public class tableDB {
             e.printStackTrace();
             return null;
         }
+        databaseConnect.closeConnection();
         return table;
     }
 

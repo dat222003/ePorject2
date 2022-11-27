@@ -10,9 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class employeeDB {
-    private static final Connection con = DatabaseConnect.getConnect();
+    private static final DatabaseConnect databaseConnect = new DatabaseConnect();
     public boolean addEmployee(Employee employee) {
-        try {
+        try(
+                Connection con = databaseConnect.getConnect();
+        ) {
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO user_account " +
                     "(user, password, name, phone, email, id_card, gender) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -34,6 +36,7 @@ public class employeeDB {
                 preparedStatement.executeUpdate();
                 return true;
             }
+            databaseConnect.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -41,7 +44,9 @@ public class employeeDB {
     }
     public ArrayList<Employee> getAllEmployee() {
         ArrayList<Employee> empList = new ArrayList<>();
-        try {
+        try(
+                Connection con = databaseConnect.getConnect();
+        ) {
             PreparedStatement preparedStatement = con.prepareStatement("call getAllEmployee()");
             ResultSet resultset = preparedStatement.executeQuery();
             while (resultset.next()) {
@@ -55,7 +60,9 @@ public class employeeDB {
 
     public Employee getOneEmployee(String user_id) {
         Employee employee = null;
-        try {
+        try(
+                Connection con = databaseConnect.getConnect();
+        ) {
             PreparedStatement preparedStatement = con.prepareStatement("select * from user_account " +
                     "join employee  on user_account.user_id = employee.user_id " +
                     "where user_account.user_id = ?");
@@ -71,7 +78,9 @@ public class employeeDB {
     }
 
     public boolean deleteEmployee(String user_id) {
-        try {
+        try(
+                Connection con = databaseConnect.getConnect();
+        ) {
             PreparedStatement preparedStatement;
             preparedStatement = con.prepareStatement("delete from user_account where user_id = ?");
             preparedStatement.setString(1, user_id);
@@ -98,7 +107,9 @@ public class employeeDB {
 
     //update employee
        public boolean updateEmployee(Employee employee) {
-            try {
+            try(
+                    Connection con = databaseConnect.getConnect();
+            ) {
                 PreparedStatement preparedStatement = con.prepareStatement("UPDATE user_account, employee" +
                             " set user=?,  name=?, phone=?, email=?,id_card=?, gender=?, employee.salary=?" +
                             " where user_account.user_id = ? and employee.user_id = ?");
@@ -120,7 +131,9 @@ public class employeeDB {
        }
 
     public boolean changePassword(Employee employee) {
-        try {
+        try(
+                Connection con = databaseConnect.getConnect();
+        ) {
             PreparedStatement preparedStatement = con.prepareStatement("UPDATE user_account " +
                     "set password=? " +
                     "where user_id = ?");

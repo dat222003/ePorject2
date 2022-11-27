@@ -36,6 +36,7 @@ public class loginController {
         @FXML
         private BorderPane loginPane;
 
+        private final DatabaseConnect databaseConnect = new DatabaseConnect();
 
         public void loginButtonOnAction(ActionEvent event) {
             if (usernameField.getText().isBlank()) {
@@ -48,7 +49,9 @@ public class loginController {
         }
 
         public void checkUser() {
-            try (Connection con = DatabaseConnect.getConnect()) {
+            try (
+                    Connection con = databaseConnect.getConnect();
+            ) {
                 PreparedStatement admin_query = con.prepareStatement("select * from user_account" +
                         " inner join admin a on user_account.user_id = a.user_id" +
                         " and user_account.user = ? and user_account.password = ?");

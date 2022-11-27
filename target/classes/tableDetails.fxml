@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox id="tableVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="248.0" prefWidth="260.0" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.TableDetailsController">
    <children>
       <Label fx:id="tableID" alignment="CENTER" prefHeight="63.0" prefWidth="278.0" text="Table + Id">
@@ -67,8 +66,8 @@
       <Region prefHeight="14.0" prefWidth="258.0" />
       <HBox prefHeight="58.0" prefWidth="258.0" spacing="30.0">
          <children>
-            <JFXButton fx:id="updateTableButton" buttonType="RAISED" prefHeight="42.0" prefWidth="104.0" text="Update Table" />
-            <JFXButton id="buttonDelete" fx:id="deleteTableButton" buttonType="RAISED" layoutX="20.0" layoutY="10.0" prefHeight="42.0" prefWidth="102.0" styleClass="buttonDelete" text="Delete Table" />
+            <JFXButton fx:id="updateTableButton" buttonType="RAISED" onAction="#updateTable" prefHeight="42.0" prefWidth="104.0" text="Update Table" />
+            <JFXButton id="buttonDelete" fx:id="deleteTableButton" buttonType="RAISED" layoutX="20.0" layoutY="10.0" onAction="#deleteTable" prefHeight="42.0" prefWidth="102.0" styleClass="buttonDelete" text="Delete Table" />
          </children>
          <padding>
             <Insets left="10.0" />
