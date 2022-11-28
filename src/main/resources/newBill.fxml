@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTreeView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 
 <AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.NewBillController">
    <children>
       <HBox layoutX="64.0" layoutY="104.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="573.0" prefWidth="950.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
          <children>
-            <VBox prefHeight="269.0" prefWidth="345.0" spacing="20.0">
+            <VBox id="billVbox" prefHeight="269.0" prefWidth="345.0" spacing="20.0">
                <children>
                   <Label alignment="CENTER" prefHeight="50.0" prefWidth="320.0" text="New Bill">
                      <font>
@@ -43,7 +46,7 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="employeeId" prefHeight="57.0" prefWidth="158.0">
+                        <Label fx:id="employeeId" contentDisplay="TEXT_ONLY" prefHeight="57.0" prefWidth="158.0">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -64,7 +67,11 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Region prefHeight="156.0" prefWidth="318.0" />
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <VBox prefHeight="221.0" prefWidth="283.0" />
+                     </content>
+                  </ScrollPane>
                   <Label fx:id="totalBill" layoutX="20.0" layoutY="234.0" prefHeight="46.0" prefWidth="318.0" text="Total:">
                      <font>
                         <Font size="25.0" />
@@ -72,7 +79,11 @@
                   </Label>
                   <HBox layoutX="20.0" layoutY="545.0" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="createBillButton" onAction="#createNewBill" prefHeight="57.0" prefWidth="316.0" />
+                        <JFXButton fx:id="createBillButton" buttonType="RAISED" onAction="#createNewBill" prefHeight="57.0" prefWidth="316.0" text="Create Bill">
+                           <font>
+                              <Font size="29.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                   </HBox>
                </children>
@@ -83,15 +94,36 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="573.0" prefWidth="639.0">
+            <VBox prefHeight="573.0" prefWidth="639.0" spacing="10.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="622.0" text="Deteils">
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="622.0" text="Details">
                      <font>
                         <Font name="System Bold" size="32.0" />
                      </font>
                   </Label>
-                  <JFXTreeView fx:id="pickedDishTree" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="269.0" prefWidth="602.0" />
-                  <JFXTreeView fx:id="dishDataTree" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="307.0" prefWidth="602.0" />
+                  <HBox prefHeight="1.0" prefWidth="602.0">
+                     <children>
+                        <Label contentDisplay="GRAPHIC_ONLY" prefHeight="39.0" prefWidth="32.0" text="Label">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-search" iconSize="20" />
+                           </graphic>
+                        </Label>
+                        <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="250.0" promptText="Search For Dish">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="dishTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="461.0" prefWidth="602.0">
+                    <columns>
+                      <TableColumn fx:id="dishIdColumn" prefWidth="44.333343505859375" text="ID" />
+                      <TableColumn fx:id="categoryColumn" prefWidth="149.0" text="Category" />
+                        <TableColumn fx:id="nameColumn" prefWidth="156.0" text="Name" />
+                        <TableColumn fx:id="priceColumn" prefWidth="117.0" text="Price" />
+                        <TableColumn fx:id="imageColumn" prefWidth="139.66668701171875" text="Image" />
+                    </columns>
+                  </TableView>
                </children>
                <padding>
                   <Insets left="10.0" right="10.0" />

@@ -6,11 +6,16 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeView;
 import dish.Dish;
 import dish.DishDB;
+import employee.Employee;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TreeItem;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -38,12 +43,27 @@ public class NewBillController implements Initializable {
     @FXML
     private Label totalBill;
 
+    @FXML
+    private TableView<Dish> dishTable;
 
     @FXML
-    private JFXTreeView<String> dishDataTree;
+    private TableColumn<Dish, ?> imageColumn;
 
     @FXML
-    private JFXTreeView<String> pickedDishTree;
+    private TableColumn<Dish, String> nameColumn;
+
+    @FXML
+    private TableColumn<Dish, String> priceColumn;
+
+    @FXML
+    private TableColumn<Dish, String> dishIdColumn;
+
+    @FXML
+    private TableColumn<Dish, String> categoryColumn;
+
+    @FXML
+    private TextField searchTextField;
+
 
     @FXML
     void createNewBill(ActionEvent event) {
@@ -57,23 +77,38 @@ public class NewBillController implements Initializable {
         this.dateNow.setText(dtf.format(localDate));
     }
 
+
+    private final ObservableList<Dish> dishList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TreeItem<String> root = new TreeItem<>("Dishes");
+        //set column
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("dish_price"));
+        dishIdColumn.setCellValueFactory(new PropertyValueFactory<>("dish_id"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("cat_id"));
         DishDB dishDB = new DishDB();
-        CategoryDB categoryDB = new CategoryDB();
-        ArrayList<Dish> dishArray = new ArrayList<>(dishDB.getAllDish());
-        ArrayList<Category> categoryArray = new ArrayList<>(categoryDB.getAllCategory());
-        categoryArray.forEach(category -> {
-            TreeItem<String> categoryItem = new TreeItem<>(category.getName());//set category
-            dishArray.forEach(dish -> {
-                if (Objects.equals(dish.getCat_id(), category.getCat_id())) {
-                    TreeItem<String> dishItem = new TreeItem<>(dish.getName());//set dish in category
-                    categoryItem.getChildren().add(dishItem);
+        ArrayList<Dish> dishes = dishDB.getAllDish();
+        dishList.addAll(dishes);
+        //dynamic search dish
+        FilteredList<Dish> filteredData = new FilteredList<>(dishList, b -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(dish -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
                 }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (dish.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (dish.getCat_id().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (dish.getDish_price().contains(lowerCaseFilter)) {
+                    return true;
+                } else return dish.getDish_id().toLowerCase().contains(lowerCaseFilter);
             });
-            root.getChildren().add(categoryItem);// add category to root
         });
-        dishDataTree.setRoot(root);
+        SortedList<Dish> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(dishTable.comparatorProperty());
+        dishTable.selectionModelProperty().get().setSelectionMode(SelectionMode.MULTIPLE);
+        dishTable.setItems(sortedData);
     }
 }

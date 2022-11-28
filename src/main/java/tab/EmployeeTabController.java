@@ -372,8 +372,6 @@ public class EmployeeTabController implements Initializable {
         }
     }
 
-
-
     ObservableList<Employee> employeeList = FXCollections.observableArrayList();
 
     @Override

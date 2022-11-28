@@ -20,4 +20,8 @@ module eProject2 {
     exports employee;
     opens table to javafx.fxml;
     exports table;
+    opens dish to javafx.fxml;
+    exports dish;
+    opens category to javafx.fxml;
+    exports category;
 }
