@@ -19,13 +19,16 @@
                   <Image url="@images/user.png" />
                </image>
             </ImageView>
-            <Label fx:id="userNameLabel" alignment="CENTER" prefHeight="45.0" prefWidth="229.0" text="Admin">
+            <Label fx:id="userNameLabel" graphicTextGap="15.0" prefHeight="45.0" prefWidth="229.0" text="Admin">
                <graphic>
                   <FontIcon iconLiteral="far-user-circle" iconSize="30" />
                </graphic>
                <font>
                   <Font size="25.0" />
                </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
             </Label>
             <JFXButton fx:id="dashboardButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" onAction="#loadDashBoard" prefHeight="70.0" prefWidth="229.0" text="Dash Board">
                <font>

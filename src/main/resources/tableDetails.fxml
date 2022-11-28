@@ -55,7 +55,7 @@
             </HBox>
          </children>
       </VBox>
-      <JFXButton fx:id="billButton" buttonType="RAISED" disable="true" prefHeight="38.0" prefWidth="266.0" text="Bill">
+      <JFXButton fx:id="billButton" buttonType="RAISED" disable="true" onAction="#newBill" prefHeight="38.0" prefWidth="266.0" text="Bill">
          <font>
             <Font size="19.0" />
          </font>

@@ -37,7 +37,7 @@
                </HBox.margin>
             </FontIcon>
             <TextField fx:id="searchField" prefHeight="35.0" prefWidth="216.0" />
-            <JFXButton fx:id="UpdateButton" graphicTextGap="10.0" onAction="#UpdateEmployee" prefHeight="35.0" prefWidth="104.0" text="Update">
+            <JFXButton fx:id="updateButton" graphicTextGap="10.0" onAction="#UpdateEmployee" prefHeight="35.0" prefWidth="104.0" text="Update">
                <font>
                   <Font size="14.0" />
                </font>

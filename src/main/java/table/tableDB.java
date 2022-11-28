@@ -31,7 +31,7 @@ public class tableDB {
         try(
                 Connection con = databaseConnect.getConnect();
         ) {
-            PreparedStatement preparedStatement = con.prepareStatement("UPDATE table SET status = ? WHERE table_id = ?");
+            PreparedStatement preparedStatement = con.prepareStatement("UPDATE `table` SET status = ? WHERE table_id = ?");
             preparedStatement.setString(1, table.getTableStatus());
             preparedStatement.setString(2, table.getTable_id());
             preparedStatement.executeUpdate();
@@ -81,7 +81,7 @@ public class tableDB {
         try(
                 Connection con = databaseConnect.getConnect();
         ) {
-            PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM table WHERE table_id = ?");
+            PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM `table` WHERE table_id = ?");
             preparedStatement.setString(1, table_id);
             ResultSet resultset = preparedStatement.executeQuery();
             if (resultset.next()) {

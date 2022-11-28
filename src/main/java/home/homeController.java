@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import login.DatabaseConnect;
+import login.UserSession;
 import login.loginApplication;
 
 import java.io.IOException;
@@ -53,7 +54,8 @@ public class homeController implements Initializable {
             loginApplication loginApplication = new loginApplication();
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.close();
-            DatabaseConnect.deleteUserSession();
+            DatabaseConnect databaseConnect = new DatabaseConnect();
+            databaseConnect.deleteUserSession();
             loginApplication.start(new Stage());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Message");
@@ -99,8 +101,19 @@ public class homeController implements Initializable {
 
     }
 
+    public void setUser(String user, String user_id) {
+        userNameLabel.setText(user_id + ": " + user);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String key = UserSession.getLocalSession();
+        if (key != null) {
+            setUser(key.split(",")[1], key.split(",")[0]);
+        } else {
+            key = UserSession.getSession();
+            setUser(key.split(",")[1], key.split(",")[0]);
+        }
         dashboardButton.fire();
 
     }

@@ -28,6 +28,7 @@ public class DatabaseConnect {
 
     public static boolean createSession(String key) {
         try {
+
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO restaurant.user_session (`key`) VALUES (?)");
             preparedStatement.setString(1, key);
             preparedStatement.executeUpdate();
@@ -39,37 +40,51 @@ public class DatabaseConnect {
     }
 
 
-    public static boolean checkUserSession() {
+    public boolean checkUserSession() {
         try {
             String key = UserSession.getSession();
             if (key == null) {
                 return false;
             }
+            getConnect();
             PreparedStatement preparedStatement = con.prepareStatement("Select * from user_session where `key` = ?");
-            preparedStatement.setString(1, key);
+            preparedStatement.setString(1, hash(key));
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
 
-    public static boolean deleteUserSession() {
+    public void deleteUserSession() {
         try {
             if (checkUserSession()) {
+                getConnect();
                 PreparedStatement preparedStatement = con.prepareStatement("delete from user_session where `key` = ?");
-                preparedStatement.setString(1, UserSession.getSession());
+                preparedStatement.setString(1, hash(UserSession.getSession()));
                 UserSession.deleteUserSession();
                 preparedStatement.executeUpdate();
-                return true;
             }
+            UserSession.deleteLocalSession();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return false;
     }
 
     public String hash(String inp) {

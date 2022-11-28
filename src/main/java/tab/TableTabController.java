@@ -52,15 +52,16 @@ public class TableTabController implements Initializable {
         GetAllTableTask getAllTableTask = new GetAllTableTask();
         progressBar.progressProperty().bind(getAllTableTask.progressProperty());
         getAllTableTask.valueProperty().addListener((observable, oldValue, newValue) -> {
-            for (Table table : newValue) {
+            //add to grid pane use iterator
+            newValue.forEach(table -> {
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/tableDetails.fxml"));
-                    VBox vbox = fxmlLoader.load();
-                    TableDetailsController tableController = fxmlLoader.getController();
-                    tableController.setData(table);
-                    tableGridPane.add(vbox, column++, row);
-                    GridPane.setMargin(tableGridPane, new Insets(10));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/tableDetails.fxml"));
+                    VBox vBox = loader.load();
+                    TableDetailsController tableDetailsController = loader.getController();
+                    tableDetailsController.setData(table);
+                    tableGridPane.add(vBox, column++, row);
+                    //set grid width
+                    GridPane.setMargin(vBox, new Insets(10));
                     if (column == 3) {
                         column = 0;
                         row++;
@@ -68,7 +69,7 @@ public class TableTabController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            });
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/newTableTab.fxml"));

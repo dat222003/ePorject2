@@ -21,7 +21,7 @@
 
 <AnchorPane fx:id="employeePane" minHeight="720.0" minWidth="971.0" prefHeight="720.0" prefWidth="971.0" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.EmployeeTabController">
    <children>
-      <HBox layoutX="31.0" layoutY="317.0" prefHeight="35.0" prefWidth="906.0" spacing="20.0" AnchorPane.bottomAnchor="380.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0">
+      <HBox layoutX="22.0" layoutY="380.0" prefHeight="35.0" prefWidth="906.0" spacing="20.0" AnchorPane.bottomAnchor="305.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="26.0">
          <children>
             <JFXButton fx:id="reloadButton" onAction="#reloadTable" prefHeight="35.0" prefWidth="89.0" text="Refresh">
                <graphic>
@@ -37,7 +37,7 @@
                </HBox.margin>
             </FontIcon>
             <TextField fx:id="searchField" prefHeight="35.0" prefWidth="216.0" />
-            <JFXButton fx:id="UpdateButton" graphicTextGap="10.0" onAction="#UpdateEmployee" prefHeight="35.0" prefWidth="104.0" text="Update">
+            <JFXButton fx:id="updateButton" graphicTextGap="10.0" onAction="#UpdateEmployee" prefHeight="35.0" prefWidth="104.0" text="Update">
                <font>
                   <Font size="14.0" />
                </font>
@@ -163,7 +163,7 @@
             </VBox>
          </children>
       </GridPane>
-      <TableView fx:id="employeeTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#getRowData" prefHeight="333.0" prefWidth="927.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="21.0">
+      <TableView fx:id="employeeTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#getRowData" prefHeight="257.0" prefWidth="926.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="21.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="49.999996185302734" text="ID" />
           <TableColumn fx:id="userColumn" prefWidth="154.00000381469727" text="User" />

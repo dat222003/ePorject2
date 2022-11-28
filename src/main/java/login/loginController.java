@@ -4,8 +4,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
 import home.homeApp;
+import home.homeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,6 +38,8 @@ public class loginController {
         @FXML
         private BorderPane loginPane;
 
+        private String user_id;
+
         private final DatabaseConnect databaseConnect = new DatabaseConnect();
 
         public void loginButtonOnAction(ActionEvent event) {
@@ -61,8 +65,10 @@ public class loginController {
                 ResultSet resultSet = admin_query.executeQuery();
                 if (resultSet.next()) {
                     if (rememberCheckBox.isSelected()) {
-                        UserSession.createUserSession(usernameField.getText());
+                        UserSession.createUserSession(usernameField.getText(), resultSet.getString("user_id"));
                     }
+                    UserSession.createLocalSession(usernameField.getText(), resultSet.getString("user_id"));
+                    user_id = resultSet.getString("user_id");
                     loadHome(); //admin rights
                     showAlert(usernameField.getText());
                     return;
@@ -76,8 +82,9 @@ public class loginController {
                 }
                 if (resultSet.next()) {
                     if (rememberCheckBox.isSelected()) {
-                        UserSession.createUserSession(usernameField.getText());
+                        UserSession.createUserSession(usernameField.getText(), resultSet.getString("user_id"));
                     }
+                    UserSession.createLocalSession(usernameField.getText(), resultSet.getString("user_id"));
                     loadHome();
                     showAlert(usernameField.getText());
                 } else {

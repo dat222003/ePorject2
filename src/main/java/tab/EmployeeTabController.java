@@ -95,6 +95,10 @@ public class EmployeeTabController implements Initializable {
     private PasswordField retypeUpdatePasswordField;
     @FXML
     private VBox passwordBox;
+
+    @FXML
+    private Button updateButton;
+
     @FXML
     private Button changePasswordButton;
 
@@ -116,6 +120,8 @@ public class EmployeeTabController implements Initializable {
             return;
         }
         showChangePassword.setDisable(false);
+        updateButton.setDisable(false);
+        deleteButton.setDisable(false);
         nameTextField.setText(nameColumn.getCellData(index));
         userTextField.setText(userColumn.getCellData(index));
         phoneTextField.setText(phoneColumn.getCellData(index));
@@ -147,6 +153,8 @@ public class EmployeeTabController implements Initializable {
     private void reloadTable(ActionEvent event) {
         passwordBox.setVisible(false);
         showChangePassword.setDisable(true);
+        updateButton.setDisable(true);
+        deleteButton.setDisable(true);
         employeeList.clear();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("userid"));
         userColumn.setCellValueFactory(new PropertyValueFactory<>("user"));

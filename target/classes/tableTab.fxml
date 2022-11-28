@@ -71,7 +71,7 @@
       </JFXButton>
       <HBox layoutX="25.0" layoutY="208.0" prefHeight="16.0" prefWidth="293.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0">
          <children>
-            <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="1301.0" progress="0.0" />
+            <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="1170.0" progress="0.0" />
          </children>
       </HBox>
    </children>
