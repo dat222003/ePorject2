@@ -53,32 +53,41 @@ public class TableTabController implements Initializable {
         progressBar.progressProperty().bind(getAllTableTask.progressProperty());
         getAllTableTask.valueProperty().addListener((observable, oldValue, newValue) -> {
             //add to grid pane use iterator
-            newValue.forEach(table -> {
                 try {
+                    newValue.forEach(table -> {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/tableDetails.fxml"));
-                    VBox vBox = loader.load();
-                    TableDetailsController tableDetailsController = loader.getController();
+                        VBox vBox = null;
+                        try {
+                            vBox = loader.load();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        TableDetailsController tableDetailsController = loader.getController();
                     tableDetailsController.setData(table);
                     tableGridPane.add(vBox, column++, row);
                     //set grid width
                     GridPane.setMargin(vBox, new Insets(10));
-                    if (column == 3) {
-                        column = 0;
-                        row++;
-                    }
-                } catch (IOException e) {
+                        if (column == 3) {
+                            column = 0;
+                            row++;
+                        }
+                    });
+                } catch (Exception e) {
                     e.printStackTrace();
                     data();
+                    return;
                 }
-            });
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/newTableTab.fxml"));
-                VBox vbox = fxmlLoader.load();
-                tableGridPane.add(vbox, column++, row);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/newTableTab.fxml"));
+                    VBox vbox = fxmlLoader.load();
+                    tableGridPane.add(vbox, column++, row);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
         });
         Thread thread = new Thread(getAllTableTask);
         thread.setDaemon(true);
@@ -89,37 +98,8 @@ public class TableTabController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        hBox.setVisible(false);
-//        tablesList = data();
         tableGridPane.getChildren().clear();
         data();
-//        int row = 1;
-//        int column = 0;
-//        for (Table table : tablesList) {
-//            try {
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setLocation(getClass().getResource("/tableDetails.fxml"));
-//                VBox vbox = fxmlLoader.load();
-//                TableDetailsController tableController = fxmlLoader.getController();
-//                tableController.setData(table);
-//                tableGridPane.add(vbox, column++, row);
-//                GridPane.setMargin(tableGridPane, new Insets(10));
-//                if (column == 3) {
-//                    column = 0;
-//                    row++;
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//            try {
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setLocation(getClass().getResource("/newTableTab.fxml"));
-//                VBox vbox = fxmlLoader.load();
-//                tableGridPane.add(vbox, column++, row);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
 
     }
 }

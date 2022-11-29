@@ -1,11 +1,16 @@
 package dish;
 
+import javafx.scene.control.Button;
+
 public class Dish {
     private String dish_id,
             name,
             cat_id,
+
+            total_price,
             dish_price,
             img;
+    private Integer qty;
 
     public Dish() {
     }
@@ -58,13 +63,32 @@ public class Dish {
         this.img = img;
     }
 
+    public Integer getQty() {
+        return qty;
+    }
+
+    public void setQty(Integer qty) {
+        this.qty = qty;
+    }
+
+    public String getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(String total_price) {
+        this.total_price = total_price;
+    }
+
+
     @Override
     public String toString() {
         return "Dish{" +
                 "dish_id='" + dish_id + '\'' +
                 ", name='" + name + '\'' +
                 ", cat_id='" + cat_id + '\'' +
+                ", total_price='" + total_price + '\'' +
                 ", dish_price='" + dish_price + '\'' +
+                ", qty=" + qty +
                 '}';
     }
 }

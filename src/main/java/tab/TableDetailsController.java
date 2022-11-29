@@ -103,7 +103,7 @@ public class TableDetailsController {
             controller.setData(tableID.getText().split(" ")[1], userId, userName);
             Stage stage = new Stage();
             stage.setTitle("New Bill");
-            stage.setMinWidth(1000);
+            stage.setMinWidth(1200);
             stage.setMinHeight(600);
             stage.setScene(new javafx.scene.Scene(root));
             stage.show();
