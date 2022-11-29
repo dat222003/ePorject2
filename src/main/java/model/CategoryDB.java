@@ -1,6 +1,5 @@
-package category;
+package model;
 
-import dish.Dish;
 import login.DatabaseConnect;
 
 import java.sql.Connection;

@@ -15,21 +15,16 @@
 
 <BorderPane fx:id="loginPane" maxHeight="500.0" maxWidth="775.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="775.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.loginController">
     <left>
-        <AnchorPane prefHeight="500.0" prefWidth="417.0" style="-fx-background-color: #497174;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="500.0" prefWidth="417.0" style="-fx-background-color: #F2E5E5;" BorderPane.alignment="CENTER">
             <children>
-            <ImageView fitHeight="500.0" fitWidth="420.0" opacity="0.22" pickOnBounds="true" smooth="false">
+            <ImageView fitHeight="500.0" fitWidth="420.0" layoutX="-2.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
-                  <Image url="@images/res-login-background.jpg" />
+                  <Image url="@images/login.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ImageView>
-                <Label alignment="CENTER" layoutX="100.0" layoutY="222.0" prefHeight="57.0" prefWidth="221.0" text="Restaurant" textFill="WHITE">
-                    <font>
-                        <Font size="37.0" />
-                    </font>
-                </Label>
             </children>
         </AnchorPane>
     </left>

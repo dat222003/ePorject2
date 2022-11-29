@@ -69,8 +69,8 @@
                     <columns>
                         <TableColumn fx:id="addedDishId" prefWidth="37.666664123535156" text="Id" />
                       <TableColumn fx:id="addedDish" prefWidth="175.66665649414062" text="Name" />
-                      <TableColumn fx:id="qty" onEditCommit="#updateAddedDishList" prefWidth="53.333343505859375" text="Qty" />
-                        <TableColumn fx:id="price" prefWidth="136.00001525878906" text="Price" />
+                      <TableColumn fx:id="qty" onEditCommit="#updateAddedDishList" prefWidth="83.0" text="Qty" />
+                        <TableColumn fx:id="price" prefWidth="108.0" text="Price" />
                     </columns>
                   </TableView>
                   <HBox layoutX="20.0" layoutY="545.0" prefHeight="100.0" prefWidth="200.0">

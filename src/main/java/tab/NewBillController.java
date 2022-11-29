@@ -1,14 +1,9 @@
 package tab;
 
-import category.Category;
-import category.CategoryDB;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTreeView;
-import dish.Dish;
-import dish.DishDB;
-import employee.Employee;
+import model.Dish;
+import model.DishDB;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -25,8 +20,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class NewBillController implements Initializable {
@@ -140,8 +133,14 @@ public class NewBillController implements Initializable {
 
     public void updateAddedDishList(TableColumn.CellEditEvent<Dish, Integer> editedCell) {
         Dish dish = addedDishTable.getSelectionModel().getSelectedItem();
-        dish.setQty(editedCell.getNewValue());
-        dish.setTotal_price(String.valueOf(dish.getQty() * Double.parseDouble(dish.getDish_price())));
+        if (editedCell.getNewValue() == 0) {
+            addedDishList.remove(dish);
+        } else {
+            dish.setQty(editedCell.getNewValue());
+            dish.setTotal_price(String.valueOf(
+                    dish.getQty() * Double.parseDouble(dish.getDish_price())
+            ));
+        }
         addedDishTable.refresh();
         setTotalBill();
     }
@@ -164,7 +163,7 @@ public class NewBillController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("dish_price"));
         dishIdColumn.setCellValueFactory(new PropertyValueFactory<>("dish_id"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("cat_id"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         DishDB dishDB = new DishDB();
         ArrayList<Dish> dishes = dishDB.getAllDish();
         dishList.addAll(dishes);

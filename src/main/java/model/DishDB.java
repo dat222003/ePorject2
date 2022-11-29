@@ -1,4 +1,4 @@
-package dish;
+package model;
 
 import login.DatabaseConnect;
 
@@ -65,13 +65,14 @@ public class DishDB {
         try (
                 Connection con = databaseConnect.getConnect();
         ) {
-            PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM `dish`");
+            PreparedStatement preparedStatement = con.prepareStatement("select * from `dish` join `dish_category` category on dish.cat_id = category.cat_id;");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Dish dish = new Dish();
                 dish.setDish_id(resultSet.getString("dish_id"));
-                dish.setName(resultSet.getString("name"));
-                dish.setCat_id(resultSet.getString("cat_id"));
+                dish.setName(resultSet.getString("dish.name"));
+                dish.setCat_id(resultSet.getString("dish.cat_id"));
+                dish.setCategory(resultSet.getString("category.name"));
                 dish.setDish_price(resultSet.getString("price"));
 //                dish.setImg(resultSet.getString("img"));
                 dishList.add(dish);

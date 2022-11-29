@@ -21,7 +21,7 @@ public class GetAllTableTask extends Task<ArrayList<Table>> {
         for (int i = 0; i < arrayList.size(); i++) {
             tableList.add(arrayList.get(i));
             updateValue(tableList);
-            updateProgress(i, arrayList.size());
+            updateProgress(i + 1, arrayList.size());
         }
         return tableList;
     }

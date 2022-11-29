@@ -1,4 +1,4 @@
-package dish;
+package model;
 
 import javafx.scene.control.Button;
 
@@ -6,7 +6,7 @@ public class Dish {
     private String dish_id,
             name,
             cat_id,
-
+            category,
             total_price,
             dish_price,
             img;
@@ -79,6 +79,13 @@ public class Dish {
         this.total_price = total_price;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     @Override
     public String toString() {

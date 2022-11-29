@@ -1,4 +1,4 @@
-package employee;
+package model;
 
 
 import login.DatabaseConnect;

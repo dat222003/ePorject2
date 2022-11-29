@@ -1,10 +1,8 @@
 package tab;
 
 import com.jfoenix.controls.JFXButton;
-import employee.Employee;
-import employee.employeeDB;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import model.Employee;
+import model.employeeDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
