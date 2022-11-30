@@ -8,6 +8,7 @@ public class Dish {
             cat_id,
             category,
             total_price,
+            dishAmount,
             dish_price,
             img;
     private Integer qty;
@@ -86,6 +87,7 @@ public class Dish {
     public void setCategory(String category) {
         this.category = category;
     }
+
 
     @Override
     public String toString() {

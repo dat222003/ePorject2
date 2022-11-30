@@ -13,66 +13,69 @@
 
 <AnchorPane fx:id="tablePane" minHeight="720.0" minWidth="971.0" prefHeight="720.0" prefWidth="971.0" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.TableTabController">
    <children>
-      <HBox fx:id="hBox" alignment="TOP_CENTER" layoutX="34.0" layoutY="34.0" opacity="0.92" prefHeight="116.0" prefWidth="904.0" spacing="30.0" stylesheets="@css/Home.css" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0">
+      <AnchorPane id="dashboardPane" layoutX="6.0" layoutY="34.0" stylesheets="@css/dashBoard.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" prefHeight="117.0" prefWidth="173.0" style="-fx-background-color: #3F0071;" styleClass="shadow" text="Total Table" textFill="WHITE">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </JFXButton>
-            <JFXButton id="button2" buttonType="RAISED" layoutX="10.0" layoutY="10.0" prefHeight="117.0" prefWidth="173.0" style="-fx-background-color: #FB2576;" styleClass="shadow" text="In Use">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </JFXButton>
-            <JFXButton id="button2" buttonType="RAISED" layoutX="183.0" layoutY="10.0" prefHeight="117.0" prefWidth="173.0" style="-fx-background-color: #332FD0;" styleClass="shadow" text="Empty" textFill="WHITE">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </JFXButton>
-            <JFXButton id="button2" buttonType="RAISED" layoutX="356.0" layoutY="10.0" prefHeight="117.0" prefWidth="173.0" styleClass="shadow" text="Ordered">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </HBox>
-      <ScrollPane layoutX="6.0" layoutY="171.0" prefHeight="487.0" prefWidth="959.0" styleClass="transparent" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0">
-         <content>
-            <GridPane fx:id="tableGridPane" alignment="CENTER" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="78.0" prefWidth="143.0" vgap="20.0">
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <HBox fx:id="hBox" alignment="CENTER" layoutX="18.0" opacity="0.92" prefHeight="116.0" prefWidth="904.0" spacing="30.0" stylesheets="@css/Home.css" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" prefHeight="50.0" prefWidth="150.0" text="Total Table" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="150.0" text="In Use">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" layoutX="183.0" layoutY="10.0" prefHeight="50.0" prefWidth="150.0" text="Empty" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" layoutX="356.0" layoutY="10.0" prefHeight="50.0" prefWidth="150.0" text="Ordered">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <ScrollPane id="scrollPane" layoutY="190.0" prefHeight="487.0" prefWidth="936.0" style="-fx-border-radius: 2em;" styleClass="transparent" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0">
+               <content>
+                  <GridPane fx:id="tableGridPane" alignment="CENTER" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="78.0" prefWidth="562.0" vgap="20.0">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <padding>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                  </GridPane>
+               </content>
                <padding>
-                  <Insets left="50.0" right="50.0" />
+                  <Insets left="14.0" />
                </padding>
-            </GridPane>
-         </content>
-      </ScrollPane>
-      <JFXButton fx:id="refreshButton" layoutX="34.0" layoutY="158.0" onAction="#reloadTable" prefHeight="42.0" prefWidth="134.0" text="Refresh" AnchorPane.leftAnchor="24.0">
-         <graphic>
-            <FontIcon iconLiteral="fas-sync-alt" iconSize="20" />
-         </graphic>
-         <font>
-            <Font size="18.0" />
-         </font>
-      </JFXButton>
-      <HBox layoutX="25.0" layoutY="208.0" prefHeight="16.0" prefWidth="293.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0">
-         <children>
-            <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="1170.0" progress="0.0" />
+            </ScrollPane>
+            <JFXButton id="button2" fx:id="refreshButton" layoutX="18.0" layoutY="124.0" onAction="#reloadTable" prefHeight="42.0" prefWidth="134.0" style="-fx-background-color: white;" text="Refresh" AnchorPane.bottomAnchor="534.0" AnchorPane.leftAnchor="18.0">
+               <graphic>
+                  <FontIcon iconLiteral="fas-sync-alt" iconSize="20" />
+               </graphic>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <ProgressBar fx:id="progressBar" layoutX="15.0" layoutY="176.0" maxHeight="16.0" maxWidth="1.7976931348623157E308" minHeight="16.0" opacity="0.82" prefHeight="16.0" prefWidth="1170.0" progress="0.0" AnchorPane.bottomAnchor="512.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
          </children>
-      </HBox>
+      </AnchorPane>
    </children>
 </AnchorPane>

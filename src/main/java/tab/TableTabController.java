@@ -73,7 +73,7 @@ public class TableTabController implements Initializable {
                         }
                     });
                 } catch (Exception e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                     data();
                     return;
                 }

@@ -1,6 +1,8 @@
 package tab;
 
 import com.jfoenix.controls.JFXButton;
+import model.Bill;
+import model.BillDB;
 import model.Dish;
 import model.DishDB;
 import javafx.collections.FXCollections;
@@ -18,6 +20,7 @@ import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -79,16 +82,63 @@ public class NewBillController implements Initializable {
     @FXML
     private TableColumn<Dish, Button> remove;
 
+    @FXML
+    private TextField customerName;
+
+    @FXML
+    private TextField customerPhone;
+
 
     @FXML
     void createNewBill(ActionEvent event) {
+        BillDB billDB = new BillDB();
+        Bill bill = new Bill();
+        if (!validateBill()) {
+            return;
+        }
+        bill.setEmployee_id(employeeId.getText().split("-")[0]);
+        bill.setTable_id(tableId.getText());
+        bill.setTotal(Double.valueOf(totalBill.getText()));
+        bill.setCustomerName(customerName.getText());
+        bill.setCustomerPhone(customerPhone.getText());
+        bill.setStatus("pending");
+        bill.setDate(dateNow.getText());
+        ArrayList<Dish> dishList = new ArrayList<>(addedDishTable.getItems());
+        bill.setDishList(dishList);
+        if (billDB.addNewBill(bill)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Create new bill");
+            alert.setHeaderText("Create new bill successfully");
+            alert.setContentText("Create new bill successfully");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Create new bill");
+            alert.setHeaderText("Create new bill failed");
+            alert.setContentText("Create new bill failed");
+            alert.showAndWait();
+        }
 
     }
+
+
+    public boolean validateBill() {
+        if (customerName.getText().isEmpty() || customerPhone.getText().isEmpty() || addedDishTable.getItems().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Create new bill");
+            alert.setHeaderText("Create new bill failed");
+            alert.setContentText("Please fill in customer name, phone number and add at least 1 dish to bill");
+            alert.showAndWait();
+            return false;
+        }
+        return true;
+    }
+
     public void setData(String tableId, String employeeId, String employeeName) {
         this.tableId.setText(tableId);
         this.employeeId.setText(employeeId + "-" + employeeName);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
+        LocalDateTime  localDate = LocalDateTime.now();
         this.dateNow.setText(dtf.format(localDate));
     }
 
@@ -153,12 +203,21 @@ public class NewBillController implements Initializable {
         totalBill.setText(String.valueOf(total));
     }
 
+    public static void numericOnly(final TextField field) {
+        field.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                field.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+    }
+
 
     private final ObservableList<Dish> dishList = FXCollections.observableArrayList();
     private ObservableList<Dish> addedDishList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        numericOnly(customerPhone);
         //set column
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("dish_price"));

@@ -16,53 +16,81 @@
    <children>
       <HBox layoutX="64.0" layoutY="104.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="573.0" prefWidth="950.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
          <children>
-            <VBox id="billVbox" prefHeight="573.0" prefWidth="462.0" spacing="20.0">
+            <VBox id="billVbox" prefHeight="573.0" prefWidth="462.0" spacing="6.0">
                <children>
                   <Label alignment="CENTER" prefHeight="47.0" prefWidth="424.0" text="New Bill">
                      <font>
                         <Font name="System Bold" size="32.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="100.0" prefWidth="271.0">
+                  <HBox prefHeight="50.0" prefWidth="404.0">
                      <children>
                         <Label prefHeight="58.0" prefWidth="160.0" text="Table:">
                            <font>
-                              <Font size="30.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="tableId" prefHeight="57.0" prefWidth="298.0">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="42.0" prefWidth="404.0">
                      <children>
                         <Label fx:id="employeeId1" layoutX="10.0" layoutY="10.0" prefHeight="57.0" prefWidth="145.0" text="Employee:">
                            <font>
-                              <Font size="30.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="employeeId" contentDisplay="TEXT_ONLY" prefHeight="57.0" prefWidth="158.0">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="20.0" layoutY="157.0" prefHeight="100.0" prefWidth="200.0">
+                  <HBox layoutX="20.0" layoutY="157.0" prefHeight="45.0" prefWidth="404.0">
                      <children>
                         <Label fx:id="dateNow1" layoutX="10.0" layoutY="10.0" prefHeight="57.0" prefWidth="142.0" text="Date: ">
                            <font>
-                              <Font size="30.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="dateNow" prefHeight="57.0" prefWidth="290.0">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="28.0" prefWidth="404.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="111.0" text="Customer">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="customerName" prefHeight="43.0" prefWidth="154.0" promptText="Customer Name">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="18.0" prefWidth="404.0">
+                     <children>
+                        <Label prefHeight="31.0" prefWidth="83.0" text="Tel:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="customerPhone" prefHeight="25.0" prefWidth="183.0" promptText="Phone Number">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
                      </children>
                   </HBox>
                   <TableView fx:id="addedDishTable" prefHeight="200.0" prefWidth="200.0">
