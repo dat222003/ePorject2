@@ -14,6 +14,8 @@ public class Bill {
     private String customerPhone;
     private String date;
 
+    private String client_id;
+
     public Bill() {
     }
 
@@ -100,6 +102,14 @@ public class Bill {
         this.date = date;
     }
 
+    public String getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
+    }
+
     @Override
     public String toString() {
         return "Bill{" +
@@ -111,6 +121,8 @@ public class Bill {
                 ", dishList=" + dishList +
                 ", customerName='" + customerName + '\'' +
                 ", customerPhone='" + customerPhone + '\'' +
+                ", date='" + date + '\'' +
+                ", client_id='" + client_id + '\'' +
                 '}';
     }
 }

@@ -12,6 +12,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import table.GetAllTableTask;
 import table.Table;
 import table.tableDB;
@@ -39,10 +40,11 @@ public class TableTabController implements Initializable {
 
     @FXML
     void reloadTable(ActionEvent event) {
-        //call initialize
-        initialize(null, null);
-
+        tableGridPane.getChildren().clear();
+        data();
     }
+
+
     int row = 1;
     int column = 0;
     private void data() {
@@ -73,7 +75,6 @@ public class TableTabController implements Initializable {
                         }
                     });
                 } catch (Exception e) {
-//                    e.printStackTrace();
                     data();
                     return;
                 }
@@ -85,9 +86,6 @@ public class TableTabController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
-
         });
         Thread thread = new Thread(getAllTableTask);
         thread.setDaemon(true);
@@ -100,6 +98,5 @@ public class TableTabController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tableGridPane.getChildren().clear();
         data();
-
     }
 }

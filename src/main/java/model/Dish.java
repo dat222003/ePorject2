@@ -10,7 +10,9 @@ public class Dish {
             total_price,
             dishAmount,
             dish_price,
+            dishTotalPrice,
             img;
+
     private Integer qty;
 
     public Dish() {

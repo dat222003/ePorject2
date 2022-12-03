@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 public class homeController implements Initializable {
 
     @FXML
-    private Label userNameLabel;
+    private JFXButton userNameButton;
     @FXML
     private Button logoutButton;
     @FXML
@@ -102,7 +102,7 @@ public class homeController implements Initializable {
     }
 
     public void setUser(String user, String user_id) {
-        userNameLabel.setText(user_id + ": " + user);
+        userNameButton.setText(user_id + ": " + user);
     }
 
     @Override

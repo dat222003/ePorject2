@@ -122,10 +122,10 @@
     -fx-background-color: #009EFF;
     -fx-background-radius: 0 5em 0 0;
 }
-#menuBox .button{
+#menuBox .button .hbox{
     -fx-background-color: #009EFF;
-    -fx-background-radius: 0 2em 2em 0;
-    -fx-border-radius: 0 2em 2em 0;
+    /*-fx-background-radius: 0 2em 2em 0;*/
+    /*-fx-border-radius: 0 2em 2em 0;*/
 }
 
 
