@@ -31,6 +31,8 @@ public class TableDetailsController {
     @FXML
     private JFXButton updateBillButton;
 
+    @FXML
+    private JFXButton deleteTableButton;
 
     public void setData(Table table) {
         tableID.setText("Table: " + table.getTable_id());
@@ -45,9 +47,15 @@ public class TableDetailsController {
                     billButton.setDisable(false);
                     updateBillButton.setDisable(true);
                 }
+                deleteTableButton.setDisable(true);
             }
             case "available" -> statusGroup.selectToggle(statusGroup.getToggles().get(0));
-            case "ordered" -> statusGroup.selectToggle(statusGroup.getToggles().get(2));
+            case "ordered" -> {
+                statusGroup.selectToggle(statusGroup.getToggles().get(2));
+                billButton.setDisable(true);
+                updateBillButton.setDisable(true);
+                deleteTableButton.setDisable(true);
+            }
             case "unavailable" -> {
                 statusGroup.selectToggle(statusGroup.getToggles().get(3));
                 billButton.setDisable(true);

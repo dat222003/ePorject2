@@ -22,6 +22,7 @@ import login.loginApplication;
 import java.io.IOException;
 import java.net.URL;
 import java.util.EventListener;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -93,7 +94,18 @@ public class homeController implements Initializable {
     // load table.fxml into homePane
     private void loadTable(ActionEvent event) {
         try {
-            pane = FXMLLoader.load(getClass().getResource("/tableTab.fxml"));
+            pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/tableTab.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(pane);
+
+    }
+
+    @FXML
+    private void loadBill(ActionEvent event) {
+        try {
+            pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/billTab.fxml")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

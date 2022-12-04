@@ -1,18 +1,15 @@
 package tab;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import table.GetAllTableTask;
 import table.Table;
 import table.tableDB;
@@ -92,6 +89,70 @@ public class TableTabController implements Initializable {
         thread.start();
 
     }
+
+    private void data(ArrayList<Table> tablesList) {
+        row = 1;
+        column = 0;
+        tablesList.forEach(table -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tableDetails.fxml"));
+            VBox vBox = null;
+            try {
+                vBox = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            TableDetailsController tableDetailsController = loader.getController();
+            tableDetailsController.setData(table);
+            tableGridPane.add(vBox, column++, row);
+            //set grid width
+            GridPane.setMargin(vBox, new Insets(10));
+            if (column == 3) {
+                column = 0;
+                row++;
+            }
+        });
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("/newTableTab.fxml"));
+//            VBox vbox = fxmlLoader.load();
+//            tableGridPane.add(vbox, column++, row);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+
+    @FXML
+    void availableTable(ActionEvent event) {
+        tableGridPane.getChildren().clear();
+        tableDB tableDB = new tableDB();
+        ArrayList<Table> availableTableList = tableDB.getTableWithStatus("available");
+        data(availableTableList);
+
+    }
+
+    @FXML
+    void inUsedTable(ActionEvent event) {
+        tableGridPane.getChildren().clear();
+        tableDB tableDB = new tableDB();
+        ArrayList<Table> inUsedTableList = tableDB.getTableWithStatus("in used");
+        data(inUsedTableList);
+    }
+
+    @FXML
+    void orderedTable(ActionEvent event) {
+        tableGridPane.getChildren().clear();
+        tableDB tableDB = new tableDB();
+        ArrayList<Table> orderedTableList = tableDB.getTableWithStatus("ordered");
+        data(orderedTableList);
+    }
+
+    @FXML
+    void totalTable(ActionEvent event) {
+        tableGridPane.getChildren().clear();
+        data();
+    }
+
 
 
     @Override

@@ -97,5 +97,26 @@ public class tableDB {
     }
 
 
+    public ArrayList<Table> getTableWithStatus(String status) {
+        ArrayList<Table> tableList = new ArrayList<>();
+        try(
+                Connection con = databaseConnect.getConnect();
+        ) {
+            PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM `table` WHERE status = ?");
+            preparedStatement.setString(1, status);
+            ResultSet resultset = preparedStatement.executeQuery();
+            while (resultset.next()) {
+                Table table = new Table();
+                table.setTable_id(resultset.getString("table_id"));
+                table.setTableStatus(resultset.getString("status"));
+                tableList.add(table);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return tableList;
+    }
+
 
 }

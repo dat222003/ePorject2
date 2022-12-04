@@ -22,7 +22,7 @@ public class BillDB {
             PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM `bill` join bill_detail bd on bill.bill_id = bd.bill_id " +
                     "join client_info ci on ci.client_id = bill.client_id");
             ResultSet resultSet = preparedStatement.executeQuery();
-            PreparedStatement getDishByBillId = con.prepareStatement("select bd.dish_id, dish.name,dishAmount from `bill` join bill_detail bd on bill.bill_id = bd.bill_id " +
+            PreparedStatement getDishByBillId = con.prepareStatement("select bd.dish_id, dish.name,dishAmount, bd.dishTotalPrice from `bill` join bill_detail bd on bill.bill_id = bd.bill_id " +
                     "join `dish` on bd.dish_id = dish.dish_id where bill.bill_id = ?");
 
             while (resultSet.next()) {
@@ -44,6 +44,8 @@ public class BillDB {
                     dish.setDish_id(dishResult.getString("dish_id"));
                     dish.setName(dishResult.getString("name"));
                     dish.setQty(Integer.valueOf(dishResult.getString("dishAmount")));
+                    dish.setDish_price(String.valueOf(dishResult.getDouble("bd.dishTotalPrice")/dish.getQty()));
+                    dish.setTotal_price(String.valueOf(dishResult.getDouble("bd.dishTotalPrice")));
                     if (!dishList.contains(dish)) {
                         dishList.add(dish);
                     }

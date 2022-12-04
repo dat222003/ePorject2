@@ -355,7 +355,6 @@ public class NewBillController implements Initializable {
         });
         SortedList<Dish> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(dishTable.comparatorProperty());
-        dishTable.selectionModelProperty().get().setSelectionMode(SelectionMode.MULTIPLE);
         dishTable.setItems(sortedData);
         //added dish table
         addedDishId.setCellValueFactory(new PropertyValueFactory<>("dish_id"));

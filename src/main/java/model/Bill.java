@@ -7,6 +7,8 @@ public class Bill {
     private String bill_id;
     private String table_id;
     private String employee_id;
+
+    private String employeeName;
     private Double total;
     private String status;
     private ArrayList<Dish> dishList;
@@ -110,12 +112,21 @@ public class Bill {
         this.client_id = client_id;
     }
 
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
     @Override
     public String toString() {
         return "Bill{" +
                 "bill_id='" + bill_id + '\'' +
                 ", table_id='" + table_id + '\'' +
                 ", employee_id='" + employee_id + '\'' +
+                ", employeeName='" + employeeName + '\'' +
                 ", total=" + total +
                 ", status='" + status + '\'' +
                 ", dishList=" + dishList +
