@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane fx:id="dialogPane" minHeight="500.0" minWidth="600.0" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.EditDishController">
+   <buttonTypes>
+      <ButtonType fx:constant="OK" />
+      <ButtonType fx:constant="CANCEL" />
+   </buttonTypes>
+   <header>
+      <Label fx:id="editLabel" alignment="CENTER" text="Edit Dish">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+   </header>
+   <content>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutX="40.0" layoutY="25.0" prefHeight="67.0" prefWidth="540.0" spacing="10.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="540.0" spacing="50.0">
+                     <children>
+                        <HBox prefHeight="25.0" prefWidth="265.0">
+                           <children>
+                              <Label prefHeight="31.0" prefWidth="73.0" text="Name:">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="name" prefHeight="14.0" prefWidth="149.0" promptText="Dish Name" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="22.0" prefWidth="297.0">
+                           <children>
+                              <Label prefHeight="26.0" prefWidth="43.0" text="Price:">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="price" prefHeight="14.0" prefWidth="149.0" promptText="Dish Price" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="22.0" prefWidth="297.0">
+                     <children>
+                        <Label prefHeight="25.0" prefWidth="61.0" text="Category:">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="category" prefHeight="7.0" prefWidth="150.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="109.0" layoutY="109.0" prefHeight="304.0" prefWidth="422.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0">
+               <children>
+                  <ImageView fx:id="image" fitHeight="175.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="imageName" alignment="CENTER" prefHeight="17.0" prefWidth="359.0" text="Label" />
+                  <JFXButton onAction="#changeImage" prefHeight="25.0" prefWidth="105.0" style="-fx-background-radius: 2em;" stylesheets="@css/Home.css" text="Change Image" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </content>
+</DialogPane>

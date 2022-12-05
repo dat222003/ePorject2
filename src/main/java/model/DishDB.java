@@ -19,7 +19,7 @@ public class DishDB {
             preparedStatement.setString(1, dish.getName());
             preparedStatement.setString(2, dish.getCat_id());
             preparedStatement.setString(3, dish.getDish_price());
-            preparedStatement.setString(4, dish.getImg());
+            preparedStatement.setString(4, dish.getImg_name());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,7 +36,7 @@ public class DishDB {
             preparedStatement.setString(1, dish.getName());
             preparedStatement.setString(2, dish.getCat_id());
             preparedStatement.setString(3, dish.getDish_price());
-            preparedStatement.setString(4, dish.getImg());
+            preparedStatement.setString(4, dish.getImg_name());
             preparedStatement.setString(5, dish.getDish_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -74,7 +74,7 @@ public class DishDB {
                 dish.setCat_id(resultSet.getString("dish.cat_id"));
                 dish.setCategory(resultSet.getString("category.name"));
                 dish.setDish_price(resultSet.getString("price"));
-//                dish.setImg(resultSet.getString("img"));
+                dish.setImg_name(resultSet.getString("dish.img"));
                 dishList.add(dish);
             }
         } catch (SQLException e) {

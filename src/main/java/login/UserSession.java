@@ -9,7 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
 public class UserSession {
 
@@ -19,7 +18,7 @@ public class UserSession {
         String session = user_id + "," + userName;
         DatabaseConnect databaseConnect = new DatabaseConnect();
         String hash_session = databaseConnect.hash(session);
-        Path session_path = Paths.get("src/main/resources/session.txt");
+        Path session_path = Paths.get("session.txt");
         try (
                 BufferedWriter session_writer = Files.newBufferedWriter(session_path, StandardCharsets.UTF_8);
                 Connection con = databaseConnect.getConnect()
@@ -34,7 +33,7 @@ public class UserSession {
 
     public static void createLocalSession(String userName, String user_id) {
         String session = user_id + "," + userName;
-        Path session_path = Paths.get("src/main/resources/session-local.txt");
+        Path session_path = Paths.get("session-local.txt");
         try (
                 BufferedWriter session_writer = Files.newBufferedWriter(session_path, StandardCharsets.UTF_8);
         ) {
@@ -45,7 +44,7 @@ public class UserSession {
     }
 
     public static boolean checkSession() {
-        Path session_path = Paths.get("src/main/resources/session.txt");
+        Path session_path = Paths.get("session.txt");
         try (
                 BufferedReader session_reader = Files.newBufferedReader(session_path, StandardCharsets.UTF_8);
                 Connection con = databaseConnect.getConnect()
@@ -57,15 +56,21 @@ public class UserSession {
                 }
             }
         } catch (IOException | SQLException e) {
-            throw new RuntimeException(e);
+            //create session file
+            try {
+                Files.createFile(session_path);
+                return false;
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
         return false;
     }
 
     public static void deleteUserSession() {
 
-        Path session_path = Paths.get("src/main/resources/session.txt");
-        Path session_local_path = Paths.get("src/main/resources/session-local.txt");
+        Path session_path = Paths.get("session.txt");
+        Path session_local_path = Paths.get("session-local.txt");
         try (
                 BufferedWriter session_local_writer = Files.newBufferedWriter(session_local_path, StandardCharsets.UTF_8);
                 BufferedWriter session_writer = Files.newBufferedWriter(session_path, StandardCharsets.UTF_8)
@@ -78,7 +83,7 @@ public class UserSession {
     }
 
     public static String getSession() {
-        Path session_path = Paths.get("src/main/resources/session.txt");
+        Path session_path = Paths.get("session.txt");
         try (
                 BufferedReader session_reader = Files.newBufferedReader(session_path, StandardCharsets.UTF_8);
         ) {
@@ -93,7 +98,7 @@ public class UserSession {
     }
 
     public static String getLocalSession() {
-        Path session_path = Paths.get("src/main/resources/session-local.txt");
+        Path session_path = Paths.get("session-local.txt");
         try (
                 BufferedReader session_reader = Files.newBufferedReader(session_path, StandardCharsets.UTF_8);
         ) {
@@ -102,13 +107,19 @@ public class UserSession {
                 return key;
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            // create session file
+            try {
+                Files.createFile(session_path);
+                return null;
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
         return null;
     }
 
     public static void deleteLocalSession() {
-        Path session_path = Paths.get("src/main/resources/session-local.txt");
+        Path session_path = Paths.get("session-local.txt");
         try (
                 BufferedWriter session_writer = Files.newBufferedWriter(session_path, StandardCharsets.UTF_8)
         ) {

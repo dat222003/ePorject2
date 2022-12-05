@@ -1,6 +1,6 @@
 package model;
 
-import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 
 public class Dish {
     private String dish_id,
@@ -11,19 +11,20 @@ public class Dish {
             dishAmount,
             dish_price,
             dishTotalPrice,
-            img;
+            img_name;
+    private ImageView image;
 
     private Integer qty;
 
     public Dish() {
     }
 
-    public Dish(String dish_id, String name, String cat_id, String dish_price, String img) {
+    public Dish(String dish_id, String name, String cat_id, String dish_price, String img_name) {
         this.dish_id = dish_id;
         this.name = name;
         this.cat_id = cat_id;
         this.dish_price = dish_price;
-        this.img = img;
+        this.img_name = img_name;
     }
 
     public String getDish_id() {
@@ -58,12 +59,12 @@ public class Dish {
         this.dish_price = dish_price;
     }
 
-    public String getImg() {
-        return img;
+    public String getImg_name() {
+        return img_name;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImg_name(String img_name) {
+        this.img_name = img_name;
     }
 
     public Integer getQty() {
@@ -90,6 +91,13 @@ public class Dish {
         this.category = category;
     }
 
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
+    }
 
     @Override
     public String toString() {
@@ -97,8 +105,10 @@ public class Dish {
                 "dish_id='" + dish_id + '\'' +
                 ", name='" + name + '\'' +
                 ", cat_id='" + cat_id + '\'' +
+                ", category='" + category + '\'' +
                 ", total_price='" + total_price + '\'' +
                 ", dish_price='" + dish_price + '\'' +
+                ", img_name='" + img_name + '\'' +
                 ", qty=" + qty +
                 '}';
     }

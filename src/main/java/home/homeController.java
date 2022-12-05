@@ -113,6 +113,17 @@ public class homeController implements Initializable {
 
     }
 
+    @FXML
+    private void loadDish(ActionEvent event) {
+        try {
+            pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/dishTab.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(pane);
+
+    }
+
     public void setUser(String user, String user_id) {
         userNameButton.setText(user_id + ": " + user);
     }

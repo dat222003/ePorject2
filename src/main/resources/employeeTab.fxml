@@ -25,7 +25,7 @@
          <children>
             <HBox alignment="CENTER" layoutY="343.0" prefHeight="35.0" prefWidth="906.0" spacing="10.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                <children>
-                  <JFXButton fx:id="reloadButton" onAction="#reloadTable" prefHeight="20.0" prefWidth="89.0" text="Refresh">
+                  <JFXButton fx:id="reloadButton" onAction="#reloadTable" prefHeight="20.0" prefWidth="89.0" style="-fx-background-color: white;" text="Refresh">
                      <graphic>
                         <FontIcon iconLiteral="fas-sync-alt" iconSize="20" />
                      </graphic>

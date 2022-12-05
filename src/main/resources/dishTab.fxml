@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane minHeight="720.0" minWidth="971.0" prefHeight="720.0" prefWidth="971.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.DishTabController">
+   <children>
+      <AnchorPane id="dashboardPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <stylesheets>
+            <URL value="@css/dashBoard.css" />
+            <URL value="@css/Home.css" />
+         </stylesheets>
+         <children>
+            <TableView fx:id="dishTable" layoutX="181.0" layoutY="137.0" prefHeight="608.0" prefWidth="901.0" style="-fx-alignment: CENTER;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0">
+              <columns>
+                <TableColumn fx:id="id" prefWidth="42.0" text="Id" />
+                <TableColumn fx:id="image" prefWidth="236.33334350585938" sortable="false" text="Image" />
+                  <TableColumn fx:id="name" prefWidth="268.33331298828125" text="Name" />
+                  <TableColumn fx:id="category" prefWidth="207.66668701171875" text="Category" />
+                  <TableColumn fx:id="price" minWidth="0.0" prefWidth="144.0" text="Price" />
+              </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#editDish" text="Edit" />
+                        <MenuItem mnemonicParsing="false" onAction="#deleteDish" text="Delete" />
+                    </items>
+
+                  </ContextMenu>
+               </contextMenu>
+            </TableView>
+            <HBox alignment="CENTER_LEFT" layoutX="67.0" layoutY="161.0" prefHeight="19.0" prefWidth="901.0" AnchorPane.bottomAnchor="640.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+               <children>
+                  <JFXButton fx:id="reloadButton" onAction="#reloadTable" prefHeight="15.0" prefWidth="98.0" style="-fx-background-color: white;" text="Refresh">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-sync-alt" iconSize="20" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <FontIcon iconLiteral="fas-search" iconSize="20" wrappingWidth="19.99999237060547">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </FontIcon>
+                  <TextField fx:id="searchField" prefHeight="20.0" prefWidth="216.0" promptText="search field" style="-fx-background-radius: 2em;">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <JFXButton onAction="#addNewDish" prefHeight="0.0" prefWidth="104.0" style="-fx-background-color: white; -fx-background-radius: 2em;" text="Add New">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="far-plus-square" iconSize="20" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
