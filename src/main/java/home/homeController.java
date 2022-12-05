@@ -16,18 +16,20 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import login.DatabaseConnect;
+import login.UserSession;
 import login.loginApplication;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.EventListener;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class homeController implements Initializable {
 
     @FXML
-    private Label userNameLabel;
+    private JFXButton userNameButton;
     @FXML
     private Button logoutButton;
     @FXML
@@ -38,6 +40,8 @@ public class homeController implements Initializable {
 
     @FXML
     private JFXButton dashboardButton;
+    @FXML
+    private JFXButton tableButton;
 
     Pane pane;
 
@@ -51,7 +55,8 @@ public class homeController implements Initializable {
             loginApplication loginApplication = new loginApplication();
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.close();
-            DatabaseConnect.deleteUserSession();
+            DatabaseConnect databaseConnect = new DatabaseConnect();
+            databaseConnect.deleteUserSession();
             loginApplication.start(new Stage());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Message");
@@ -85,8 +90,53 @@ public class homeController implements Initializable {
 
     }
 
+    @FXML
+    // load table.fxml into homePane
+    private void loadTable(ActionEvent event) {
+        try {
+            pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/tableTab.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(pane);
+
+    }
+
+    @FXML
+    private void loadBill(ActionEvent event) {
+        try {
+            pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/billTab.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(pane);
+
+    }
+
+    @FXML
+    private void loadDish(ActionEvent event) {
+        try {
+            pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/dishTab.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(pane);
+
+    }
+
+    public void setUser(String user, String user_id) {
+        userNameButton.setText(user_id + ": " + user);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String key = UserSession.getLocalSession();
+        if (key != null) {
+            setUser(key.split(",")[1], key.split(",")[0]);
+        } else {
+            key = UserSession.getSession();
+            setUser(key.split(",")[1], key.split(",")[0]);
+        }
         dashboardButton.fire();
 
     }

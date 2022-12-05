@@ -1,0 +1,17 @@
+#dashboardPane{
+    //round square
+    -fx-background-radius: 4em;
+    -fx-background-color: #6db9ec;
+}
+#button2{
+    -fx-background-radius: 2em;
+    -fx-border-radius: 2em;
+}
+.scroll-bar{
+    -fx-background-color: white;
+    -fx-background-radius: 3em;
+}
+.scroll-bar .thumb{
+    -fx-background-color: #009EFF;
+    -fx-background-radius: 3em;
+}

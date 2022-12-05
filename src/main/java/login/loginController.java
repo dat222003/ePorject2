@@ -1,8 +1,6 @@
 package login;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXRadioButton;
 import home.homeApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +16,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
 
 public class loginController {
         @FXML
@@ -36,6 +33,9 @@ public class loginController {
         @FXML
         private BorderPane loginPane;
 
+        private String user_id;
+
+        private final DatabaseConnect databaseConnect = new DatabaseConnect();
 
         public void loginButtonOnAction(ActionEvent event) {
             if (usernameField.getText().isBlank()) {
@@ -48,7 +48,9 @@ public class loginController {
         }
 
         public void checkUser() {
-            try (Connection con = DatabaseConnect.getConnect()) {
+            try (
+                    Connection con = databaseConnect.getConnect();
+            ) {
                 PreparedStatement admin_query = con.prepareStatement("select * from user_account" +
                         " inner join admin a on user_account.user_id = a.user_id" +
                         " and user_account.user = ? and user_account.password = ?");
@@ -58,8 +60,10 @@ public class loginController {
                 ResultSet resultSet = admin_query.executeQuery();
                 if (resultSet.next()) {
                     if (rememberCheckBox.isSelected()) {
-                        UserSession.createUserSession(usernameField.getText());
+                        UserSession.createUserSession(usernameField.getText(), resultSet.getString("user_id"));
                     }
+                    UserSession.createLocalSession(usernameField.getText(), resultSet.getString("user_id"));
+                    user_id = resultSet.getString("user_id");
                     loadHome(); //admin rights
                     showAlert(usernameField.getText());
                     return;
@@ -73,8 +77,9 @@ public class loginController {
                 }
                 if (resultSet.next()) {
                     if (rememberCheckBox.isSelected()) {
-                        UserSession.createUserSession(usernameField.getText());
+                        UserSession.createUserSession(usernameField.getText(), resultSet.getString("user_id"));
                     }
+                    UserSession.createLocalSession(usernameField.getText(), resultSet.getString("user_id"));
                     loadHome();
                     showAlert(usernameField.getText());
                 } else {

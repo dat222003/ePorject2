@@ -2,61 +2,110 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="670.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.homeController">
+<BorderPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="670.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: #a2d3fc;" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.homeController">
    <left>
-      <VBox minHeight="711.0" prefHeight="720.0" prefWidth="229.0" spacing="10.0" style="-fx-background-color: #009EFF;">
+      <VBox id="menuBox" maxHeight="1.7976931348623157E308" minHeight="711.0" prefHeight="720.0" prefWidth="229.0" spacing="10.0" style="-fx-background-color: #009EFF;">
          <children>
             <ImageView fitHeight="175.0" fitWidth="229.0" pickOnBounds="true">
                <image>
                   <Image url="@images/user.png" />
                </image>
             </ImageView>
-            <Label fx:id="userNameLabel" alignment="CENTER" prefHeight="45.0" prefWidth="229.0" text="Admin">
-               <graphic>
+            <HBox id="button" alignment="CENTER_LEFT" layoutX="10.0" layoutY="241.0" prefHeight="50.0" prefWidth="229.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
                   <FontIcon iconLiteral="far-user-circle" iconSize="30" />
-               </graphic>
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <JFXButton fx:id="dashboardButton" alignment="CENTER" graphicTextGap="15.0" onAction="#loadDashBoard" prefHeight="70.0" prefWidth="229.0" text="Dash Board">
+                  <JFXButton fx:id="userNameButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" prefHeight="44.0" prefWidth="159.0" text="Admin">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox id="button" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <FontIcon iconLiteral="far-chart-bar" iconSize="25" wrappingWidth="26.0" />
+                  <JFXButton fx:id="dashboardButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" onAction="#loadDashBoard" prefHeight="51.0" prefWidth="203.0" text="Dash Board">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+            <HBox id="button" alignment="CENTER" layoutX="10.0" layoutY="241.0" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontIcon iconLiteral="fas-users" iconSize="20" />
+                  <JFXButton fx:id="employeeButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#loadEmployee" prefHeight="70.0" prefWidth="229.0" text="Employee">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox id="button" alignment="CENTER" layoutX="10.0" layoutY="299.0" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontIcon iconLiteral="fas-grip-horizontal" iconSize="28" />
+                  <JFXButton fx:id="tableButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#loadTable" prefHeight="70.0" prefWidth="229.0" text="Table">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox id="button" alignment="CENTER" layoutX="10.0" layoutY="360.0" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontIcon iconLiteral="fas-money-check-alt" iconSize="20" />
+                  <JFXButton fx:id="blllButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#loadBill" prefHeight="70.0" prefWidth="229.0" text="Bill">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox id="button" alignment="CENTER" layoutX="10.0" layoutY="390.0" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontIcon iconLiteral="fas-concierge-bell" iconSize="24" />
+                  <JFXButton fx:id="dishButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#loadDish" prefHeight="70.0" prefWidth="229.0" text="Dishes">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <Region prefHeight="222.0" prefWidth="229.0" VBox.vgrow="ALWAYS" />
+            <JFXButton fx:id="logoutButton" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#loadLogin" prefHeight="26.0" prefWidth="229.0" text="Logout">
                <font>
                   <Font size="20.0" />
                </font>
                <graphic>
-                  <FontIcon iconLiteral="far-chart-bar" iconSize="25" />
+                  <FontIcon iconLiteral="fas-sign-out-alt" iconSize="25" />
                </graphic>
-            </JFXButton>
-            <JFXButton fx:id="employeeButton" alignment="CENTER" graphicTextGap="20.0" onAction="#loadEmployee" prefHeight="70.0" prefWidth="229.0" text="Employee">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <graphic>
-                  <FontIcon iconLiteral="fas-users" iconSize="25" />
-               </graphic>
-            </JFXButton>
-            <JFXButton graphicTextGap="20.0" prefHeight="70.0" prefWidth="229.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </JFXButton>
-            <JFXButton graphicTextGap="20.0" prefHeight="70.0" prefWidth="229.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </JFXButton>
-            <JFXButton graphicTextGap="20.0" prefHeight="70.0" prefWidth="229.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
             </JFXButton>
          </children>
          <BorderPane.margin>
@@ -64,14 +113,4 @@
          </BorderPane.margin>
       </VBox>
    </left>
-   <bottom>
-      <JFXButton fx:id="logoutButton" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#loadLogin" prefHeight="51.0" prefWidth="229.0" text="Logout" BorderPane.alignment="BOTTOM_LEFT">
-         <font>
-            <Font size="25.0" />
-         </font>
-         <graphic>
-            <FontIcon iconLiteral="fas-sign-out-alt" iconSize="25" />
-         </graphic>
-      </JFXButton>
-   </bottom>
 </BorderPane>

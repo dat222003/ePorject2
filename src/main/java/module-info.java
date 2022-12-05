@@ -16,6 +16,8 @@ module eProject2 {
     exports login;
     opens tab to javafx.fxml;
     exports tab;
-    opens employee to javafx.fxml;
-    exports employee;
+    opens table to javafx.fxml;
+    exports table;
+    opens model to javafx.fxml;
+    exports model;
 }

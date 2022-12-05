@@ -1,0 +1,131 @@
+.button
+{
+    -fx-background-color: #009EFF;
+}
+#menuBox .button:hover
+{
+    -fx-background-color: #046e9a;
+}
+.button:pressed {
+    -fx-background-color: #065481;
+}
+.button:focused {
+    -fx-background-color: #42abe3;
+    -fx-text-fill: black;
+}
+.table-view {
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom, #009EFF, #93f9b944);
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+.table-view .column-header.text {
+    -fx-font-size: 14px;
+}
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+.table-view{
+    //round square
+    -fx-background-radius: 4em;
+}
+/*.table-row-cell:hover {*/
+/*    -fx-background-color: #046e9a;*/
+/*    -fx-text-background-color: white;*/
+/*}*/
+/*.table-row-cell:odd{*/
+/*    -fx-background-color: #42d0ef;*/
+/*    -fx-background-insets: 0, 0 0 1 0;*/
+/*    -fx-padding: 0.0em;*/
+/*}*/
+.table-row-cell{
+    -fx-background-color: #89d5e7;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell:selected{
+    -fx-background-color: #1dbbdd;
+}
+.table-row-cell{
+    -fx-min-height: 30px;
+    -fx-font-size: 13px;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: #000000;
+    -fx-font-weight: bold;
+}
+/*.progress-bar {*/
+/*    -fx-accent: rgba(0, 138, 230, 0.85);*/
+/*}*/
+
+/*.progress-bar .bar {*/
+/*    -fx-padding: 1px;*/
+/*    -fx-background-insets: 0;*/
+/*    -fx-background-radius: 0;*/
+/*}*/
+
+.progress-bar > .track {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-text-box-border: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+#password {
+    -fx-background-color: #cce7f3;
+    -fx-background-radius: 7px;
+}
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10, 0.0, 0, 10);
+}
+.transparent{
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+#tableVbox{
+    -fx-background-color: #a2d3fc;
+    -fx-background-radius: 2em;
+    -fx-border-style: solid;
+    -fx-border-radius: 2em;
+}
+#tableVbox .button{
+    -fx-background-color: #009EFF;
+    -fx-background-radius: 2em;
+    -fx-border-radius: 2em;
+}
+#tableVbox .button:disabled{
+    -fx-background-color: #5fadde;
+
+}
+#tableVbox .button:hover{
+    -fx-background-color: #046e9a;
+
+}
+#tableVbox .buttonDelete{
+    -fx-background-color: #ef3d3d;
+    -fx-text-fill: white;
+
+}
+#billVbox{
+    -fx-border-style: solid;
+    -fx-border-width: 0 5 0 0;
+    -fx-border-color: #009EFF;
+}
+#menuBox{
+    -fx-background-color: #009EFF;
+    -fx-background-radius: 0 5em 0 0;
+}
+#menuBox .button .hbox{
+    -fx-background-color: #009EFF;
+    /*-fx-background-radius: 0 2em 2em 0;*/
+    /*-fx-border-radius: 0 2em 2em 0;*/
+}
+
+
