@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane fx:id="logoutPane" minHeight="720.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.homeController">
+   <children>
+      <VBox prefHeight="720.0" prefWidth="229.0" style="-fx-background-color: #009EFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="175.0" fitWidth="229.0" pickOnBounds="true">
+               <image>
+                  <Image url="@images/user.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="userNameLabel" alignment="CENTER" prefHeight="45.0" prefWidth="229.0">
+               <graphic>
+                  <FontIcon iconLiteral="far-user-circle" iconSize="30" />
+               </graphic>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <JFXButton prefHeight="70.0" prefWidth="229.0" text="Employee">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconLiteral="fas-users" iconSize="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton prefHeight="70.0" prefWidth="229.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton prefHeight="70.0" prefWidth="229.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton prefHeight="70.0" prefWidth="229.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton prefHeight="70.0" prefWidth="229.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="222.0" layoutY="-86.0" minHeight="720.0" minWidth="971.0" prefHeight="720.0" prefWidth="971.0" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="222.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="-86.0" />
+      <JFXButton fx:id="closeButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#setCloseButton" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+         <graphic>
+            <FontIcon iconColor="#eb1414" iconLiteral="fas-window-close" iconSize="25" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="logoutButton" alignment="CENTER" contentDisplay="RIGHT" onAction="#loadLogin" prefHeight="51.0" prefWidth="229.0" style="-fx-background-color: #009EFF;" text="Logout" AnchorPane.bottomAnchor="0.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+         <graphic>
+            <FontIcon iconLiteral="fas-sign-out-alt" iconSize="25" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="maximizeButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#setMaximizeButton" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="1.0">
+         <graphic>
+            <FontIcon iconLiteral="fas-window-maximize" iconSize="25" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="minimizeButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#setMinimizeButton" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="1.0">
+         <graphic>
+            <FontIcon iconLiteral="fas-window-minimize" iconSize="22" />
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>
