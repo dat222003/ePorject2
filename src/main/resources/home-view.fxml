@@ -102,6 +102,19 @@
                   </JFXButton>
                </children>
             </HBox>
+            <HBox id="button" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontIcon iconLiteral="fas-align-justify" iconSize="26" />
+                  <JFXButton fx:id="categoryButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#loadCategory" prefHeight="70.0" prefWidth="229.0" text="Categories">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
             <Region prefHeight="222.0" prefWidth="229.0" VBox.vgrow="ALWAYS" />
             <JFXButton fx:id="logoutButton" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#loadLogin" prefHeight="26.0" prefWidth="229.0" text="Logout">
                <font>

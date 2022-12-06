@@ -91,6 +91,17 @@ public class homeController implements Initializable {
     }
 
     @FXML
+    private void loadCategory(ActionEvent event) {
+        try {
+            pane = FXMLLoader.load(getClass().getResource("/categoryTab.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(pane);
+
+    }
+
+    @FXML
     // load table.fxml into homePane
     private void loadTable(ActionEvent event) {
         try {

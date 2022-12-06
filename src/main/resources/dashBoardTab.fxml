@@ -71,9 +71,7 @@
                         <HBox alignment="CENTER" prefHeight="135.0" prefWidth="132.0" spacing="5.0">
                            <children>
                               <Label id="totalTable" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="46.0" prefWidth="48.0" text="Label">
-                                 <graphic>
-                                    <FontIcon fill="#868686" iconLiteral="" iconSize="30" text="" />
-                                 </graphic>
+
                               </Label>
                               <VBox alignment="CENTER" prefHeight="79.0" prefWidth="73.0" spacing="5.0">
                                  <children>

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane fx:id="dialogPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.NewCategoryController">
+<DialogPane fx:id="dialogPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.EditCategoryController">
    <content>
       <AnchorPane minHeight="100.0" minWidth="500.0" prefHeight="100.0" prefWidth="500.0">
          <children>
@@ -37,7 +37,7 @@
       <ButtonType fx:constant="CANCEL" />
    </buttonTypes>
    <header>
-      <Label alignment="CENTER" contentDisplay="TEXT_ONLY" text="Create Category">
+      <Label fx:id="label" alignment="CENTER" contentDisplay="TEXT_ONLY" text="Edit Category">
          <font>
             <Font size="29.0" />
          </font>
