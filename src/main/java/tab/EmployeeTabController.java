@@ -300,13 +300,18 @@ public class EmployeeTabController implements Initializable {
         if (!validateInfo() || !checkPassword()) {
             return;
         }
-        Employee employee = setEmployee();
-        if (employee.getUserid() == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Please select a row to update");
-            alert.showAndWait();
-            return;
+        Employee employee = new Employee();
+        employee.setUser(userTextField.getText());
+        employee.setName(nameTextField.getText());
+        employee.setPhone(phoneTextField.getText());
+        employee.setSalary(Double.parseDouble(salaryTextField.getText()));
+        employee.setEmail(EmailTextField.getText());
+        employee.setIdcard(idCardTextField.getText());
+        RadioButton selectedRadioButton = (RadioButton) genderGroup.getSelectedToggle();
+        if (selectedRadioButton.getText().equals("Male")) {
+            employee.setGender(0);
+        } else {
+            employee.setGender(1);
         }
         employee.setPassword(newPasswordField.getText());
         employeeDB employeeDB = new employeeDB();
