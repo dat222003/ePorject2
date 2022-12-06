@@ -70,7 +70,10 @@
                <children>
                   <ImageView fx:id="image" fitHeight="175.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="imageName" alignment="CENTER" prefHeight="17.0" prefWidth="359.0" text="Label" />
-                  <JFXButton onAction="#changeImage" prefHeight="25.0" prefWidth="105.0" style="-fx-background-radius: 2em;" stylesheets="@css/Home.css" text="Change Image" />
+                  <JFXButton onAction="#changeImage" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: rgb(255,228,196);" stylesheets="@css/Home.css" text="Change Image">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXButton>
                </children>
             </VBox>
          </children>
