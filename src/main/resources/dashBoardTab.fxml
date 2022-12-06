@@ -19,94 +19,7 @@
    <children>
       <AnchorPane id="dashboardPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgb(240,248,255);" stylesheets="@css/dashBoard.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <HBox alignment="CENTER" layoutX="19.0" layoutY="23.0" prefHeight="168.0" prefWidth="890.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="194.0" prefWidth="349.0" spacing="50.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="135.0" prefWidth="132.0" spacing="5.0">
-                           <children>
-                              <Label id="totalTable" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="46.0" prefWidth="48.0" text="Label">
-                                 <graphic>
-                                    <FontIcon fill="WHITE" iconLiteral="fas-table" iconSize="30" />
-                                 </graphic>
-                              </Label>
-                              <VBox alignment="CENTER" prefHeight="79.0" prefWidth="73.0" spacing="5.0">
-                                 <children>
-                                    <Label fx:id="availableTable" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="78.0" text="20">
-                                       <font>
-                                          <Font size="22.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0" text="Available" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" layoutX="476.0" layoutY="10.0" prefHeight="79.0" prefWidth="132.0" spacing="5.0">
-                           <children>
-                              <Label id="totalTable" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="46.0" prefWidth="48.0" text="Label">
-                                 <graphic>
-                                    <FontIcon fill="WHITE" iconLiteral="fas-table" iconSize="30" />
-                                 </graphic>
-                              </Label>
-                              <VBox alignment="CENTER" prefHeight="79.0" prefWidth="73.0" spacing="5.0">
-                                 <children>
-                                    <Label fx:id="inUsedTable" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="78.0" text="20">
-                                       <font>
-                                          <Font size="22.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0" text="In Used" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets left="10.0" right="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="135.0" prefWidth="132.0" spacing="5.0">
-                     <children>
-                        <Label id="totalTable" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="46.0" prefWidth="48.0" text="Label">
-                           <graphic>
-                              <FontIcon fill="WHITE" iconLiteral="fas-table" iconSize="30" />
-                           </graphic>
-                        </Label>
-                        <VBox alignment="CENTER" prefHeight="79.0" prefWidth="73.0" spacing="5.0">
-                           <children>
-                              <Label fx:id="employee" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="78.0" text="20">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0" text="Employee" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="135.0" prefWidth="132.0" spacing="5.0">
-                     <children>
-                        <Label id="totalTable" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="46.0" prefWidth="48.0" text="Label">
-                           <graphic>
-                              <FontIcon fill="WHITE" iconLiteral="fas-table" iconSize="30" />
-                           </graphic>
-                        </Label>
-                        <VBox alignment="CENTER" prefHeight="79.0" prefWidth="73.0" spacing="5.0">
-                           <children>
-                              <Label fx:id="dish" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="78.0" text="20">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0" text="Dishes" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="366.0" layoutY="249.0" prefHeight="194.0" prefWidth="911.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="220.0">
+            <HBox alignment="CENTER" prefHeight="198.0" prefWidth="937.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="128.0" prefWidth="238.0">
                      <children>
@@ -149,6 +62,84 @@
                       <NumberAxis fx:id="unitY" side="LEFT" />
                     </yAxis>
                   </LineChart>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutY="506.0" prefHeight="179.0" prefWidth="937.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="194.0" prefWidth="349.0" spacing="50.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="135.0" prefWidth="132.0" spacing="5.0">
+                           <children>
+                              <Label id="totalTable" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="46.0" prefWidth="48.0" text="Label">
+                                 <graphic>
+                                    <FontIcon fill="#868686" iconLiteral="" iconSize="30" text="" />
+                                 </graphic>
+                              </Label>
+                              <VBox alignment="CENTER" prefHeight="79.0" prefWidth="73.0" spacing="5.0">
+                                 <children>
+                                    <Label fx:id="availableTable" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="78.0" text="20">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0" text="Available" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="476.0" layoutY="10.0" prefHeight="79.0" prefWidth="132.0" spacing="5.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="79.0" prefWidth="73.0" spacing="5.0">
+                                 <children>
+                                    <Label fx:id="inUsedTable" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="78.0" text="20">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0" text="In Used" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="135.0" prefWidth="132.0" spacing="5.0">
+                     <children>
+                        <Label id="totalTable" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="46.0" prefWidth="48.0" text="Label" />
+                        <VBox alignment="CENTER" prefHeight="79.0" prefWidth="73.0" spacing="5.0">
+                           <children>
+                              <Label fx:id="employee" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="78.0" text="20">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0" text="Employee" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="135.0" prefWidth="132.0" spacing="5.0">
+                     <children>
+                        <Label id="totalTable" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="46.0" prefWidth="48.0" text="Label">
+                           <graphic>
+                              <FontIcon fill="#868686" iconLiteral="fas-mortar-pestle" iconSize="30" />
+                           </graphic>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="79.0" prefWidth="73.0" spacing="5.0">
+                           <children>
+                              <Label fx:id="dish" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="78.0" text="20">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="69.0" text="Dishes" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children></AnchorPane>
