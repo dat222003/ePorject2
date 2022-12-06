@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -11,14 +12,17 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="670.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: #a2d3fc;" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.homeController">
+<BorderPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="670.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: rgb(240,248,255);" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.homeController">
    <left>
-      <VBox id="menuBox" maxHeight="1.7976931348623157E308" minHeight="711.0" prefHeight="720.0" prefWidth="229.0" spacing="10.0" style="-fx-background-color: #009EFF;">
+      <VBox id="menuBox" maxHeight="1.7976931348623157E308" minHeight="711.0" prefHeight="720.0" prefWidth="229.0" spacing="10.0" style="-fx-background-color: rgb(135,206,250);">
          <children>
             <ImageView fitHeight="175.0" fitWidth="229.0" pickOnBounds="true">
                <image>
                   <Image url="@images/user.png" />
                </image>
+               <effect>
+                  <DropShadow />
+               </effect>
             </ImageView>
             <HBox id="button" alignment="CENTER_LEFT" layoutX="10.0" layoutY="241.0" prefHeight="50.0" prefWidth="229.0" spacing="20.0">
                <padding>
@@ -26,7 +30,7 @@
                </padding>
                <children>
                   <FontIcon iconLiteral="far-user-circle" iconSize="30" />
-                  <JFXButton fx:id="userNameButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" prefHeight="44.0" prefWidth="159.0" text="Admin">
+                  <JFXButton fx:id="userNameButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" prefHeight="44.0" prefWidth="159.0" style="-fx-background-color: rgb;" text="Admin">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
