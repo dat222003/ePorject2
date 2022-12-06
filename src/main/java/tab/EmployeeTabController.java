@@ -238,6 +238,13 @@ public class EmployeeTabController implements Initializable {
             return;
         }
         Employee employee = setEmployee();
+        if (employee.getUserid() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a row to update");
+            alert.showAndWait();
+            return;
+        }
         employeeDB employeeDB = new employeeDB();
         if (employeeDB.updateEmployee(employee)) {
             reloadTable(event);
@@ -263,6 +270,13 @@ public class EmployeeTabController implements Initializable {
             return;
         }
         Employee employee = setEmployee();
+        if (employee.getUserid() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a row to update");
+            alert.showAndWait();
+            return;
+        }
         employeeDB employeeDB = new employeeDB();
         if (employeeDB.deleteEmployee(Integer.toString(employee.getUserid()))) {
             reloadTable(event);
@@ -287,6 +301,13 @@ public class EmployeeTabController implements Initializable {
             return;
         }
         Employee employee = setEmployee();
+        if (employee.getUserid() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a row to update");
+            alert.showAndWait();
+            return;
+        }
         employee.setPassword(newPasswordField.getText());
         employeeDB employeeDB = new employeeDB();
         if (employeeDB.addEmployee(employee)) {
@@ -313,6 +334,13 @@ public class EmployeeTabController implements Initializable {
 
     @FXML
     private void changePassword(ActionEvent event) {
+        if (index <= -1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a row to update");
+            alert.showAndWait();
+            return;
+        }
         if (nameTextField.getText().isEmpty() ||
                 userTextField.getText().isEmpty() ||
                 phoneTextField.getText().isEmpty() ||
@@ -344,6 +372,13 @@ public class EmployeeTabController implements Initializable {
         }
         employeeDB employeeDB = new employeeDB();
         Employee employee = setEmployee();
+        if (employee.getUserid() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please select a row to update");
+            alert.showAndWait();
+            return;
+        }
         employee.setPassword(updatePasswordField.getText());
         String oldPassword = employeeDB.getOneEmployee(Integer.toString(employee.getUserid())).getPassword();
         if (!oldPassword.equals(oldPasswordField.getText())) {

@@ -196,6 +196,8 @@ public class NewBillController implements Initializable {
         bill.setStatus("purchased");
         BillDB billDB = new BillDB();
         if (billDB.updateBill(bill)) {
+            TotalBillDB totalBillDB = new TotalBillDB();
+            totalBillDB.updateTotalBill(bill);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Update bill");
             alert.setHeaderText("Purchase bill successfully");
