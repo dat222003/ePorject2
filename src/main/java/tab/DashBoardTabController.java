@@ -2,6 +2,10 @@ package tab;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import model.*;
@@ -31,8 +35,12 @@ public class DashBoardTabController implements Initializable {
 
     @FXML
     private Label employee;
-
-
+    @FXML
+    private LineChart<?, ?> lineChart;
+    @FXML
+    private NumberAxis unitY;
+    @FXML
+    private CategoryAxis billX;
     @FXML
     private Label dish;
 
@@ -91,6 +99,15 @@ public class DashBoardTabController implements Initializable {
 
         employee.setText(String.valueOf(employeeList.size()));
         dish.setText(String.valueOf(dishList.size()));
+        //line chart
+        lineChart.getData().clear();
+        XYChart.Series set1 = new XYChart.Series<>();
+        daySales.forEach(daySale -> {
+            set1.getData().add(new XYChart.Data(daySale.getDate(), daySale.getTotalMoney()));
+        });
+        lineChart.getData().addAll(set1);
+
+
     }
 
 }
