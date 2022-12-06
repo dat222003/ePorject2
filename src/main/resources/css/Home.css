@@ -1,18 +1,18 @@
-.button
-{
-    -fx-background-color: #009EFF;
-}
+/*.button*/
+/*{*/
+/*    -fx-background-color: #009EFF;*/
+/*}*/
 #menuBox .button:hover
 {
     -fx-background-color: #046e9a;
 }
-.button:pressed {
-    -fx-background-color: #065481;
-}
-.button:focused {
-    -fx-background-color: #42abe3;
-    -fx-text-fill: black;
-}
+/*.button:pressed {*/
+/*    -fx-background-color: #065481;*/
+/*}*/
+/*.button:focused {*/
+/*    -fx-background-color: #42abe3;*/
+/*    -fx-text-fill: black;*/
+/*}*/
 /*.table-view {*/
 /*    -fx-background-color: transparent;*/
 /*}*/

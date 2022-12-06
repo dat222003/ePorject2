@@ -39,7 +39,7 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="name" prefHeight="14.0" prefWidth="149.0" promptText="Dish Name" />
+                              <TextField fx:id="name" prefHeight="25.0" prefWidth="134.0" promptText="Dish Name" />
                            </children>
                         </HBox>
                         <HBox prefHeight="22.0" prefWidth="297.0">
@@ -49,7 +49,7 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="price" prefHeight="14.0" prefWidth="149.0" promptText="Dish Price" />
+                              <TextField fx:id="price" prefHeight="26.0" prefWidth="134.0" promptText="Dish Price" />
                            </children>
                         </HBox>
                      </children>
@@ -61,7 +61,7 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <ChoiceBox fx:id="category" prefHeight="7.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="category" prefHeight="25.0" prefWidth="147.0" />
                      </children>
                   </HBox>
                </children>
