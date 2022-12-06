@@ -97,8 +97,10 @@ public class DashBoardTabController implements Initializable {
         });
         billDate.setValue(LocalDate.now());
 
-        employee.setText(String.valueOf(employeeList.size()));
-        dish.setText(String.valueOf(dishList.size()));
+        if (employeeList != null && dishList != null) {
+            employee.setText(String.valueOf(employeeList.size()));
+            dish.setText(String.valueOf(dishList.size()));
+        }
         //line chart
         lineChart.getData().clear();
         XYChart.Series set1 = new XYChart.Series<>();
