@@ -19,7 +19,7 @@
    <children>
       <AnchorPane id="dashboardPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgb(240,248,255);" stylesheets="@css/dashBoard.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="198.0" prefWidth="937.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
+            <HBox alignment="CENTER" prefHeight="251.0" prefWidth="937.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="128.0" prefWidth="238.0">
                      <children>
@@ -54,14 +54,27 @@
                         <DatePicker fx:id="billDate" prefHeight="25.0" prefWidth="249.0" promptText="date" />
                      </children>
                   </VBox>
-                  <LineChart fx:id="lineChart" prefHeight="194.0" prefWidth="673.0">
-                    <xAxis>
-                      <CategoryAxis fx:id="billX" side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis fx:id="unitY" side="LEFT" />
-                    </yAxis>
-                  </LineChart>
+                  <VBox alignment="CENTER" prefHeight="224.0" prefWidth="699.0">
+                     <children>
+                        <LineChart fx:id="lineChart" prefHeight="226.0" prefWidth="699.0">
+                          <xAxis>
+                            <CategoryAxis fx:id="billX" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="unitY" side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <HBox alignment="CENTER" prefHeight="2.0" prefWidth="699.0" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="28.0" prefWidth="203.0" text="Total Money">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutY="506.0" prefHeight="179.0" prefWidth="937.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0">

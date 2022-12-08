@@ -108,7 +108,8 @@ public class DashBoardTabController implements Initializable {
             set1.getData().add(new XYChart.Data(daySale.getDate(), daySale.getTotalMoney()));
         });
         lineChart.getData().addAll(set1);
-
+        lineChart.setLegendVisible(false);
+        lineChart.setAnimated(true);
 
     }
 

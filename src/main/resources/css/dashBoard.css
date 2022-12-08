@@ -15,3 +15,14 @@
     -fx-background-color: #009EFF;
     -fx-background-radius: 3em;
 }
+#chartButton{
+    -fx-background-color: #009EFF;
+    -fx-background-radius: 2em;
+    -fx-border-radius: 2em;
+}
+#chartButton:pressed{
+    -fx-background-color: white;
+}
+#chartButton:hover{
+    fx-background-color: white;
+}

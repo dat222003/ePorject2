@@ -3,6 +3,8 @@ package tab;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -20,6 +22,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.IntegerStringConverter;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -51,7 +54,7 @@ public class NewBillController implements Initializable {
     private TableView<Dish> dishTable;
 
     @FXML
-    private TableColumn<Dish, ?> imageColumn;
+    private TableColumn<Dish, ImageView> imageColumn;
 
     @FXML
     private TableColumn<Dish, String> nameColumn;
@@ -97,8 +100,8 @@ public class NewBillController implements Initializable {
 
     @FXML
     private JFXButton payBillButton;
-
-
+    @FXML
+    private Label toolTip;
     @FXML
     void createNewBill(ActionEvent event) {
         if (!validateBill()) {
@@ -282,6 +285,16 @@ public class NewBillController implements Initializable {
         setTotalBill();
     }
 
+    @FXML
+    void removeDish(ActionEvent event) {
+        Dish dish = addedDishTable.getSelectionModel().getSelectedItem();
+        if (dish != null) {
+            addedDishList.remove(dish);
+            addedDishTable.refresh();
+            setTotalBill();
+        }
+    }
+
     private void addDish(Dish dish) {
         addedDishList.forEach(dish1 -> {
             if (dish1.getDish_id().equals(dish.getDish_id())) {
@@ -292,6 +305,8 @@ public class NewBillController implements Initializable {
             }
         });
     }
+
+
 
     public void updateAddedDishList(TableColumn.CellEditEvent<Dish, Integer> editedCell) {
         Dish dish = addedDishTable.getSelectionModel().getSelectedItem();
@@ -329,14 +344,24 @@ public class NewBillController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        toolTip.setTooltip(new Tooltip("Right click to modify dish"));
         numericOnly(customerPhone);
         //set column dish data
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("dish_price"));
         dishIdColumn.setCellValueFactory(new PropertyValueFactory<>("dish_id"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
         DishDB dishDB = new DishDB();
         ArrayList<Dish> dishes = dishDB.getAllDish();
+        dishes.forEach(dish -> {
+            File file = new File("dish_images/" + dish.getImg_name());
+            Image image = new Image(file.toURI().toString());
+            ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(150);
+            imageView.setFitWidth(150);
+            dish.setImage(imageView);
+        });
         dishList.addAll(dishes);
         //dynamic search dish
         FilteredList<Dish> filteredData = new FilteredList<>(dishList, b -> true);
