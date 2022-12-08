@@ -73,7 +73,7 @@
                   </Button>
                </children>
             </HBox>
-            <GridPane layoutX="64.0" layoutY="131.0" prefHeight="213.0" prefWidth="823.0" AnchorPane.bottomAnchor="356.0" AnchorPane.leftAnchor="64.0">
+            <GridPane alignment="TOP_CENTER" layoutX="64.0" layoutY="131.0" prefHeight="213.0" prefWidth="823.0" AnchorPane.topAnchor="131.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="504.0" minWidth="10.0" prefWidth="385.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="415.0" minWidth="0.0" prefWidth="384.0" />
@@ -218,7 +218,7 @@
                   <Insets left="3.0" right="3.0" />
                </padding>
             </VBox>
-            <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="286.0" layoutY="46.0" prefHeight="85.0" prefWidth="380.0" text="Employee Info" AnchorPane.bottomAnchor="569.0" AnchorPane.leftAnchor="286.0">
+            <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="286.0" layoutY="46.0" prefHeight="85.0" prefWidth="380.0" text="Employee Info" AnchorPane.leftAnchor="286.0" AnchorPane.rightAnchor="285.0" AnchorPane.topAnchor="46.0">
                <font>
                   <Font name="Serif Regular" size="34.0" />
                </font>
