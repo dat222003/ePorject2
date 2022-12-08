@@ -7,8 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.security.auth.login.LoginContext;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 public class loginApplication extends Application {
 
@@ -20,7 +22,11 @@ public class loginApplication extends Application {
         if (UserSession.checkSession()) {
             try {
                 loginController loginController = new loginController();
-                loginController.loadHome();
+                if (Objects.equals(UserSession.getSession().split(",")[2], "admin")) {
+                    loginController.loadHome();
+                } else {
+                    loginController.loadEmpHome();
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

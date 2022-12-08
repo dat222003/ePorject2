@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="670.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: rgb(240,248,255);" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.EmpHomeTabController">
+   <left>
+      <VBox id="menuBox" maxHeight="1.7976931348623157E308" minHeight="711.0" prefHeight="720.0" prefWidth="229.0" spacing="10.0" style="-fx-background-color: rgb(135,206,250);">
+         <children>
+            <ImageView fitHeight="175.0" fitWidth="229.0" pickOnBounds="true">
+               <image>
+                  <Image url="@images/user.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <HBox id="button" alignment="CENTER_LEFT" layoutX="10.0" layoutY="241.0" prefHeight="50.0" prefWidth="229.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontIcon iconLiteral="far-user-circle" iconSize="30" />
+                  <JFXButton fx:id="userNameButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" prefHeight="44.0" prefWidth="159.0" style="-fx-background-color: rgb;" text="Emp">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox id="button" alignment="CENTER" layoutX="10.0" layoutY="299.0" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontIcon iconLiteral="fas-grip-horizontal" iconSize="28" />
+                  <JFXButton fx:id="tableButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#loadTable" prefHeight="70.0" prefWidth="229.0" text="Table">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <Region prefHeight="222.0" prefWidth="229.0" VBox.vgrow="ALWAYS" />
+            <JFXButton fx:id="logoutButton" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="10.0" onAction="#loadLogin" prefHeight="26.0" prefWidth="229.0" text="Logout">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconLiteral="fas-sign-out-alt" iconSize="25" />
+               </graphic>
+            </JFXButton>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+</BorderPane>

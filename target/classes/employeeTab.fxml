@@ -168,7 +168,7 @@
                   </VBox>
                </children>
             </GridPane>
-            <TableView fx:id="employeeTable" layoutY="388.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#getRowData" prefHeight="315.0" prefWidth="951.0" style="-fx-background-color: rgb(240,248,255); }: ;" stylesheets="@css/table.css" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <TableView fx:id="employeeTable" layoutY="388.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#getRowData" prefHeight="315.0" prefWidth="951.0" style="-fx-background-color: rgb(240,248,255); : ;" stylesheets="@css/table.css" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <columns>
                 <TableColumn fx:id="idColumn" prefWidth="49.999996185302734" text="ID" />
                 <TableColumn fx:id="userColumn" prefWidth="154.00000381469727" text="User" />
@@ -186,38 +186,6 @@
                   <Insets />
                </opaqueInsets>
             </TableView>
-            <VBox id="password" fx:id="passwordBox" alignment="CENTER" layoutX="65.0" layoutY="119.0" prefHeight="170.0" prefWidth="210.0" spacing="10.0" visible="false" AnchorPane.bottomAnchor="380.0" AnchorPane.leftAnchor="65.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="34.0" prefWidth="230.0" text="Change Password">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <PasswordField fx:id="oldPasswordField" prefHeight="27.0" prefWidth="203.0" promptText="Old Password">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </PasswordField>
-                  <PasswordField fx:id="updatePasswordField" layoutX="10.0" layoutY="100.0" prefHeight="16.0" prefWidth="223.0" promptText="New Password">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </PasswordField>
-                  <PasswordField fx:id="retypeUpdatePasswordField" layoutX="10.0" layoutY="137.0" prefHeight="16.0" prefWidth="223.0" promptText="Retype Password">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </PasswordField>
-                  <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePassword" prefHeight="0.0" prefWidth="103.0" text="Submit">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets left="3.0" right="3.0" />
-               </padding>
-            </VBox>
             <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="286.0" layoutY="46.0" prefHeight="85.0" prefWidth="380.0" text="Employee Info" AnchorPane.leftAnchor="286.0" AnchorPane.rightAnchor="285.0" AnchorPane.topAnchor="46.0">
                <font>
                   <Font name="Serif Regular" size="34.0" />

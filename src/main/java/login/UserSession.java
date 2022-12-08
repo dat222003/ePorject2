@@ -14,8 +14,8 @@ public class UserSession {
 
     private static final DatabaseConnect databaseConnect = new DatabaseConnect();
 
-    public static void createUserSession(String userName, String user_id) {
-        String session = user_id + "," + userName;
+    public static void createUserSession(String userName, String user_id, String role) {
+        String session = user_id + "," + userName + "," + role;
         DatabaseConnect databaseConnect = new DatabaseConnect();
         String hash_session = databaseConnect.hash(session);
         Path session_path = Paths.get("session.txt");
@@ -31,8 +31,8 @@ public class UserSession {
         }
     }
 
-    public static void createLocalSession(String userName, String user_id) {
-        String session = user_id + "," + userName;
+    public static void createLocalSession(String userName, String user_id, String role) {
+        String session = user_id + "," + userName + "," + role;
         Path session_path = Paths.get("session-local.txt");
         try (
                 BufferedWriter session_writer = Files.newBufferedWriter(session_path, StandardCharsets.UTF_8);

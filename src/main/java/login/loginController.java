@@ -1,6 +1,7 @@
 package login;
 
 import com.jfoenix.controls.JFXCheckBox;
+import home.EmpHome;
 import home.homeApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,9 +61,9 @@ public class loginController {
                 ResultSet resultSet = admin_query.executeQuery();
                 if (resultSet.next()) {
                     if (rememberCheckBox.isSelected()) {
-                        UserSession.createUserSession(usernameField.getText(), resultSet.getString("user_id"));
+                        UserSession.createUserSession(usernameField.getText(), resultSet.getString("user_id"), "admin");
                     }
-                    UserSession.createLocalSession(usernameField.getText(), resultSet.getString("user_id"));
+                    UserSession.createLocalSession(usernameField.getText(), resultSet.getString("user_id"), "admin");
                     user_id = resultSet.getString("user_id");
                     loadHome(); //admin rights
                     showAlert(usernameField.getText());
@@ -77,10 +78,10 @@ public class loginController {
                 }
                 if (resultSet.next()) {
                     if (rememberCheckBox.isSelected()) {
-                        UserSession.createUserSession(usernameField.getText(), resultSet.getString("user_id"));
+                        UserSession.createUserSession(usernameField.getText(), resultSet.getString("user_id") , "employee");
                     }
-                    UserSession.createLocalSession(usernameField.getText(), resultSet.getString("user_id"));
-                    loadHome();
+                    UserSession.createLocalSession(usernameField.getText(), resultSet.getString("user_id"), "employee");
+                    loadEmpHome();
                     showAlert(usernameField.getText());
                 } else {
                     messageField.setText("Invalid Credentials!");
@@ -99,6 +100,14 @@ public class loginController {
 
         public void loadHome() throws IOException {
             homeApp homeApp = new homeApp();
+            if (closeButton != null) {
+                closeButton.fire();
+            }
+            homeApp.start(new Stage());
+        }
+
+        public void loadEmpHome() throws IOException {
+            EmpHome homeApp = new EmpHome();
             if (closeButton != null) {
                 closeButton.fire();
             }

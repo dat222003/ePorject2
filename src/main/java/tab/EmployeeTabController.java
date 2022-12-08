@@ -1,6 +1,7 @@
 package tab;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.fxml.FXMLLoader;
 import login.DatabaseConnect;
 import model.Employee;
 import model.employeeDB;
@@ -17,7 +18,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EmployeeTabController implements Initializable {
@@ -33,9 +36,6 @@ public class EmployeeTabController implements Initializable {
 
     @FXML
     private PasswordField newPasswordField;
-
-    @FXML
-    private PasswordField oldPasswordField;
 
     @FXML
     private PasswordField reNewPasswordField;
@@ -89,17 +89,7 @@ public class EmployeeTabController implements Initializable {
     @FXML
     private Button showChangePassword;
     @FXML
-    private PasswordField updatePasswordField;
-    @FXML
-    private PasswordField retypeUpdatePasswordField;
-    @FXML
-    private VBox passwordBox;
-
-    @FXML
     private Button updateButton;
-
-    @FXML
-    private Button changePasswordButton;
 
     // set a text-field to only number input
     public static void numericOnly(final TextField field) {
@@ -144,13 +134,11 @@ public class EmployeeTabController implements Initializable {
         EmailTextField.setText("");
         genderGroup.selectToggle(null);
         idCardTextField.setText("");
-        oldPasswordField.setText("");
         newPasswordField.setText("");
         reNewPasswordField.setText("");
     }
     @FXML
     private void reloadTable(ActionEvent event) {
-        passwordBox.setVisible(false);
         showChangePassword.setDisable(true);
         updateButton.setDisable(true);
         deleteButton.setDisable(true);
@@ -335,11 +323,6 @@ public class EmployeeTabController implements Initializable {
 
     @FXML
     private void showPasswordBox() {
-        passwordBox.setVisible(!passwordBox.isVisible());
-    }
-
-    @FXML
-    private void changePassword(ActionEvent event) {
         if (index <= -1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -360,23 +343,6 @@ public class EmployeeTabController implements Initializable {
             alert.showAndWait();
             return;
         }
-        if (oldPasswordField.getText().isEmpty() ||
-                updatePasswordField.getText().isEmpty() ||
-                retypeUpdatePasswordField.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Please fill in all the fields inside password change box");
-            alert.showAndWait();
-            return;
-        }
-        if (!updatePasswordField.getText().equals(retypeUpdatePasswordField.getText())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("The new password and retype new password fields do not match");
-            alert.showAndWait();
-            return;
-        }
-        employeeDB employeeDB = new employeeDB();
         Employee employee = setEmployee();
         if (employee.getUserid() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -384,32 +350,25 @@ public class EmployeeTabController implements Initializable {
             alert.setHeaderText("Please select a row to update");
             alert.showAndWait();
             return;
-        }
-        employee.setPassword(updatePasswordField.getText());
-        String oldPassword = employeeDB.getOneEmployee(Integer.toString(employee.getUserid())).getPassword();
-        DatabaseConnect databaseConnect = new DatabaseConnect();
-        if (!oldPassword.equals(databaseConnect.hash(oldPasswordField.getText()))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("The old password is incorrect");
-            alert.showAndWait();
-            return;
-        }
-        if (employeeDB.changePassword(employee)) {
-            reloadTable(event);
-            eraseInfoButton.fire();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Changed Password");
-            alert.setHeaderText(null);
-            alert.setContentText("Password Changed Successfully");
-            alert.showAndWait();
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Password Change Failed");
-            alert.showAndWait();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/changePassword.fxml"));
+            DialogPane dialogPane = null;
+            try {
+                dialogPane = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ChangePassController changePasswordController = loader.getController();
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                changePasswordController.changePassword(employee);
+                reloadButton.fire();
+            }
+
         }
+
     }
 
     ObservableList<Employee> employeeList = FXCollections.observableArrayList();
