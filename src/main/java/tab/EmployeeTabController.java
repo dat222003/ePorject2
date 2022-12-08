@@ -1,6 +1,7 @@
 package tab;
 
 import com.jfoenix.controls.JFXButton;
+import login.DatabaseConnect;
 import model.Employee;
 import model.employeeDB;
 import javafx.collections.FXCollections;
@@ -386,7 +387,8 @@ public class EmployeeTabController implements Initializable {
         }
         employee.setPassword(updatePasswordField.getText());
         String oldPassword = employeeDB.getOneEmployee(Integer.toString(employee.getUserid())).getPassword();
-        if (!oldPassword.equals(oldPasswordField.getText())) {
+        DatabaseConnect databaseConnect = new DatabaseConnect();
+        if (!oldPassword.equals(databaseConnect.hash(oldPasswordField.getText()))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("The old password is incorrect");
