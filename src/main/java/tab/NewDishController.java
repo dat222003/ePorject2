@@ -138,6 +138,13 @@ public class NewDishController implements Initializable {
                 alert.setContentText("Please choose an image");
                 alert.showAndWait();
                 event.consume();
+            } else if (file == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Image is empty");
+                alert.setContentText("Please choose an image");
+                alert.showAndWait();
+                event.consume();
             }
         });
     }

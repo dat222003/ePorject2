@@ -16,9 +16,8 @@ public class tableDB {
         try(
                 Connection con = databaseConnect.getConnect();
                 ) {
-            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO `table` (client_id ,status) VALUES (?, ?)");
-            preparedStatement.setInt(1, 1);
-            preparedStatement.setString(2, "available");
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO `table` (status) VALUES (?)");
+            preparedStatement.setString(1, "available");
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
