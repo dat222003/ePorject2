@@ -5,8 +5,6 @@ module eProject2 {
     requires java.sql;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
-    // add icon pack modules
-//    requires org.kordamp.ikonli.fontawesome;
     requires mysql.connector.j;
     requires com.jfoenix;
 
