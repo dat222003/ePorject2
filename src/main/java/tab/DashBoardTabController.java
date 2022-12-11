@@ -8,6 +8,9 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import table.Table;
 import table.tableDB;
@@ -43,6 +46,15 @@ public class DashBoardTabController implements Initializable {
     private CategoryAxis billX;
     @FXML
     private Label dish;
+
+    @FXML
+    private TableView<Bill> pendingBillTable;
+
+    @FXML
+    private TableColumn<Bill, String> tableColumn;
+
+    @FXML
+    private TableColumn<Bill, Double> totalColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -110,6 +122,15 @@ public class DashBoardTabController implements Initializable {
         lineChart.getData().addAll(set1);
         lineChart.setLegendVisible(false);
         lineChart.setAnimated(true);
+        //pending bill table
+        pendingBillTable.getItems().clear();
+        tableColumn.setCellValueFactory(new PropertyValueFactory<>("table_id"));
+        totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
+        billList.forEach(bill -> {
+            if (bill.getStatus().equalsIgnoreCase("pending")) {
+                pendingBillTable.getItems().add(bill);
+            }
+        });
 
     }
 
