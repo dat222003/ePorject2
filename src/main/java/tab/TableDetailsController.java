@@ -5,15 +5,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import login.UserSession;
+import model.Bill;
 import model.BillDB;
+import model.TotalBillDB;
 import table.Table;
 import table.tableDB;
+
+import java.util.Optional;
 
 public class TableDetailsController {
 
@@ -26,7 +27,7 @@ public class TableDetailsController {
     @FXML
     private Label tableID;
     @FXML
-    private JFXButton updateTableButton;
+    private JFXButton payBillButton;
 
     @FXML
     private JFXButton updateBillButton;
@@ -40,9 +41,10 @@ public class TableDetailsController {
         switch (table.getTableStatus().toLowerCase()) {
             case "in used" -> {
                 statusGroup.selectToggle(statusGroup.getToggles().get(1));
-                if (billDB.getPendingBillWithTableId(table.getTable_id()) != null) {
+                if (billDB.getPendingBillWithTableId(table.getTable_id()) != null) { //bill pending for this table
                     billButton.setDisable(true);
                     updateBillButton.setDisable(false);
+                    payBillButton.setDisable(false);
                 } else {
                     billButton.setDisable(false);
                     updateBillButton.setDisable(true);
@@ -66,7 +68,7 @@ public class TableDetailsController {
         statusGroup.selectedToggleProperty().addListener(
                 (observable, oldToggle, newToggle) -> {
                     billButton.setDisable(newToggle != statusGroup.getToggles().get(1));
-                    updateTableButton.fire();
+                    updateTable();
                 }
         );
     }
@@ -92,8 +94,7 @@ public class TableDetailsController {
 
     }
 
-    @FXML
-    void updateTable(ActionEvent event) {
+    void updateTable() {
         String str = tableID.getText();
         String id = str.split(" ")[1];
         RadioButton selectedRadioButton = (RadioButton) statusGroup.getSelectedToggle();
@@ -119,20 +120,27 @@ public class TableDetailsController {
     void newBill(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/newBill.fxml"));
-            Parent root = loader.load();
-            NewBillController controller = loader.getController();
+            DialogPane dialogPane = null;
+            try {
+                dialogPane = loader.load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            NewBillController newBillController = loader.getController();
             String key = UserSession.getLocalSession();
             String userId = key.split(",")[0];
             String userName = key.split(",")[1];
-            billButton.setDisable(true);
-            updateBillButton.setDisable(false);
-            controller.setData(tableID.getText().split(" ")[1], userId, userName);
-            Stage stage = new Stage();
-            stage.setTitle("New Bill");
-            stage.setMinWidth(1200);
-            stage.setMinHeight(600);
-            stage.setScene(new javafx.scene.Scene(root));
-            stage.show();
+            newBillController.setData(tableID.getText().split(" ")[1], userId, userName);
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                if (newBillController.createBill()) {
+                    billButton.setDisable(true);
+                    updateBillButton.setDisable(false);
+                    payBillButton.setDisable(false);
+                }
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -143,23 +151,63 @@ public class TableDetailsController {
     void updateBill(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/newBill.fxml"));
-            Parent root = loader.load();
-            NewBillController controller = loader.getController();
+            DialogPane dialogPane = null;
+            try {
+                dialogPane = loader.load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            NewBillController newBillController = loader.getController();
             String key = UserSession.getLocalSession();
             String userId = key.split(",")[0];
             String userName = key.split(",")[1];
             BillDB billDB = new BillDB();
-            controller.setData(billDB.getPendingBillWithTableId(tableID.getText().split(" ")[1]), userId, userName);
-            Stage stage = new Stage();
-            stage.setTitle("Update Bill");
-            stage.setMinWidth(1200);
-            stage.setMinHeight(600);
-            stage.setScene(new javafx.scene.Scene(root));
-            stage.show();
+            newBillController.setData(billDB.getPendingBillWithTableId(tableID.getText().split(" ")[1]), userId, userName);
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(dialogPane);
+            Optional<ButtonType> result = dialog.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                newBillController.updateBill();
+            }
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+        @FXML
+        void payBill(ActionEvent event) {
+        // pay bill if alert is ok
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Pay Bill");
+            alert.setHeaderText("Are you sure this bill is purchased ?");
+            alert.setContentText("This action cannot be undone");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    BillDB billDB = new BillDB();
+                    Bill bill = billDB.getPendingBillWithTableId(tableID.getText().split(" ")[1]);
+                    bill.setStatus("purchased");
+                    if (billDB.updateBill(bill)) {
+                        TotalBillDB totalBillDB = new TotalBillDB();
+                        totalBillDB.updateTotalBill(bill);
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Update bill");
+                        alert1.setHeaderText("Purchase bill successfully");
+                        alert1.showAndWait();
+                        payBillButton.setDisable(true);
+                        updateBillButton.setDisable(true);
+                        billButton.setDisable(false);
+                        statusGroup.selectToggle(statusGroup.getToggles().get(0));
+                        deleteTableButton.setDisable(false);
+                    } else {
+                        Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                        alert2.setTitle("Update bill");
+                        alert2.setHeaderText("Purchase bill failed");
+                        alert2.showAndWait();
+                    }
+                }
+            });
+        }
+
 
 }
 

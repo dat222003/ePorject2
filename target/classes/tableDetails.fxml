@@ -67,7 +67,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="32.0" prefWidth="258.0" spacing="30.0">
          <children>
-            <JFXButton fx:id="updateTableButton" buttonType="RAISED" onAction="#updateTable" prefHeight="25.0" prefWidth="100.0" text="Update Table" />
+            <JFXButton fx:id="payBillButton" buttonType="RAISED" disable="true" onAction="#payBill" prefHeight="25.0" prefWidth="100.0" text="Pay Bill" />
             <JFXButton id="buttonDelete" fx:id="deleteTableButton" buttonType="RAISED" layoutX="20.0" layoutY="10.0" onAction="#deleteTable" prefHeight="25.0" prefWidth="100.0" styleClass="buttonDelete" text="Delete Table" />
          </children>
          <padding>

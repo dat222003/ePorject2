@@ -1,14 +1,5 @@
 package tab;
 
-import com.jfoenix.controls.JFXButton;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -19,24 +10,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.util.converter.IntegerStringConverter;
+import model.Bill;
+import model.BillDB;
+import model.Dish;
+import model.DishDB;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class NewBillController implements Initializable {
-
-
-    @FXML
-    private JFXButton createBillButton;
 
     @FXML
     private Label dateNow;
@@ -99,44 +90,16 @@ public class NewBillController implements Initializable {
     private Label billId;
 
     @FXML
-    private JFXButton payBillButton;
-    @FXML
     private Label toolTip;
-    @FXML
-    void createNewBill(ActionEvent event) {
-        if (!validateBill()) {
-            return;
-        }
-        if (Objects.equals(createBillButton.getText(), "Create Bill")) {
-            createBill();
-        } else {
-            updateBill();
-        }
-    }
-
 
     @FXML
-    void payBill(ActionEvent event) {
-        if (!validateBill()) {
-            return;
-        }
-        // pay bill if alert is ok
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Pay Bill");
-        alert.setHeaderText("Are you sure this bill is purchased ?");
-        alert.setContentText("This action cannot be undone");
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                payBill();
-            }
-        });
+    private  DialogPane dialogPane;
 
-    }
+
 
 
     public Bill setBillData() {
         Bill bill = new Bill();
-        BillDB billDB = new BillDB();
         bill.setBill_id(billId.getText());
         bill.setEmployee_id(employeeId.getText().split("-")[0]);
         bill.setTable_id(tableId.getText());
@@ -150,7 +113,7 @@ public class NewBillController implements Initializable {
         return bill;
     }
 
-    public void createBill() {
+    public boolean createBill() {
         Bill bill = setBillData();
         BillDB billDB = new BillDB();
         if (billDB.addNewBill(bill)) {
@@ -158,19 +121,16 @@ public class NewBillController implements Initializable {
             alert.setTitle("Create new bill");
             alert.setHeaderText("Create new bill successfully");
             alert.setContentText("Create new bill successfully");
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    Stage stage = (Stage) createBillButton.getScene().getWindow();
-                    stage.close();
-                }
-            });
+            alert.showAndWait();
+            return true;
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Create new bill");
-            alert.setHeaderText("Create new bill failed");
             alert.setContentText("Create new bill failed");
             alert.showAndWait();
+            return false;
         }
+
     }
 
     public void updateBill() {
@@ -180,12 +140,7 @@ public class NewBillController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Update bill");
             alert.setHeaderText("Update bill successfully");
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    Stage stage = (Stage) createBillButton.getScene().getWindow();
-                    stage.close();
-                }
-            });
+            alert.showAndWait();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Update bill");
@@ -194,42 +149,7 @@ public class NewBillController implements Initializable {
         }
     }
 
-    public void payBill() {
-        Bill bill = setBillData();
-        bill.setStatus("purchased");
-        BillDB billDB = new BillDB();
-        if (billDB.updateBill(bill)) {
-            TotalBillDB totalBillDB = new TotalBillDB();
-            totalBillDB.updateTotalBill(bill);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Update bill");
-            alert.setHeaderText("Purchase bill successfully");
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    //close this window
-                    Stage stage = (Stage) payBillButton.getScene().getWindow();
-                    stage.close();
-                }
-            });
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Update bill");
-            alert.setHeaderText("Purchase bill failed");
-            alert.showAndWait();
-        }
-    }
 
-    public boolean validateBill() {
-        if (customerName.getText().isEmpty() || customerPhone.getText().isEmpty() || addedDishTable.getItems().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Create new bill");
-            alert.setHeaderText("Create new bill failed");
-            alert.setContentText("Please fill in customer name, phone number and add at least 1 dish to bill");
-            alert.showAndWait();
-            return false;
-        }
-        return true;
-    }
 
     public void setData(String tableId, String employeeId, String employeeName) {
         this.tableId.setText(tableId);
@@ -246,9 +166,7 @@ public class NewBillController implements Initializable {
         this.customerName.setText(bill.getCustomerName());
         this.customerPhone.setText(bill.getCustomerPhone());
         this.totalBill.setText(String.valueOf(bill.getTotal()));
-        createBillButton.setText("Update Bill");
         tableIdBox.setVisible(true);
-        payBillButton.setDisable(false);
         billId.setText(bill.getBill_id());
         ObservableList<Dish> dishObservableList = FXCollections.observableArrayList(bill.getDishList());
         //for each dish in bill, add to addedDishTable
@@ -340,7 +258,7 @@ public class NewBillController implements Initializable {
 
 
     private final ObservableList<Dish> dishList = FXCollections.observableArrayList();
-    private ObservableList<Dish> addedDishList = FXCollections.observableArrayList();
+    private final ObservableList<Dish> addedDishList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -392,5 +310,29 @@ public class NewBillController implements Initializable {
         qty.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         addedDishTable.setTooltip(new Tooltip("Double click to edit quantity"));
         addedDishTable.setItems(addedDishList);
+        //validate
+        dialogPane.lookupButton(ButtonType.OK).addEventFilter(ActionEvent.ACTION, event -> {
+            if (customerName.getText().isEmpty()) {
+                event.consume();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Customer name is empty");
+                alert.showAndWait();
+            } else if (customerPhone.getText().isEmpty()) {
+                event.consume();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Customer phone is empty");
+                alert.showAndWait();
+            } else if (addedDishList.isEmpty()) {
+                event.consume();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("No dish added");
+                alert.showAndWait();
+            }
+        });
+
     }
+
 }
