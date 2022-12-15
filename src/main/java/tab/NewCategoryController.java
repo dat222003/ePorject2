@@ -53,11 +53,13 @@ public class NewCategoryController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setContentText("Please enter name");
+                alert.showAndWait();
                 event.consume();
             } else if (descriptions.getText().isEmpty()){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setContentText("Please enter description");
+                alert.showAndWait();
                 event.consume();
             }
         });
