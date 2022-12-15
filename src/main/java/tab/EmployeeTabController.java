@@ -352,8 +352,13 @@ public class EmployeeTabController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         numericOnly(salaryTextField);
+        // set phone number format 10 digits
+        phoneTextField.setTextFormatter(new TextFormatter<>(change ->
+                change.getControlNewText().length() <= 10 ? change : null));
         numericOnly(phoneTextField);
         showChangePassword.setDisable(true);
+
+        //get data from database
         reloadButton.fire();
         //dynamic Search table
         FilteredList<Employee> filteredData = new FilteredList<>(employeeList, b -> true);
