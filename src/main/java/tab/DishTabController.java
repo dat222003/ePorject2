@@ -48,6 +48,8 @@ public class DishTabController implements Initializable {
 
     @FXML
     private TextField searchField;
+    @FXML
+    private Label toolTip;
 
     @FXML
     void reloadTable(ActionEvent event) {
@@ -140,12 +142,14 @@ public class DishTabController implements Initializable {
     ObservableList<Dish> dishList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        toolTip.setText("Right click to modify");
+
         id.setCellValueFactory(new PropertyValueFactory<>("dish_id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         category.setCellValueFactory(new PropertyValueFactory<>("category"));
         price.setCellValueFactory(new PropertyValueFactory<>("dish_price"));
         image.setCellValueFactory(new PropertyValueFactory<>("image"));
-
+        //get data from database
         reloadButton.fire();
 
         FilteredList<Dish> filteredList = new FilteredList<>(dishList, b -> true);

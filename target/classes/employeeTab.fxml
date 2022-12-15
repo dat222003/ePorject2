@@ -5,7 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -106,42 +105,24 @@
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="addNewButton" mnemonicParsing="false" onAction="#addEmployee" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: rgb(255,228,196);" text="Add New">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <FontIcon iconLiteral="far-plus-square" iconSize="20" />
-                           </graphic>
-                        </Button>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="2.0" left="8.0" right="2.0" top="2.0" />
                      </GridPane.margin>
                   </VBox>
-                  <VBox prefHeight="246.0" prefWidth="255.0" spacing="7.0" GridPane.columnIndex="1">
+                  <VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="255.0" spacing="7.0" GridPane.columnIndex="1">
                      <children>
                         <TextField fx:id="salaryTextField" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="458.0" promptText="Salary">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <PasswordField fx:id="newPasswordField" layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="314.0" promptText="New Password">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </PasswordField>
-                        <PasswordField fx:id="reNewPasswordField" layoutX="10.0" layoutY="104.0" prefHeight="25.0" prefWidth="314.0" promptText="Enter New Password Again">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </PasswordField>
                         <TextField fx:id="idCardTextField" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="458.0" promptText="Id Card">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <HBox prefHeight="34.0" prefWidth="296.0" spacing="80.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="296.0" spacing="80.0">
                            <children>
                               <JFXRadioButton text="Male">
                                  <toggleGroup>
@@ -161,6 +142,14 @@
                               </JFXRadioButton>
                            </children>
                         </HBox>
+                        <Button fx:id="addNewButton" mnemonicParsing="false" onAction="#addEmployee" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: rgb(255,228,196);" text="Add New">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <FontIcon iconLiteral="far-plus-square" iconSize="20" />
+                           </graphic>
+                        </Button>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="2.0" left="8.0" right="2.0" top="2.0" />

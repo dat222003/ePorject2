@@ -42,6 +42,9 @@ public class CategoryTabController implements Initializable {
     private TextField searchField;
 
     @FXML
+    private Label toolTip;
+
+    @FXML
     void addNewCategory(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/newCategory.fxml"));
         DialogPane dialogPane = null;
@@ -126,6 +129,7 @@ public class CategoryTabController implements Initializable {
     ObservableList<Category> categoryList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        toolTip.setText("Double click on a category to modify it.");
         //set table data
         id.setCellValueFactory(new PropertyValueFactory<>("cat_id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));

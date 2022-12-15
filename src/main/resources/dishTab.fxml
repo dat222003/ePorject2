@@ -4,6 +4,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -44,6 +45,11 @@
             </TableView>
             <HBox alignment="CENTER_LEFT" layoutX="67.0" layoutY="161.0" prefHeight="19.0" prefWidth="901.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="30.0">
                <children>
+                  <Label fx:id="toolTip" contentDisplay="GRAPHIC_ONLY" text="Label">
+                     <graphic>
+                        <FontIcon iconLiteral="far-question-circle" iconSize="20" />
+                     </graphic>
+                  </Label>
                   <JFXButton fx:id="reloadButton" onAction="#reloadTable" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: rgb(255,228,196);" text="Refresh">
                      <graphic>
                         <FontIcon iconLiteral="fas-sync-alt" iconSize="20" />
@@ -51,6 +57,9 @@
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
                   </JFXButton>
                   <FontIcon iconLiteral="fas-search" iconSize="20" wrappingWidth="19.99999237060547">
                      <HBox.margin>

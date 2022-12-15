@@ -241,21 +241,29 @@ public class EmployeeTabController implements Initializable {
             return;
         }
         employeeDB employeeDB = new employeeDB();
-        if (employeeDB.deleteEmployee(Integer.toString(employee.getUserid()))) {
-            reloadTable(event);
-            eraseInfoButton.fire();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Deleted Employee");
-            alert.setHeaderText(null);
-            alert.setContentText("Employee Deleted Successfully");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Employee Delete Failed");
-            alert.showAndWait();
-        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Employee");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete this employee?");
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                if (employeeDB.deleteEmployee(Integer.toString(employee.getUserid()))) {
+                    reloadTable(event);
+                    eraseInfoButton.fire();
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle("Deleted Employee");
+                    alert1.setHeaderText(null);
+                    alert1.setContentText("Employee Deleted Successfully");
+                    alert1.showAndWait();
+                } else {
+                    Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                    alert2.setTitle("Error");
+                    alert2.setHeaderText(null);
+                    alert2.setContentText("Employee Delete Failed");
+                    alert2.showAndWait();
+                }
+            }
+        });
     }
 
     @FXML
