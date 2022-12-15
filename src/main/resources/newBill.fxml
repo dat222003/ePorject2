@@ -15,7 +15,6 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
 <DialogPane fx:id="dialogPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.NewBillController">
    <content>
       <AnchorPane minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" stylesheets="@css/Home.css">
@@ -43,9 +42,9 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox prefHeight="50.0" prefWidth="404.0">
+                        <HBox prefHeight="39.0" prefWidth="394.0">
                            <children>
-                              <Label prefHeight="58.0" prefWidth="160.0" text="Table:">
+                              <Label prefHeight="38.0" prefWidth="125.0" text="Table:">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -59,12 +58,12 @@
                         </HBox>
                         <HBox prefHeight="42.0" prefWidth="404.0">
                            <children>
-                              <Label fx:id="employeeId1" layoutX="10.0" layoutY="10.0" prefHeight="57.0" prefWidth="145.0" text="Employee:">
+                              <Label fx:id="employeeId1" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="111.0" text="Employee:">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="employeeId" contentDisplay="TEXT_ONLY" prefHeight="57.0" prefWidth="158.0">
+                              <Label fx:id="employeeId" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="267.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -73,7 +72,7 @@
                         </HBox>
                         <HBox layoutX="20.0" layoutY="157.0" prefHeight="45.0" prefWidth="404.0">
                            <children>
-                              <Label fx:id="dateNow1" layoutX="10.0" layoutY="10.0" prefHeight="57.0" prefWidth="142.0" text="Date: ">
+                              <Label fx:id="dateNow1" layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="113.0" text="Date: ">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -87,7 +86,7 @@
                         </HBox>
                         <HBox prefHeight="28.0" prefWidth="404.0">
                            <children>
-                              <Label prefHeight="34.0" prefWidth="111.0" text="Customer">
+                              <Label prefHeight="34.0" prefWidth="111.0" text="Customer:">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -101,7 +100,7 @@
                         </HBox>
                         <HBox prefHeight="18.0" prefWidth="404.0">
                            <children>
-                              <Label prefHeight="31.0" prefWidth="83.0" text="Tel:">
+                              <Label prefHeight="30.0" prefWidth="112.0" text="Tel:">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
