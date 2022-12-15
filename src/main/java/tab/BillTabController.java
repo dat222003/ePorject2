@@ -115,6 +115,7 @@ public class BillTabController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //set table data
         bill_id.setCellValueFactory(new PropertyValueFactory<>("bill_id"));
+        date.setSortType(TableColumn.SortType.DESCENDING);
         table_id.setCellValueFactory(new PropertyValueFactory<>("table_id"));
         employeeName.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
         total_bill.setCellValueFactory(new PropertyValueFactory<>("total"));
@@ -122,6 +123,7 @@ public class BillTabController implements Initializable {
         customerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
         refreshButton.fire();
+        billTable.getSortOrder().add(date);
         //dynamic search table
         FilteredList<Bill> filteredData = new FilteredList<>(billList, b -> true);
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
