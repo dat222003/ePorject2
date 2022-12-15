@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -66,14 +67,18 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="109.0" layoutY="109.0" prefHeight="304.0" prefWidth="422.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0">
+            <VBox alignment="BOTTOM_CENTER" layoutX="109.0" layoutY="109.0" prefHeight="304.0" prefWidth="422.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0">
                <children>
                   <ImageView fx:id="image" fitHeight="175.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true" />
+                  <Region prefHeight="52.0" prefWidth="400.0" />
                   <Label fx:id="imageName" alignment="CENTER" prefHeight="17.0" prefWidth="359.0" text="Label" />
-                  <JFXButton onAction="#changeImage" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: rgb(255,228,196);" stylesheets="@css/Home.css" text="Change Image">
+                  <JFXButton onAction="#changeImage" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: rgb(255,228,196);" stylesheets="@css/Home.css" text="Change Image">
                      <font>
                         <Font size="14.0" />
-                     </font></JFXButton>
+                     </font>
+                     <VBox.margin>
+                        <Insets top="60.0" />
+                     </VBox.margin></JFXButton>
                </children>
             </VBox>
          </children>
