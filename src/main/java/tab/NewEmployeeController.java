@@ -112,12 +112,17 @@ public class NewEmployeeController implements Initializable {
                 alert.setContentText("Please enter salary");
                 alert.showAndWait();
                 event.consume();
-            }
-            else if (emailTextField.getText().isEmpty() || emailTextField.getText() == null) {
+            } else if (emailTextField.getText().isEmpty() || emailTextField.getText() == null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("email is empty");
                 alert.setContentText("Please enter email");
+                alert.showAndWait();
+                event.consume();
+            } else if (!emailTextField.getText().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Please enter a valid email ( sample@sample.sample");
                 alert.showAndWait();
                 event.consume();
             }

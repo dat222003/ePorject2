@@ -38,14 +38,14 @@
                      </HBox.margin>
                   </FontIcon>
                   <TextField fx:id="searchField" prefHeight="20.0" prefWidth="216.0" />
-                  <JFXButton fx:id="updateButton" graphicTextGap="10.0" onAction="#UpdateEmployee" prefHeight="20.0" prefWidth="104.0" style="-fx-background-color: rgb(255,228,196);" text="Update">
+                  <Button fx:id="addNewButton" mnemonicParsing="false" onAction="#addEmployee" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: rgb(255,228,196);" text="Add New">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <graphic>
-                        <FontIcon iconLiteral="fas-arrow-up" iconSize="20" selectionFill="#0a0000" />
+                        <FontIcon iconLiteral="far-plus-square" iconSize="20" />
                      </graphic>
-                  </JFXButton>
+                  </Button>
                   <JFXButton fx:id="deleteButton" alignment="CENTER" graphicTextGap="15.0" onAction="#deleteEmployee" prefHeight="20.0" prefWidth="109.0" style="-fx-background-color: rgb(255,228,196);" text="Delete">
                      <font>
                         <Font size="14.0" />
@@ -142,14 +142,14 @@
                               </JFXRadioButton>
                            </children>
                         </HBox>
-                        <Button fx:id="addNewButton" mnemonicParsing="false" onAction="#addEmployee" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: rgb(255,228,196);" text="Add New">
+                        <JFXButton fx:id="updateButton" graphicTextGap="10.0" onAction="#UpdateEmployee" prefHeight="20.0" prefWidth="104.0" style="-fx-background-color: rgb(255,228,196);" text="Update">
                            <font>
                               <Font size="14.0" />
                            </font>
                            <graphic>
-                              <FontIcon iconLiteral="far-plus-square" iconSize="20" />
+                              <FontIcon iconLiteral="fas-arrow-up" iconSize="20" selectionFill="#0a0000" />
                            </graphic>
-                        </Button>
+                        </JFXButton>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="2.0" left="8.0" right="2.0" top="2.0" />
