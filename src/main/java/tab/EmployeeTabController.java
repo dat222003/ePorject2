@@ -35,12 +35,6 @@ public class EmployeeTabController implements Initializable {
     private TextField nameTextField;
 
     @FXML
-    private PasswordField newPasswordField;
-
-    @FXML
-    private PasswordField reNewPasswordField;
-
-    @FXML
     private JFXButton reloadButton;
     @FXML
     private TextField userTextField;
@@ -134,8 +128,6 @@ public class EmployeeTabController implements Initializable {
         EmailTextField.setText("");
         genderGroup.selectToggle(null);
         idCardTextField.setText("");
-        newPasswordField.setText("");
-        reNewPasswordField.setText("");
     }
     @FXML
     private void reloadTable(ActionEvent event) {
@@ -176,24 +168,6 @@ public class EmployeeTabController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Please enter a valid email ( sample@sample.sample");
-            alert.showAndWait();
-            return false;
-        }
-        return true;
-    }
-
-    //check new password and retype password for new user
-    public boolean checkPassword() {
-        if (newPasswordField.getText().isEmpty() || reNewPasswordField.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Please fill in the new password fields and retype the new password");
-            alert.showAndWait();
-            return false;
-        } else if (!newPasswordField.getText().equals(reNewPasswordField.getText())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("The new password and retype new password fields do not match");
             alert.showAndWait();
             return false;
         }
@@ -286,38 +260,32 @@ public class EmployeeTabController implements Initializable {
 
     @FXML
     private void addEmployee(ActionEvent event) {
-        if (!validateInfo() || !checkPassword()) {
-            return;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/newEmployee.fxml"));
+        DialogPane dialogPane = null;
+        try {
+            dialogPane = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        Employee employee = new Employee();
-        employee.setUser(userTextField.getText());
-        employee.setName(nameTextField.getText());
-        employee.setPhone(phoneTextField.getText());
-        employee.setSalary(Double.parseDouble(salaryTextField.getText()));
-        employee.setEmail(EmailTextField.getText());
-        employee.setIdcard(idCardTextField.getText());
-        RadioButton selectedRadioButton = (RadioButton) genderGroup.getSelectedToggle();
-        if (selectedRadioButton.getText().equals("Male")) {
-            employee.setGender(0);
-        } else {
-            employee.setGender(1);
-        }
-        employee.setPassword(newPasswordField.getText());
-        employeeDB employeeDB = new employeeDB();
-        if (employeeDB.addEmployee(employee)) {
-            reloadTable(event);
-            eraseInfoButton.fire();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Added Employee");
-            alert.setHeaderText(null);
-            alert.setContentText("Employee Added Successfully");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Employee Add Failed");
-            alert.showAndWait();
+        NewEmployeeController newEmployeeController = loader.getController();
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(dialogPane);
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            if (newEmployeeController.addEmployee()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Added Employee");
+                alert.setHeaderText(null);
+                alert.setContentText("Employee Added Successfully");
+                alert.showAndWait();
+                reloadButton.fire();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Employee Add Failed");
+                alert.showAndWait();
+            }
         }
     }
 

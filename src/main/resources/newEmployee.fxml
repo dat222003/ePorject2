@@ -13,10 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <DialogPane fx:id="dialogPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.NewEmployeeController">
    <content>
-      <AnchorPane prefHeight="300.0" prefWidth="600.0">
+      <AnchorPane prefHeight="218.0" prefWidth="600.0">
          <children>
             <HBox alignment="CENTER" prefHeight="182.0" prefWidth="603.0" spacing="20.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
                <children>
@@ -37,7 +36,7 @@
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="EmailTextField" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="350.0" promptText="Email">
+                        <TextField fx:id="emailTextField" alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="350.0" promptText="Email">
                            <font>
                               <Font size="15.0" />
                            </font>
