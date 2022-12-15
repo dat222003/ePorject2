@@ -23,7 +23,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="259.0">
                      <children>
-                        <Label prefHeight="27.0" prefWidth="129.0" text="Category Descriptions" />
+                        <Label prefHeight="27.0" prefWidth="129.0" text="Category Descriptions:" />
                         <TextField fx:id="descriptions" prefHeight="27.0" prefWidth="335.0" />
                      </children>
                   </HBox>

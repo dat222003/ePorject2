@@ -70,7 +70,7 @@
                <children>
                   <ImageView fx:id="image" fitHeight="245.0" fitWidth="373.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="imageName" alignment="CENTER" prefHeight="17.0" prefWidth="359.0" text="Label" />
-                  <JFXButton onAction="#chooseImage" prefHeight="25.0" prefWidth="105.0" style="-fx-background-radius: 2em;" stylesheets="@css/Home.css" text="Choose Image" />
+                  <JFXButton onAction="#chooseImage" prefHeight="25.0" prefWidth="105.0" style="-fx-background-radius: 2em; -fx-background-color: grey;" stylesheets="@css/Home.css" text="Choose Image" />
                </children>
             </VBox>
          </children>

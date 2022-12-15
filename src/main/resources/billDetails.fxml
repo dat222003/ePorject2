@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <DialogPane maxHeight="500.0" maxWidth="600.0" prefHeight="475.0" prefWidth="521.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.BillDetailsController">
    <content>
       <AnchorPane prefHeight="453.0" prefWidth="521.0">
@@ -46,7 +45,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="30.0" prefWidth="256.0">
                      <children>
-                        <Label prefHeight="30.0" prefWidth="95.0" text="Date" />
+                        <Label prefHeight="30.0" prefWidth="95.0" text="Date:" />
                         <Label fx:id="date" prefHeight="30.0" prefWidth="196.0" text="id" />
                      </children>
                      <padding>
@@ -55,7 +54,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="256.0">
                      <children>
-                        <Label prefHeight="30.0" prefWidth="99.0" text="Status" />
+                        <Label prefHeight="30.0" prefWidth="99.0" text="Status:" />
                         <Label fx:id="status" prefHeight="30.0" prefWidth="197.0" text="id" />
                      </children>
                      <padding>
@@ -64,7 +63,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="170.0" prefHeight="30.0" prefWidth="256.0">
                      <children>
-                        <Label prefHeight="30.0" prefWidth="99.0" text="Total Bill" />
+                        <Label prefHeight="30.0" prefWidth="99.0" text="Total Bill:" />
                         <Label fx:id="totalBill" prefHeight="30.0" prefWidth="197.0" text="t" />
                      </children>
                      <padding>

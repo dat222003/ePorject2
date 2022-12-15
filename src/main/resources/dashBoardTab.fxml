@@ -80,7 +80,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutY="506.0" prefHeight="179.0" prefWidth="937.0" spacing="100.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0">
+            <HBox alignment="CENTER_LEFT" layoutX="69.0" layoutY="495.0" prefHeight="179.0" prefWidth="861.0" spacing="100.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="1.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="179.0" prefWidth="313.0" spacing="10.0">
                      <children>
@@ -103,6 +103,14 @@
                               </VBox>
                            </children>
                         </HBox>
+                        <ImageView fitHeight="50.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/tables.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                        </ImageView>
                         <HBox alignment="CENTER" layoutX="476.0" layoutY="10.0" prefHeight="79.0" prefWidth="132.0" spacing="5.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="79.0" prefWidth="73.0" spacing="5.0">
