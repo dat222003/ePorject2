@@ -142,7 +142,7 @@ public class DishTabController implements Initializable {
     ObservableList<Dish> dishList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        toolTip.setText("Right click to modify");
+        toolTip.setTooltip(new Tooltip("Right click on a dish to modify it"));
 
         id.setCellValueFactory(new PropertyValueFactory<>("dish_id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));

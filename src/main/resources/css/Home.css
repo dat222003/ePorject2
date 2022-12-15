@@ -111,7 +111,6 @@
 #tableVbox .buttonDelete{
     -fx-background-color: #ef3d3d;
     -fx-text-fill: white;
-
 }
 #billVbox{
     -fx-border-style: solid;

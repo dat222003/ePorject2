@@ -21,10 +21,7 @@ import login.loginApplication;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.EventListener;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class homeController implements Initializable {
 
@@ -42,6 +39,14 @@ public class homeController implements Initializable {
     private JFXButton dashboardButton;
     @FXML
     private JFXButton tableButton;
+
+    @FXML
+    private JFXButton categoryButton;
+    @FXML
+    private JFXButton billButton;
+
+    @FXML
+    private JFXButton dishButton;
 
     Pane pane;
 
@@ -65,6 +70,23 @@ public class homeController implements Initializable {
         }
     }
 
+    public void toggleTab(String tab) {
+        ArrayList<JFXButton> buttons = new ArrayList<>();
+        buttons.add(dashboardButton);
+        buttons.add(employeeButton);
+        buttons.add(tableButton);
+        buttons.add(categoryButton);
+        buttons.add(dishButton);
+        buttons.add(billButton);
+        for (JFXButton button : buttons) {
+            if (button.getText().equals(tab)) {
+                button.setStyle("-fx-background-color: #046e9a; -fx-text-fill: #ffffff;");
+            } else {
+                button.setStyle("-fx-background-color:  rgb(135,206,250); -fx-text-fill: black;");
+            }
+        }
+    }
+
     @FXML
     // load employee.fxml into homePane
     private void loadEmployee(ActionEvent event) {
@@ -74,7 +96,7 @@ public class homeController implements Initializable {
             throw new RuntimeException(e);
         }
         homePane.setCenter(pane);
-
+        toggleTab("Employee");
     }
 
     @FXML
@@ -86,7 +108,7 @@ public class homeController implements Initializable {
             throw new RuntimeException(e);
         }
         homePane.setCenter(pane);
-
+        toggleTab("Dash Board");
     }
 
     @FXML
@@ -97,7 +119,7 @@ public class homeController implements Initializable {
             throw new RuntimeException(e);
         }
         homePane.setCenter(pane);
-
+        toggleTab("Categories");
     }
 
     @FXML
@@ -109,7 +131,7 @@ public class homeController implements Initializable {
             throw new RuntimeException(e);
         }
         homePane.setCenter(pane);
-
+        toggleTab("Table");
     }
 
     @FXML
@@ -120,7 +142,7 @@ public class homeController implements Initializable {
             throw new RuntimeException(e);
         }
         homePane.setCenter(pane);
-
+        toggleTab("Bill");
     }
 
     @FXML
@@ -131,11 +153,7 @@ public class homeController implements Initializable {
             throw new RuntimeException(e);
         }
         homePane.setCenter(pane);
-
-    }
-
-    public void setUser(String user, String user_id) {
-        userNameButton.setText(user_id + ": " + user);
+        toggleTab("Dishes");
     }
 
     public void setUser(String user) {
@@ -146,11 +164,9 @@ public class homeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String key = UserSession.getLocalSession();
         if (key != null) {
-//            setUser(key.split(",")[1], key.split(",")[0]);
             setUser(key.split(",")[1]);
         } else {
             key = UserSession.getSession();
-//            setUser(key.split(",")[1], key.split(",")[0]);
             setUser(key.split(",")[1]);
         }
         dashboardButton.fire();

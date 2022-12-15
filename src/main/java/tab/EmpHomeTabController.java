@@ -68,17 +68,19 @@ public class EmpHomeTabController implements Initializable {
 
     }
 
-    public void setUser(String user, String user_id) {
-        userNameButton.setText(user_id + ": " + user);
+    public void setUser(String user) {
+        userNameButton.setText(user);
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String key = UserSession.getLocalSession();
         if (key != null) {
-            setUser(key.split(",")[1], key.split(",")[0]);
+            setUser(key.split(",")[1]);
         } else {
             key = UserSession.getSession();
-            setUser(key.split(",")[1], key.split(",")[0]);
+            setUser(key.split(",")[1]);
         }
+        tableButton.fire();
     }
 }
