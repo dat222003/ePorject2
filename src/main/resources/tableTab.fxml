@@ -17,7 +17,7 @@
          <children>
             <HBox fx:id="hBox" alignment="CENTER" layoutX="18.0" opacity="0.92" prefHeight="116.0" prefWidth="904.0" spacing="30.0" stylesheets="@css/Home.css" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" onAction="#totalTable" prefHeight="50.0" prefWidth="150.0" text="All Table" textFill="WHITE">
+                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" onAction="#allTable" prefHeight="50.0" prefWidth="150.0" text="All Table" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>

@@ -18,7 +18,7 @@ public class DatabaseConnect {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, "admin", "dat2003dat2003");
-//            con = DriverManager.getConnection(url, "Your User Name", "Your PassWord");
+//            con = DriverManager.getConnection(url, "root", "Datpro22200379");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
