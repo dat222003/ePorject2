@@ -148,7 +148,7 @@ public class TableTabController implements Initializable {
     }
 
     @FXML
-    void totalTable(ActionEvent event) {
+    void allTable(ActionEvent event) {
         tableGridPane.getChildren().clear();
         data();
     }
