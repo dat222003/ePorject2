@@ -50,7 +50,9 @@ public class employeeDB {
             PreparedStatement preparedStatement = con.prepareStatement("select ua.user_id, user, name, phone, gender, salary, email, id_card, password from employee  join user_account ua on ua.user_id = employee.user_id;");
             ResultSet resultset = preparedStatement.executeQuery();
             while (resultset.next()) {
-                empList.add(setEmployeeProp(resultset));
+                if (resultset.getInt("available") == 1) {
+                    empList.add(setEmployeeProp(resultset));
+                }
             }
         } catch (SQLException e) {
             return null;
@@ -82,7 +84,7 @@ public class employeeDB {
                 Connection con = databaseConnect.getConnect();
         ) {
             PreparedStatement preparedStatement;
-            preparedStatement = con.prepareStatement("delete from user_account where user_id = ?");
+            preparedStatement = con.prepareStatement("update user_account set available = 0 where user_id = ?");
             preparedStatement.setString(1, user_id);
             preparedStatement.executeUpdate();
             return true;
