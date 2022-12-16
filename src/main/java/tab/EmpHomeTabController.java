@@ -51,9 +51,9 @@ public class EmpHomeTabController implements Initializable {
         buttons.add(billButton);
         for (JFXButton button : buttons) {
             if (button.getText().equals(tab)) {
-                button.setStyle("-fx-background-color: #046e9a; -fx-text-fill: #ffffff;");
+                button.setStyle("-fx-background-color:  rgb(255, 165, 79); -fx-text-fill: #ffffff;");
             } else {
-                button.setStyle("-fx-background-color:  rgb(135,206,250); -fx-text-fill: black;");
+                button.setStyle("-fx-background-color:  #FFEC8B; -fx-text-fill: black;");
             }
         }
     }

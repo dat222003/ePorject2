@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="670.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.EmpHomeTabController">
+<BorderPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="670.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: #FFFFE0;" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.EmpHomeTabController">
    <left>
-      <VBox id="menuBox" maxHeight="1.7976931348623157E308" minHeight="711.0" prefHeight="720.0" prefWidth="229.0" spacing="10.0" style="-fx-background-color: rgb(135,206,250);">
+      <VBox id="menuBox" maxHeight="1.7976931348623157E308" minHeight="711.0" prefHeight="720.0" prefWidth="229.0" spacing="10.0" style="-fx-background-color: #FFEC8B;">
          <children>
             <ImageView fitHeight="175.0" fitWidth="229.0" pickOnBounds="true">
                <image>
