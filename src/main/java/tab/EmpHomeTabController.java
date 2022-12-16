@@ -6,15 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import login.DatabaseConnect;
 import login.UserSession;
 import login.loginApplication;
+import model.Employee;
 
 import java.io.IOException;
 import java.net.URL;
@@ -111,6 +110,42 @@ public class EmpHomeTabController implements Initializable {
         }
         homePane.setCenter(pane);
         toggleTab("Dishes");
+    }
+
+    @FXML
+    private void changePassword(ActionEvent event) {
+        Employee employee = new Employee();
+        employee.setUserid(Integer.parseInt(UserSession.getLocalSession().split(",")[0]));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/changePassword.fxml"));
+        DialogPane dialogPane = null;
+        try {
+            dialogPane = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ChangePassController changePasswordController = loader.getController();
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(dialogPane);
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            if (changePasswordController.changePassword(employee)) {
+                loginApplication loginApplication = new loginApplication();
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.close();
+                DatabaseConnect databaseConnect = new DatabaseConnect();
+                databaseConnect.deleteUserSession();
+                try {
+                    loginApplication.start(new Stage());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Message");
+                alert.setHeaderText("You logged out");
+                alert.showAndWait();
+            }
+
+        }
     }
 
     public void setUser(String user) {
