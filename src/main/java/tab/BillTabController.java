@@ -54,6 +54,8 @@ public class BillTabController implements Initializable {
 
     @FXML
     private DatePicker dateField;
+    @FXML
+    private Label toolTip;
 
     @FXML
     void refreshTable(ActionEvent event) {
@@ -87,8 +89,7 @@ public class BillTabController implements Initializable {
 
 
 
-    @FXML
-    void viewBillDetails(ActionEvent event) {
+    public void viewBillDetails() {
         //open dialog pane bill details
         Bill bill = billTable.getSelectionModel().getSelectedItem();
         if (bill != null) {
@@ -110,9 +111,31 @@ public class BillTabController implements Initializable {
 
     }
 
+    public void payBill() {
+        Bill bill = billTable.getSelectionModel().getSelectedItem();
+        if (bill != null && bill.getStatus().equals("pending")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Pay Bill");
+            alert.setHeaderText("Are you sure to pay this bill?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                BillDB billDB = new BillDB();
+                bill.setStatus("purchased");
+                billDB.updateBill(bill);
+                refreshButton.fire();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("This bill is already paid");
+            alert.show();
+        }
+    }
+
     private final ObservableList<Bill> billList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        toolTip.setTooltip(new Tooltip("Right click to modify bill"));
         //set table data
         bill_id.setCellValueFactory(new PropertyValueFactory<>("bill_id"));
         date.setSortType(TableColumn.SortType.DESCENDING);

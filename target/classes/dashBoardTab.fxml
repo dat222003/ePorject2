@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane minHeight="720.0" minWidth="971.0" prefHeight="720.0" prefWidth="971.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.DashBoardTabController">
    <padding>
@@ -24,37 +25,15 @@
          <children>
             <HBox alignment="CENTER" prefHeight="251.0" prefWidth="937.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="251.0" prefWidth="227.0">
+                  <VBox alignment="CENTER" prefHeight="251.0" prefWidth="253.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="108.0" prefWidth="238.0">
-                           <children>
-                              <ImageView fitHeight="50.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/bill.png" />
-                                 </image>
-                              </ImageView>
-                              <VBox alignment="CENTER" prefHeight="108.0" prefWidth="103.0" spacing="5.0">
-                                 <children>
-                                    <Label fx:id="numberOfBills" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="78.0" text="20">
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="totalMoney1" alignment="CENTER" layoutX="10.0" layoutY="71.0" prefHeight="27.0" prefWidth="145.0" text="Bills">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="totalMoney" alignment="CENTER" prefHeight="27.0" prefWidth="145.0" text="Total: ">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <DatePicker fx:id="billDate" prefHeight="25.0" prefWidth="249.0" promptText="date" />
+                        <DatePicker fx:id="startDate" prefHeight="30.0" prefWidth="259.0" promptText="From" />
+                        <Label contentDisplay="GRAPHIC_ONLY" prefHeight="36.0" prefWidth="28.0" text="Label">
+                           <graphic>
+                              <FontIcon iconLiteral="fas-arrow-down" iconSize="25" />
+                           </graphic>
+                        </Label>
+                        <DatePicker fx:id="endDate" prefHeight="30.0" prefWidth="246.0" promptText="To" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="224.0" prefWidth="699.0">
@@ -69,7 +48,7 @@
                         </LineChart>
                         <HBox alignment="CENTER" prefHeight="2.0" prefWidth="699.0" spacing="10.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="28.0" prefWidth="203.0" text="Total Money">
+                              <Label alignment="CENTER" prefHeight="28.0" prefWidth="203.0" text="Total Revenue">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -170,15 +149,43 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox layoutX="615.0" layoutY="322.0" prefHeight="217.0" prefWidth="417.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="263.0">
+            <HBox alignment="CENTER" layoutX="615.0" layoutY="322.0" prefHeight="217.0" prefWidth="417.0" spacing="100.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="263.0">
                <children>
+                  <VBox alignment="CENTER" prefHeight="251.0" prefWidth="227.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="108.0" prefWidth="238.0">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/bill.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" prefHeight="108.0" prefWidth="103.0" spacing="5.0">
+                                 <children>
+                                    <Label fx:id="numberOfBills" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="32.0" prefWidth="78.0" text="20">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalMoney1" alignment="CENTER" layoutX="10.0" layoutY="71.0" prefHeight="27.0" prefWidth="145.0" text="Bills">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalMoney" alignment="CENTER" prefHeight="27.0" prefWidth="145.0" text="Total: ">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <DatePicker fx:id="billDate" prefHeight="25.0" prefWidth="249.0" promptText="date" />
+                     </children>
+                  </VBox>
                   <VBox prefHeight="217.0" prefWidth="315.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="17.0" prefWidth="375.0" text="Pending Bill">
-                           <font>
-                              <Font size="21.0" />
-                           </font>
-                        </Label>
                         <TableView fx:id="pendingBillTable" prefHeight="217.0" prefWidth="259.0">
                           <columns>
                             <TableColumn fx:id="tableColumn" prefWidth="67.66667175292969" text="Table" />
@@ -188,6 +195,11 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
+                        <Label alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="17.0" prefWidth="375.0" text="Pending Bill">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
                      </children>
                   </VBox>
                </children>

@@ -19,13 +19,10 @@ public class EditCategoryController implements Initializable {
     private DialogPane dialogPane;
     @FXML
     private TextField descriptions;
-
     @FXML
     private Label label;
-
     @FXML
     private TextField name;
-
     private Category category;
     public void setData(Category category){
         label.setText("Edit: " + category.getName());
