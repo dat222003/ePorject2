@@ -142,14 +142,18 @@
                               </JFXRadioButton>
                            </children>
                         </HBox>
-                        <JFXButton fx:id="updateButton" graphicTextGap="10.0" onAction="#UpdateEmployee" prefHeight="20.0" prefWidth="104.0" style="-fx-background-color: rgb(255,228,196);" text="Update">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <FontIcon iconLiteral="fas-arrow-up" iconSize="20" selectionFill="#0a0000" />
-                           </graphic>
-                        </JFXButton>
+                        <HBox prefHeight="32.0" prefWidth="401.0">
+                           <children>
+                              <JFXButton fx:id="updateButton" graphicTextGap="10.0" onAction="#UpdateEmployee" prefHeight="20.0" prefWidth="104.0" style="-fx-background-color: rgb(255,228,196);" text="Update">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontIcon iconLiteral="fas-arrow-up" iconSize="20" selectionFill="#0a0000" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="2.0" left="8.0" right="2.0" top="2.0" />
