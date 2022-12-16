@@ -17,7 +17,7 @@
          <children>
             <HBox fx:id="hBox" alignment="CENTER" layoutX="18.0" opacity="0.92" prefHeight="116.0" prefWidth="904.0" spacing="30.0" stylesheets="@css/Home.css" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" onAction="#allTable" prefHeight="50.0" prefWidth="150.0" text="All Table" textFill="WHITE">
+                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" onAction="#allTable" prefHeight="35.0" prefWidth="135.0" stylesheets="@css/table.css" text="All Table" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
@@ -25,7 +25,7 @@
                         <Font size="22.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="10.0" onAction="#inUsedTable" prefHeight="50.0" prefWidth="150.0" text="In Used" textFill="WHITE">
+                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="10.0" onAction="#inUsedTable" prefHeight="30.0" prefWidth="135.0" stylesheets="@css/table.css" text="In Used" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
@@ -33,7 +33,7 @@
                         <Font size="22.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" layoutX="183.0" layoutY="10.0" onAction="#availableTable" prefHeight="50.0" prefWidth="150.0" text="Available" textFill="WHITE">
+                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" layoutX="183.0" layoutY="10.0" onAction="#availableTable" prefHeight="30.0" prefWidth="135.0" stylesheets="@css/table.css" text="Available" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
@@ -41,7 +41,7 @@
                         <Font size="22.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" layoutX="356.0" layoutY="10.0" onAction="#orderedTable" prefHeight="50.0" prefWidth="150.0" text="Ordered" textFill="WHITE">
+                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" layoutX="356.0" layoutY="10.0" onAction="#orderedTable" prefHeight="30.0" prefWidth="130.0" stylesheets="@css/table.css" text="Ordered" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>

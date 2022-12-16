@@ -1,1 +1,20 @@
-button
+#button2
+{
+    -fx-background-color: #00bfff;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 2em;
+    -fx-background-radius: 2em;
+    -fx-border-color: #00bfff;
+    -fx-border-width: 2px;
+    -fx-padding: 5px 10px 5px 10px;
+}
+#button2:pressed
+{
+    -fx-background-color: #0286b2;
+}
+#button2:armed
+{
+    -fx-background-color: #0286b2;
+}
