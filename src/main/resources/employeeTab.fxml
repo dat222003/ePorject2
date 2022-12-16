@@ -162,7 +162,7 @@
                   </VBox>
                </children>
             </GridPane>
-            <TableView fx:id="employeeTable" layoutY="388.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#getRowData" prefHeight="315.0" prefWidth="951.0" style="-fx-background-color: rgb(240,248,255); : ;" stylesheets="@css/table.css" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <TableView fx:id="employeeTable" layoutY="388.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#getRowData" prefHeight="315.0" prefWidth="951.0" style="-fx-background-color: rgb(240,248,255);" stylesheets="@css/table.css" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <columns>
                 <TableColumn fx:id="idColumn" prefWidth="49.999996185302734" text="ID" />
                 <TableColumn fx:id="userColumn" prefWidth="154.00000381469727" text="User" />
