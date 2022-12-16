@@ -142,6 +142,7 @@
                               </JFXRadioButton>
                            </children>
                         </HBox>
+                        <Label prefHeight="17.0" prefWidth="128.0" text="( male = 0, female = 1 )" />
                         <HBox prefHeight="32.0" prefWidth="401.0">
                            <children>
                               <JFXButton fx:id="updateButton" graphicTextGap="10.0" onAction="#UpdateEmployee" prefHeight="20.0" prefWidth="104.0" style="-fx-background-color: rgb(255,228,196);" text="Update">

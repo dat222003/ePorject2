@@ -71,7 +71,7 @@ public class loginController {
                 } else { //else employee
                     PreparedStatement emp_query = con.prepareStatement("select * from user_account" +
                             " inner join employee a on user_account.user_id = a.user_id" +
-                            " and user_account.user =  ? and user_account.password = ?");
+                            " and user_account.user =  ? and user_account.password = ? and available = 1");
                     emp_query.setString(1, usernameField.getText());
                     emp_query.setString(2, databaseConnect.hash(passwordField.getText()));
                     resultSet = emp_query.executeQuery();

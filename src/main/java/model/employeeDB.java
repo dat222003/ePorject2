@@ -47,7 +47,8 @@ public class employeeDB {
         try(
                 Connection con = databaseConnect.getConnect();
         ) {
-            PreparedStatement preparedStatement = con.prepareStatement("select ua.user_id, user, name, phone, gender, salary, email, id_card, password from employee  join user_account ua on ua.user_id = employee.user_id;");
+            PreparedStatement preparedStatement = con.prepareStatement("select ua.user_id, user, name, phone, gender, salary, email, id_card, password, available  " +
+                    "from employee  join user_account ua on ua.user_id = employee.user_id;");
             ResultSet resultset = preparedStatement.executeQuery();
             while (resultset.next()) {
                 if (resultset.getInt("available") == 1) {
