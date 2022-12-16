@@ -140,15 +140,6 @@ public class BillTabController implements Initializable {
     private final ObservableList<Bill> billList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //check admin or employee
-        if (UserSession.getLocalSession().split(",")[2].equals("employee")){
-            //hide tool tip
-            toolTip.setVisible(false);
-            //hide context menu
-            contextMenu.getItems().forEach(item->{
-                    item.setVisible(false);
-            });
-        }
         toolTip.setTooltip(new Tooltip("Right click to modify bill"));
         //set table data
         bill_id.setCellValueFactory(new PropertyValueFactory<>("bill_id"));
