@@ -6,12 +6,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.Pane;
+import login.UserSession;
 import model.*;
 
 import java.net.URL;
@@ -56,6 +59,8 @@ public class BillTabController implements Initializable {
     private DatePicker dateField;
     @FXML
     private Label toolTip;
+    @FXML
+    private ContextMenu contextMenu;
 
     @FXML
     void refreshTable(ActionEvent event) {
@@ -135,6 +140,15 @@ public class BillTabController implements Initializable {
     private final ObservableList<Bill> billList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //check admin or employee
+        if (UserSession.getLocalSession().split(",")[2].equals("employee")){
+            //hide tool tip
+            toolTip.setVisible(false);
+            //hide context menu
+            contextMenu.getItems().forEach(item->{
+                    item.setVisible(false);
+            });
+        }
         toolTip.setTooltip(new Tooltip("Right click to modify bill"));
         //set table data
         bill_id.setCellValueFactory(new PropertyValueFactory<>("bill_id"));

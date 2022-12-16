@@ -31,7 +31,7 @@
                   <TableColumn fx:id="price" minWidth="0.0" prefWidth="144.0" text="Price" />
               </columns>
                <contextMenu>
-                  <ContextMenu>
+                  <ContextMenu fx:id="contextMenu">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#editDish" text="Edit" />
                         <MenuItem mnemonicParsing="false" onAction="#deleteDish" text="Delete" />
@@ -71,7 +71,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <JFXButton onAction="#addNewDish" prefHeight="28.0" prefWidth="139.0" style="-fx-background-color: rgb(255,228,196); -fx-background-radius: 2em;" text="Add New">
+                  <JFXButton fx:id="addNewButton" onAction="#addNewDish" prefHeight="28.0" prefWidth="139.0" style="-fx-background-color: rgb(255,228,196); -fx-background-radius: 2em;" text="Add New">
                      <HBox.margin>
                         <Insets left="40.0" />
                      </HBox.margin>

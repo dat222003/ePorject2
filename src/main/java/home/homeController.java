@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import login.DatabaseConnect;
 import login.UserSession;
 import login.loginApplication;
+import tab.DishTabController;
 
 import java.io.IOException;
 import java.net.URL;

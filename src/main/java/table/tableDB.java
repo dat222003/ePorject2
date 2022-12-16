@@ -45,7 +45,7 @@ public class tableDB {
         try(
                 Connection con = databaseConnect.getConnect();
         ) {
-            PreparedStatement preparedStatement = con.prepareStatement("DELETE FROM `table` WHERE table_id = ?");
+            PreparedStatement preparedStatement = con.prepareStatement("UPDATE `table` SET available = 0 WHERE table_id = ?");
             preparedStatement.setString(1, table_id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -66,7 +66,9 @@ public class tableDB {
                 Table table = new Table();
                 table.setTable_id(resultset.getString("table_id"));
                 table.setTableStatus(resultset.getString("status"));
-                tableList.add(table);
+                if (resultset.getInt("available") == 1) {
+                    tableList.add(table);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

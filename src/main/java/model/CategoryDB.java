@@ -47,7 +47,7 @@ public class CategoryDB {
         try(
                 Connection con = databaseConnect.getConnect();
         ) {
-            PreparedStatement preparedStatement = con.prepareStatement("DELETE FROM `dish_category` WHERE cat_id = ?");
+            PreparedStatement preparedStatement = con.prepareStatement("UPDATE `dish_category` SET available = 0 WHERE cat_id = ?");
             preparedStatement.setString(1, cat_id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -69,8 +69,9 @@ public class CategoryDB {
                 category.setCat_id(resultSet.getString("cat_id"));
                 category.setName(resultSet.getString("name"));
                 category.setDescription(resultSet.getString("description"));
-//                category.setImg(resultSet.getString("img"));
-                categories.add(category);
+                if (resultSet.getInt("available") == 1) {
+                    categories.add(category);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

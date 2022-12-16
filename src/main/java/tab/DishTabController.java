@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import login.UserSession;
 import model.Dish;
 import model.DishDB;
 
@@ -52,6 +53,11 @@ public class DishTabController implements Initializable {
     private Label toolTip;
 
     @FXML
+    private ContextMenu contextMenu;
+    @FXML
+    private  Button addNewButton;
+
+    @FXML
     void reloadTable(ActionEvent event) {
         dishList.clear();
         DishDB dishDB = new DishDB();
@@ -67,8 +73,6 @@ public class DishTabController implements Initializable {
         dishList.addAll(dishes);
         dishTable.refresh();
     }
-
-
 
     @FXML
     void editDish(ActionEvent event) {
@@ -104,17 +108,17 @@ public class DishTabController implements Initializable {
 
     @FXML
     void deleteDish(ActionEvent event) {
-//        Dish dish = dishTable.getSelectionModel().getSelectedItem();
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setTitle("Confirmation");
-//        alert.setHeaderText("Delete " + dish.getName());
-//        alert.setContentText("Are you sure you want to delete this dish?");
-//        Optional<ButtonType> result = alert.showAndWait();
-//        if (result.isPresent() && result.get() == ButtonType.OK) {
-//            DishDB dishDB = new DishDB();
-//            dishDB.deleteDish(dish.getDish_id());
-//            reloadButton.fire();
-//        }
+        Dish dish = dishTable.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Delete " + dish.getName());
+        alert.setContentText("Are you sure you want to delete this dish?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            DishDB dishDB = new DishDB();
+            dishDB.deleteDish(dish.getDish_id());
+            reloadButton.fire();
+        }
     }
 
     @FXML
@@ -135,13 +139,19 @@ public class DishTabController implements Initializable {
             reloadButton.fire();
         }
     }
-
-
-
-
     ObservableList<Dish> dishList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //check admin or employee
+        if (UserSession.getLocalSession().split(",")[2].equals("employee")){
+            toolTip.setVisible(false);
+            //hide context menu
+            contextMenu.getItems().forEach(item->{
+                item.setVisible(false);
+            });
+            addNewButton.setVisible(false);
+        }
         toolTip.setTooltip(new Tooltip("Right click on a dish to modify it"));
 
         id.setCellValueFactory(new PropertyValueFactory<>("dish_id"));

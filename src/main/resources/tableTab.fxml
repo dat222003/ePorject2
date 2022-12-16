@@ -17,7 +17,7 @@
          <children>
             <HBox fx:id="hBox" alignment="CENTER" layoutX="18.0" opacity="0.92" prefHeight="116.0" prefWidth="904.0" spacing="30.0" stylesheets="@css/Home.css" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" onAction="#totalTable" prefHeight="50.0" prefWidth="150.0" text="Total Table" textFill="WHITE">
+                  <JFXButton id="button2" alignment="CENTER" buttonType="RAISED" contentDisplay="TEXT_ONLY" onAction="#totalTable" prefHeight="50.0" prefWidth="150.0" text="All Table" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
@@ -66,7 +66,7 @@
                   <Insets left="14.0" />
                </padding>
             </ScrollPane>
-            <JFXButton id="button2" fx:id="refreshButton" layoutX="18.0" layoutY="124.0" onAction="#reloadTable" prefHeight="42.0" prefWidth="134.0" style="-fx-background-color: white;" text="Refresh" AnchorPane.bottomAnchor="534.0" AnchorPane.leftAnchor="18.0">
+            <JFXButton id="button2" fx:id="refreshButton" layoutX="18.0" layoutY="124.0" onAction="#reloadTable" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: white;" text="Refresh" AnchorPane.bottomAnchor="534.0" AnchorPane.leftAnchor="18.0">
                <graphic>
                   <FontIcon iconLiteral="fas-sync-alt" iconSize="20" />
                </graphic>

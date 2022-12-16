@@ -20,7 +20,7 @@
          <children>
             <TableView fx:id="billTable" layoutX="1.0" prefHeight="626.0" prefWidth="951.0" style="-fx-background-color: rgb(240,248,255);" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="78.0">
               <columns>
-                <TableColumn fx:id="bill_id" prefWidth="50.0" style="-fx-highlight-text-fill: " text="id" />
+                <TableColumn fx:id="bill_id" prefWidth="50.0" text="id" />
                 <TableColumn fx:id="table_id" prefWidth="51.66667175292969" text="Table Id" />
                   <TableColumn fx:id="employeeName" prefWidth="177.3333282470703" text="Employee" />
                   <TableColumn fx:id="customerName" prefWidth="181.0" text="Customer" />
@@ -32,7 +32,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
                <contextMenu>
-                  <ContextMenu>
+                  <ContextMenu fx:id="contextMenu">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#viewBillDetails" text="Details" />
                         <MenuItem mnemonicParsing="false" onAction="#payBill" text="Pay" />

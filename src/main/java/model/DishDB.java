@@ -50,7 +50,7 @@ public class DishDB {
         try(
                 Connection con = databaseConnect.getConnect();
         ) {
-            PreparedStatement preparedStatement = con.prepareStatement("DELETE FROM `dish` WHERE dish_id = ?");
+            PreparedStatement preparedStatement = con.prepareStatement("UPDATE `dish` SET available = '0' WHERE dish_id = ?");
             preparedStatement.setString(1, dish_id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -75,7 +75,9 @@ public class DishDB {
                 dish.setCategory(resultSet.getString("category.name"));
                 dish.setDish_price(resultSet.getString("price"));
                 dish.setImg_name(resultSet.getString("dish.img"));
-                dishList.add(dish);
+                if (resultSet.getInt("available") == 1) {
+                    dishList.add(dish);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

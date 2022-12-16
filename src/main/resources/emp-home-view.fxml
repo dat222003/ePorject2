@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="670.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: rgb(240,248,255);" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.EmpHomeTabController">
+<BorderPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="670.0" minWidth="1200.0" prefHeight="720.0" prefWidth="1200.0" stylesheets="@css/Home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tab.EmpHomeTabController">
    <left>
       <VBox id="menuBox" maxHeight="1.7976931348623157E308" minHeight="711.0" prefHeight="720.0" prefWidth="229.0" spacing="10.0" style="-fx-background-color: rgb(135,206,250);">
          <children>
@@ -24,15 +24,28 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <HBox id="button" alignment="CENTER_LEFT" layoutX="10.0" layoutY="241.0" prefHeight="50.0" prefWidth="229.0" spacing="20.0">
+            <HBox id="button" alignment="CENTER_LEFT" layoutX="10.0" layoutY="241.0" prefHeight="28.0" prefWidth="229.0" spacing="20.0">
                <padding>
                   <Insets left="20.0" />
                </padding>
                <children>
-                  <FontIcon iconLiteral="far-user-circle" iconSize="30" />
-                  <JFXButton fx:id="userNameButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" prefHeight="44.0" prefWidth="159.0" style="-fx-background-color: rgb;" text="Emp">
+                  <FontIcon iconLiteral="far-user-circle" iconSize="30" wrappingWidth="27.0625" />
+                  <JFXButton fx:id="userNameButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" prefHeight="31.0" prefWidth="159.0" text="Emp">
                      <font>
                         <Font name="System Bold" size="20.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox id="button" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontIcon iconLiteral="fas-concierge-bell" iconSize="24" />
+                  <JFXButton fx:id="dishButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#loadDish" prefHeight="70.0" prefWidth="229.0" text="Dishes">
+                     <font>
+                        <Font size="16.0" />
                      </font>
                   </JFXButton>
                </children>
@@ -44,6 +57,19 @@
                <children>
                   <FontIcon iconLiteral="fas-grip-horizontal" iconSize="28" />
                   <JFXButton fx:id="tableButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#loadTable" prefHeight="70.0" prefWidth="229.0" text="Table">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox id="button" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <children>
+                  <FontIcon iconLiteral="fas-money-check-alt" iconSize="20" />
+                  <JFXButton fx:id="billButton" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#loadBill" prefHeight="70.0" prefWidth="229.0" text="Bill">
                      <font>
                         <Font size="16.0" />
                      </font>

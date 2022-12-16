@@ -18,13 +18,16 @@ import login.loginApplication;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EmpHomeTabController implements Initializable {
+
     @FXML
     private JFXButton userNameButton;
+
     @FXML
     private Button logoutButton;
     @FXML
@@ -32,8 +35,28 @@ public class EmpHomeTabController implements Initializable {
 
     @FXML
     private JFXButton tableButton;
+    @FXML
+    private JFXButton billButton;
+
+    @FXML
+    private JFXButton dishButton;
+
 
     Pane pane;
+
+    public void toggleTab(String tab) {
+        ArrayList<JFXButton> buttons = new ArrayList<>();
+        buttons.add(tableButton);
+        buttons.add(dishButton);
+        buttons.add(billButton);
+        for (JFXButton button : buttons) {
+            if (button.getText().equals(tab)) {
+                button.setStyle("-fx-background-color: #046e9a; -fx-text-fill: #ffffff;");
+            } else {
+                button.setStyle("-fx-background-color:  rgb(135,206,250); -fx-text-fill: black;");
+            }
+        }
+    }
 
     @FXML
     private void loadLogin(ActionEvent event) throws IOException {
@@ -65,7 +88,29 @@ public class EmpHomeTabController implements Initializable {
             throw new RuntimeException(e);
         }
         homePane.setCenter(pane);
+        toggleTab("Table");
+    }
 
+    @FXML
+    void loadBill(ActionEvent event) {
+        try {
+            pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/billTab.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(pane);
+        toggleTab("Bill");
+    }
+
+    @FXML
+    void loadDish(ActionEvent event) {
+        try {
+            pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/dishTab.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        homePane.setCenter(pane);
+        toggleTab("Dishes");
     }
 
     public void setUser(String user) {
