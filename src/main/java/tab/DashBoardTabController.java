@@ -6,10 +6,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import table.Table;
@@ -29,6 +26,12 @@ public class DashBoardTabController implements Initializable {
     private Label inUsedTable;
     @FXML
     private DatePicker billDate;
+
+    @FXML
+    private DatePicker startDate;
+
+    @FXML
+    private DatePicker endDate;
 
     @FXML
     private Label numberOfBills;
@@ -122,6 +125,46 @@ public class DashBoardTabController implements Initializable {
         lineChart.getData().addAll(set1);
         lineChart.setLegendVisible(false);
         lineChart.setAnimated(true);
+        // line chart with start date and end date
+        startDate.setOnAction(actionEvent -> {
+            lineChart.getData().clear();
+            XYChart.Series set2 = new XYChart.Series<>();
+            daySales.forEach(daySale -> {
+                if (daySale.getDate().compareTo(startDate.getValue().toString()) >= 0 && daySale.getDate().compareTo(endDate.getValue().toString()) <= 0) {
+                    set2.getData().add(new XYChart.Data(daySale.getDate(), daySale.getTotalMoney()));
+                }
+            });
+            lineChart.getData().addAll(set2);
+        });
+        endDate.setOnAction(actionEvent -> {
+            lineChart.getData().clear();
+            XYChart.Series set2 = new XYChart.Series<>();
+            daySales.forEach(daySale -> {
+                if (daySale.getDate().compareTo(startDate.getValue().toString()) >= 0 && daySale.getDate().compareTo(endDate.getValue().toString()) <= 0) {
+                    set2.getData().add(new XYChart.Data(daySale.getDate(), daySale.getTotalMoney()));
+                }
+            });
+            lineChart.getData().addAll(set2);
+        });
+        startDate.setValue(LocalDate.now().minusWeeks(1));
+        //set end data = start date - 1 week
+        endDate.setValue(LocalDate.now());
+        //disable day after today
+        startDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(empty || date.compareTo(LocalDate.now()) > 0);
+            }
+        });
+        //bill pending
+        tableColumn.setCellValueFactory(new PropertyValueFactory<>("tableNumber"));
+        totalColumn.setCellValueFactory(new PropertyValueFactory<>("totalMoney"));
+        pendingBillTable.getItems().clear();
+        billList.forEach(bill -> {
+            if (bill.getStatus().equalsIgnoreCase("pending")) {
+                pendingBillTable.getItems().add(bill);
+            }
+        });
         //pending bill table
         pendingBillTable.getItems().clear();
         tableColumn.setCellValueFactory(new PropertyValueFactory<>("table_id"));
