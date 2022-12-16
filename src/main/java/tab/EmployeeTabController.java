@@ -171,6 +171,13 @@ public class EmployeeTabController implements Initializable {
             alert.showAndWait();
             return false;
         }
+        if (phoneTextField.getText().length() != 10) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter a valid phone number (10 digits)");
+            alert.showAndWait();
+            return false;
+        }
         return true;
     }
 
