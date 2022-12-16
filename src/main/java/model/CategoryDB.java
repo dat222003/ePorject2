@@ -49,6 +49,13 @@ public class CategoryDB {
         ) {
             PreparedStatement preparedStatement = con.prepareStatement("UPDATE `dish_category` SET available = 0 WHERE cat_id = ?");
             preparedStatement.setString(1, cat_id);
+            PreparedStatement getAllDishInCategory = con.prepareStatement("SELECT * FROM `dish` WHERE cat_id = ?");
+            getAllDishInCategory.setString(1, cat_id);
+            ResultSet resultSet = getAllDishInCategory.executeQuery();
+            while (resultSet.next()) {
+                DishDB dishDB = new DishDB();
+                dishDB.deleteDish(resultSet.getString("dish_id"));
+            }
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

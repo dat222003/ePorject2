@@ -24,15 +24,15 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <HBox id="button" alignment="CENTER_LEFT" layoutX="10.0" layoutY="241.0" prefHeight="50.0" prefWidth="229.0" spacing="20.0">
+            <HBox id="button" alignment="CENTER_LEFT" layoutX="10.0" layoutY="241.0" prefHeight="30.0" prefWidth="229.0" spacing="20.0">
                <padding>
                   <Insets left="20.0" />
                </padding>
                <children>
-                  <FontIcon iconLiteral="far-user-circle" iconSize="30" />
-                  <JFXButton fx:id="userNameButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" prefHeight="44.0" prefWidth="159.0" text="Admin">
+                  <FontIcon iconLiteral="far-user-circle" iconSize="25" />
+                  <JFXButton fx:id="userNameButton" alignment="BASELINE_LEFT" graphicTextGap="15.0" onAction="#changePassword" prefHeight="39.0" prefWidth="159.0" text="Admin">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
                </children>

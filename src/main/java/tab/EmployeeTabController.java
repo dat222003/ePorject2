@@ -332,7 +332,6 @@ public class EmployeeTabController implements Initializable {
             alert.setTitle("Error");
             alert.setHeaderText("Please select a row to update");
             alert.showAndWait();
-            return;
         } else {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/changePassword.fxml"));
             DialogPane dialogPane = null;

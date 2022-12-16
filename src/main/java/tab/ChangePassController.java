@@ -12,6 +12,10 @@ import model.Employee;
 import model.employeeDB;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ChangePassController implements Initializable {
@@ -30,31 +34,53 @@ public class ChangePassController implements Initializable {
 
 
 
-    public void changePassword(Employee employee) {
-        employeeDB employeeDB = new employeeDB();
-        DatabaseConnect databaseConnect = new DatabaseConnect();
-        String oldPassword = oldPasswordField.getText();
-        Employee oldemployee = employeeDB.getOneEmployee(Integer.toString(employee.getUserid()));
-        if (!databaseConnect.hash(oldPassword).equals(oldemployee.getPassword())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Wrong password");
-            alert.setContentText("Please check your password");
-            alert.showAndWait();
-            return;
+    public boolean changePassword(Employee employee) {
+        if (!checkOldPassword(employee)) {
+            return false;
         }
+        employeeDB employeeDB = new employeeDB();
         employee.setPassword(updatePasswordField.getText());
         if (employeeDB.changePassword(employee)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Change Password");
             alert.setContentText("Change Password Success");
             alert.showAndWait();
+            return true;
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Change Password");
             alert.setContentText("Change Password Fail");
             alert.showAndWait();
+            return false;
         }
+    }
+
+    public boolean checkOldPassword(Employee employee) {
+        DatabaseConnect databaseConnect = new DatabaseConnect();
+        String oldPassword = oldPasswordField.getText();
+        Employee oldEmployee = new Employee();
+        //get user_account from database
+        try( Connection con = databaseConnect.getConnect();) {
+            PreparedStatement getFromUserAccount = con.prepareStatement("SELECT * from user_account where user_id = ?");
+            getFromUserAccount.setString(1, Integer.toString(employee.getUserid()));
+            ResultSet resultSet = getFromUserAccount.executeQuery();
+            while (resultSet.next()) {
+                oldEmployee.setUserid(resultSet.getInt("user_id"));
+                oldEmployee.setPassword(resultSet.getString("password"));
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+        //check old pass
+        if (!databaseConnect.hash(oldPassword).equals(oldEmployee.getPassword())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Wrong password");
+            alert.setContentText("Please check your password");
+            alert.showAndWait();
+            return false;
+        }
+        return true;
     }
 
     @Override

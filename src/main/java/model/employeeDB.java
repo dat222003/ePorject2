@@ -148,16 +148,6 @@ public class employeeDB {
         return true;
     }
 
-
-//    public static void main(String[] args) {
-////        addEmployee(new Employee("emp1",
-////                DatabaseConnect.hash("pass"),
-////                "name", "phone", "email", 10000d, "idcard", 1));
-////        addEmployee(new Employee("emp2",
-////                DatabaseConnect.hash("pass"),
-////                "name2", "phone2", "email2", 15000d, "idcard", 0));
-//    }
-
 }
 
 
