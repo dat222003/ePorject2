@@ -127,6 +127,12 @@ public class BillTabController implements Initializable {
                 BillDB billDB = new BillDB();
                 bill.setStatus("purchased");
                 billDB.updateBill(bill);
+                TotalBillDB totalBillDB = new TotalBillDB();
+                totalBillDB.updateTotalBill(bill);
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setTitle("Update bill");
+                alert1.setHeaderText("Purchase bill successfully");
+                alert1.showAndWait();
                 refreshButton.fire();
             }
         } else {
