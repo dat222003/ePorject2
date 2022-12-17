@@ -1,5 +1,7 @@
 package login;
 
+import javafx.scene.control.Alert;
+
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -11,16 +13,21 @@ import java.util.stream.Collectors;
 
 public class DatabaseConnect {
     public static Connection con;
-//    public static String url = "jdbc:mysql://mysqldb.c1pmrcfs8z8r.ap-southeast-1.rds.amazonaws.com/restaurant";
-    public static String url = "jdbc:mysql://localhost:3306/restaurant";
+    public static String url = "jdbc:mysql://mysqldb.c1pmrcfs8z8r.ap-southeast-1.rds.amazonaws.com/restaurant";
+//    public static String url = "jdbc:mysql://localhost:3306/restaurant";
 
     public Connection getConnect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//            con = DriverManager.getConnection(url, "admin", "dat2003dat2003");
-            con = DriverManager.getConnection(url, "root", "Datpro22200379");
-        } catch (ClassNotFoundException | SQLException e) {
+            con = DriverManager.getConnection(url, "admin", "dat2003dat2003");
+//            con = DriverManager.getConnection(url, "root", "Datpro22200379");
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        } catch (SQLException exception) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Cannot connect to database, please check your db configuration");
+            alert.showAndWait();
         }
 
         return con;
