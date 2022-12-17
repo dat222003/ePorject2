@@ -31,13 +31,13 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="startDate" prefHeight="30.0" prefWidth="259.0" promptText="From" />
+                        <DatePicker fx:id="startDate" prefHeight="30.0" prefWidth="245.0" promptText="From" />
                         <Label alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="36.0" prefWidth="41.0" text="To">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="endDate" prefHeight="30.0" prefWidth="246.0" promptText="To" />
+                        <DatePicker fx:id="endDate" prefHeight="30.0" prefWidth="245.0" promptText="To" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="224.0" prefWidth="699.0">
