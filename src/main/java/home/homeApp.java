@@ -20,7 +20,6 @@ public class homeApp extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(url);
         Scene scene = new Scene(fxmlLoader.load(), 1200, 720);
-//        stage.initStyle(StageStyle.UNDECORATED);
         stage.setMinWidth(1200);
         stage.setMinHeight(720);
         stage.setResizable(true);

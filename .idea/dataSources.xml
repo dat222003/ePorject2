@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="aws-database" uuid="3c85c126-8f94-4537-b768-81e80d66ec6a">
+    <data-source source="LOCAL" name="restaurant@restaurant.c1pmrcfs8z8r.ap-southeast-1.rds.amazonaws.com" uuid="6617d895-e4dc-498e-ab1b-7c2e717aedb0">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://mysqldb.c1pmrcfs8z8r.ap-southeast-1.rds.amazonaws.com:3306</jdbc-url>
+      <jdbc-url>jdbc:mysql://restaurant.c1pmrcfs8z8r.ap-southeast-1.rds.amazonaws.com:3306/restaurant</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

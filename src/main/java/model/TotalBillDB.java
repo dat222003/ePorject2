@@ -50,6 +50,7 @@ public class TotalBillDB {
                 Connection con = databaseConnect.getConnect();
         ) {
             TotalBill totalBill = getTotalByDate(bill);
+            System.out.println(totalBill);
             if (totalBill != null) {
                 PreparedStatement preparedStatement = con.prepareStatement("UPDATE `total_bill` SET total_money = ? WHERE date = ?");
                 preparedStatement.setString(1, Double.toString(totalBill.getTotal_money() + bill.getTotal()));
